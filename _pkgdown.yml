@@ -1,0 +1,155 @@
+url: https://stufield.github.io/helpr/
+
+development:
+  mode: auto
+
+authors:
+  Stu Field:
+    href: https://github.com/stufield
+
+home:
+  links:
+  - text: Learn more about me
+    href: https://github.com/stufield
+
+template:
+  bootstrap: 5
+  package: tidytemplate
+  bslib:
+    bg: "#202123"      # dark theme
+    fg: "#B8BCC2"      # dark theme
+    primary: "#0054AD"
+    border-radius: 0.5rem
+    btn-border-radius: 0.25rem
+    base_font: {google: "Roboto"}
+
+navbar:
+  structure:
+    left: [intro, reference, articles, workflows, news]
+    right: [search, github]
+  components:
+    intro:
+      text: Git Started
+      href: articles/helpr.html
+
+articles:
+  - title: Git Started
+    contents:
+    - helpr
+
+  - title: Analysis Mode
+    navbar: ~
+    desc: >
+      A reproducible way to install "time-capsuled" third party
+      packages to maintain a consistent analysis environment.
+    contents:
+    - analysis-mode
+
+reference:
+  - title: Common S3 Generics
+    desc: >
+      S3 generics used by multiple packages having the same S3 method.
+    contents:
+    - s3-generics
+
+  - title: Checking
+    desc: >
+      Boolean logical testing of an object.
+    contents:
+    - rep_lgl
+    - logicals
+
+  - title: Wrappers
+    desc: >
+      Wrappers and alias functions.
+    contents:
+    - logit
+    - rownames
+    - liter
+    - set_Names
+
+  - title: Simple calculations
+    desc: >
+      Various, simple, often used "calculation" utilities.
+    contents:
+    - starts_with("calc")
+    - get_outliers
+    - fit_gauss
+    - p_value_FDR
+    - enrich_test
+    - normal_k2_mixture
+
+  - title: Simple comparison
+    desc: >
+      Compare vectors, calculate cross-tabulated counts and
+      intersections of vector contents.
+    contents:
+    - diff_vecs
+    - cross_tab
+
+  - title: Convert and Subset Objects
+    desc: >
+      Converting classes to data frames and subsetting elements of objects.
+    contents:
+    - add_class
+    - convert2df
+    - elements
+
+  - title: File System Utilities
+    desc: >
+      File system useful utilities inspired by the
+      [fs](https://fs.r-lib.org) package.
+    contents:
+    - filesystem
+    - starts_with("save_")
+    - openR
+
+  - title: String Utilities
+    desc: >
+      Simple utilities for manipulating strings inspired
+      by the [stringr](https://stringr.tidyverse.org/index.html) package.
+    contents:
+    - strings
+
+  - title: Interface Utilities
+    desc: >
+      Generalized utilities for UI signaling and text output inspired
+      by the [usethis](https://usethis.r-lib.org), [cli](https://cli.r-lib.org),
+      and [crayon](https://github.com/r-lib/crayon) packages.
+    contents:
+    - signal
+    - symbl
+    - starts_with("skip_on")
+    - give_praise
+
+  - title: Formatting Utilities
+    desc: >
+      Generalized utilities to facilitate consistency.
+    contents:
+    - create_form
+    - dater
+    - read_text
+    - write_text
+    - write_list
+
+  - title: Handlers
+    desc: >
+      For capturing errors and dealing with verbose function calls.
+    contents:
+    - handlers
+
+  - title: Grapes
+    desc: >
+      Series of special, possibly useful, infix operators.
+    contents:
+    - grapes
+
+  - title: Analysis Mode
+    desc: >
+      A reproducible way to install non-standard packages into a
+      production environment for analyses.
+    contents:
+    - analysis_mode
+
+news:
+  - one_page: true

@@ -1,0 +1,12 @@
+linters: linters_with_defaults(
+  defaults           = megaverse::soma_linters(),
+  indentation_linter = NULL,
+  object_name_linter = NULL,
+  undesirable_linter = NULL # this pkg has some intentional ones
+  )
+exclusions: list(
+  "R/analysis-mode.R"                   = list(undesirable_linter = Inf),
+  "tests/testthat/test-analysis-mode.R" = list(undesirable_linter = c(11, 14, 24, 28, 49)), # .libPaths()
+  "tests/testthat/helper.R",
+  "tests/testthat.R"
+  )

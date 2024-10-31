@@ -1,0 +1,37 @@
+Type: Package
+Package: helpr
+Title: Helper Utilities for R
+Version: 0.0.1
+Authors@R: c(
+    person(given = "Stu",
+           family = "Field",
+           role = c("aut", "cre", "cph"),
+           email = "stu.g.field@gmail.com",
+           comment = c(ORCID = "0000-0002-1024-5859"))
+    )
+Description: The helpr package contains numerous helpers,
+    wrappers, and utilities used throughout the my
+    analysis suite. It intentionally favors base R
+    over higher level *tidyverse* to minimize imports.
+License: GPL-3 | file LICENSE
+Depends:
+    R (>= 4.4.0)
+Suggests:
+    knitr,
+    lifecycle,
+    lintr,
+    pillar,
+    rmarkdown,
+    remotes,
+    spelling,
+    testthat,
+    tibble,
+    withr
+VignetteBuilder:
+    knitr
+Encoding: UTF-8
+Language: en-US
+LazyLoad: true
+Config/testthat/edition: 3
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1

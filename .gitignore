@@ -1,0 +1,21 @@
+
+# ignore anything doc (i.e. vignettes)
+inst/doc/*
+
+# ignore files related to adding keyword expansion
+# Revision Info: Id, Author and Date in file header
+# This was a desired feature request once; look like SVN style
+# and may be incorporated at some point in the future
+filter_clean
+filter_smudge
+
+# ignore all RStudio project related files
+.Rproj.user
+\.DS_Store
+\.Rhistory
+^r\\.Rproj$
+
+# ignore all packrat related files
+.project
+packrat/lib*/
+.Rproj.user
