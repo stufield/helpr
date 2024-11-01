@@ -48,6 +48,13 @@ options(repos = c(CRAN = "http://cran.rstudio.com"))
   - how to toggle back-and-forth between modes
   - how to install to the default library mode location
 
+--------------
+
+## Useful Functions
+
+* `lib_mode()`
+* `lib_tree()`
+* `is_lib_mode()`
 
 ------------
 
@@ -56,13 +63,13 @@ options(repos = c(CRAN = "http://cran.rstudio.com"))
 
 ### Toggle `lib_mode()` ON/OFF
 
-Analysis mode usage requires a path specification of the desired library
+Library Mode usage requires a path specification of the desired library
 location via its `path =` argument. This can be _anywhere_ on the file system
 that the user has privileges.
 
 
-```{r analysis-mode}
-mylib <- "~/tmp-analysis-lib"
+```{r lib-mode}
+mylib <- "~/tmp-lib"
 dir.create(mylib)     # must create a valid directory
 
 lib_tree()
@@ -73,7 +80,7 @@ lib_tree()
 
 lib_mode(mylib)  # deactivate
 
-analysis_libs()
+lib_tree()
 ```
 
 
