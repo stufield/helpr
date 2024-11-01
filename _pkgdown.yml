@@ -37,13 +37,14 @@ articles:
     contents:
     - helpr
 
-  - title: Analysis Mode
+  - title: Library Mode
     navbar: ~
     desc: >
       A reproducible way to install "time-capsuled" third party
-      packages to maintain a consistent analysis environment.
+      packages onto the libarary tree to maintain a consistent
+      analysis environment.
     contents:
-    - analysis-mode
+    - lib-mode
 
 reference:
   - title: Common S3 Generics
@@ -144,12 +145,13 @@ reference:
     contents:
     - grapes
 
-  - title: Analysis Mode
+  - title: Library Mode
     desc: >
-      A reproducible way to install non-standard packages into a
-      production environment for analyses.
+      A reproducible way to install temporary, perhaps non-standard packages
+      into a stable, reproducible environment for analysis by adding
+      onto the R library tree.
     contents:
-    - analysis_mode
+    - lib_mode
 
 news:
   - one_page: true
