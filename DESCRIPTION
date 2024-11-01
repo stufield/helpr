@@ -33,5 +33,6 @@ Encoding: UTF-8
 Language: en-US
 LazyLoad: true
 Config/testthat/edition: 3
+Config/Needs/website: tidyverse/tidytemplate
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
