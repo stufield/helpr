@@ -24,7 +24,7 @@ get_meta <- function(x) {
   if ( inherits(x, "data.frame") ) {
     x <- names(x)
   }
-  setdiff(x, getAnalytes(x))
+  setdiff(x, get_analytes(x))
 }
 
 add_seq <- function(x) {
