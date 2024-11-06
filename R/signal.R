@@ -152,7 +152,7 @@ signal_rule <- function(text = "", line_col = NULL,
 #' @param class The handler class to signal. Defaults to a `message`.
 #' @noRd
 .inform <- function(..., class = c("message", "condition"),
-                  quiet = getOption("signal.quiet", default = FALSE)) {
+                    quiet = getOption("signal.quiet", default = FALSE)) {
   if ( !quiet ) {
     msg <- paste(...)
     cnd <- structure(list(message = msg), class = class)
