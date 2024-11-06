@@ -94,7 +94,9 @@ plot.fdr <- function(x, ...) {
   m <- nrow(x)
   slopes <- unique(x$fdr) |> sort()
   cols   <- length(slopes) |> rainbow()
-  sapply(1:length(slopes), function(.x) abline(0, slopes[.x], col = cols[.x]))
+  lapply(seq_along(slopes), function(.x) {
+    abline(0, slopes[.x], col = cols[.x])
+  })
   abline(h = attr(x, "alpha") / m, col = 4, lty = 2)  # add Bonferroni
   legend(
     "topleft",

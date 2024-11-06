@@ -30,7 +30,7 @@ give_praise <- function() {
 }
 
 .cap <- function(x) {
-  paste0(toupper(substr(x, 1L, 1L)), substring(x, 2L))
+  paste0(toupper(substr(x, 1L, 1L)), substr(x, 2L, nchar(x)))
 }
 
 praises <- list(

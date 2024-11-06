@@ -1,6 +1,5 @@
 
 test_that("helpr is in style compliance", {
-  skip_on_jenkins()  # don't run in Jenkins
   skip_on_check()    # don't run in devtools::check()
   skip_on_covr()     # don't run if in 'covr'
   skip_if_not_installed("lintr")
@@ -9,14 +8,14 @@ test_that("helpr is in style compliance", {
 
   # linters and exclusions are controlled by
   # the .lintr file in pkg root
-  tLints <- withr::with_dir(
+  t_lints <- withr::with_dir(
     ifelse(is_testing(), ".", "tests/testthat"),
     lintr::lint_dir(pattern = "^test-")
   )
-  rLints <- withr::with_dir(
+  r_lints <- withr::with_dir(
     ifelse(is_testing(), "../../R", "R"),
     lintr::lint_dir(pattern = "[.][Rr]$")
   )
-  expect_length(tLints, 0L)
-  expect_length(rLints, 0L)
+  expect_length(t_lints, 0L)
+  expect_length(r_lints, 0L)
 })

@@ -8,8 +8,8 @@
 calc_qvalue(
   p,
   lambda = seq(0, 0.95, 0.01),
-  lambda.eval = NULL,
-  match.storey = FALSE
+  lambda_eval = NULL,
+  match_storey = FALSE
 )
 
 \method{plot}{q_value}(x, ..., rng = c(0, 0.25))
@@ -19,36 +19,37 @@ calc_qvalue(
 
 \item{lambda}{A sequence of lambdas to evaluate.}
 
-\item{lambda.eval}{A value of lambda to evaluate at, defaults to the maximum
-value of the \code{lambda} sequence.}
+\item{lambda_eval}{A value of lambda to evaluate at,
+defaults to the maximum value of the \code{lambda} sequence.}
 
-\item{match.storey}{Logical. Should the output be matched to that of
-Storey's qvalue() function?}
+\item{match_storey}{\code{logical(1)}. Should the output be matched
+to Storey's \code{qvalue()} function?}
 
-\item{x}{Object of class \code{q_value}.}
+\item{x}{Object class \code{q_value}.}
 
 \item{...}{Additional arguments passed to the S3 generic method \code{plot}.}
 
-\item{rng}{Numeric of \code{length == 2}. Range values.}
+\item{rng}{\code{numeric(2)}. Range of values.}
 }
 \value{
 A list of class \code{q_value} containing:
 \item{call}{The original call to \code{calc_qvalue()}.}
-\item{p.value}{The original vector of p-values.}
+\item{p_value}{The original vector of p-values.}
 \item{m}{?}
 \item{lambda}{?}
-\item{lambda.eval}{?}
-\item{pi.lambda}{?}
-\item{spline.fit}{?}
+\item{lambda_eval}{?}
+\item{pi_lambda}{?}
+\item{spline_fit}{?}
 \item{pi0}{?}
-\item{q.value}{A a vector of q-values.}
+\item{q_value}{A a vector of q-values.}
 
-A plot
+A cool plot.
 }
 \description{
-Calculates a vector of q-values corresponding to a vector of p-values.
+Calculates a vector of q-values corresponding
+to a vector of p-values.
 
-S3 plot method for "q.value" class objects
+S3 plot method for "q_value" class objects
 }
 \examples{
 x <- withr::with_seed(101, c(seq(0.0001, 0.05, length = 50), runif(950)))

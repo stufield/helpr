@@ -120,4 +120,3 @@ add_rowid <- function(data, name = ".rowid") {
   data <- data[, c(nc + 1L, seq_len(nc))]
   data
 }
-

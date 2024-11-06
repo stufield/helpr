@@ -32,4 +32,3 @@ add_seq <- function(x) {
   x <- vapply(strsplit(x, "_", fixed = TRUE), `[[`, i = 1L, "")
   paste0("seq.", sub("-", ".", x))
 }
-

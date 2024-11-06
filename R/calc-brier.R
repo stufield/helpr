@@ -67,4 +67,3 @@ calc_brier.logical <- function(x, p) {
   x <- as.numeric(x)
   calc_brier(x, p)
 }
-

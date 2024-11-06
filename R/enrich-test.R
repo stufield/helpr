@@ -54,7 +54,6 @@ enrich_test <- function(x, alternative = c("two.sided", "enrich", "deplete")) {
     stop("Error in `x` argument. Incorrect format.", call. = FALSE)
   }
 
-  ret <- list()
   prob_vec1 <- stats::dhyper(n11:n_1, n1_, n2_, n_1)
   one_sided <- sum(prob_vec1)                # sum the probabilities from x11 -> x.1
   prob_vec1[1L]        <- prob_vec1[1L] / 2
@@ -78,7 +77,7 @@ enrich_test <- function(x, alternative = c("two.sided", "enrich", "deplete")) {
     ~Test,                 ~"p-value",
     "1 sided",             one_sided,
     "2 sided double",      two_sided_double,
-    "1 sided mid" ,        one_sided_mid,
+    "1 sided mid",         one_sided_mid,
     "2 sided double mid",  two_sided_double_mid,
     "Fisher's Exact",      two_sided_min_lik,
     "2 sided min lik mid", two_sided_min_lik_mid
@@ -100,7 +99,6 @@ enrich_test <- function(x, alternative = c("two.sided", "enrich", "deplete")) {
   )
   print(hyper)
   writeLines(signal_rule(lty = "double", line_col = "green"))
-  #ret$hyper[["p-value"]][ ret$hyper[["p-value"]] > 1 ] <- 1
   invisible(list(results     = hyper,
                  confusion   = ConfusionTable,
                  alternative = altern))

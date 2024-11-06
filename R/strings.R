@@ -105,11 +105,12 @@ capture <- function(text, pattern) {
   stopifnot(is.character(text))
   regex <- regexpr(pattern, text, perl = TRUE)
   if ( !"capture.start" %in% names(attributes(regex)) ) {
-    stop("Bad pattern argument! Must contain a group capture regex.", call. = FALSE)
+    stop("Bad pattern argument! Must contain a group capture regex.",
+         call. = FALSE)
   }
   start <- attr(regex, "capture.start")
   len <- attr(regex, "capture.length") - 1L
-  strings <- substring(text, start, start + len)
+  strings <- substring(text, start, start + len) # nolint: undesirable_linter.
   ret <- data.frame(matrix(strings, ncol = ncol(start)), stringsAsFactors = FALSE)
   nms <- attr(regex, "capture.names")
   names(ret) <- ifelse(nms == "", seq_along(nms), nms)
