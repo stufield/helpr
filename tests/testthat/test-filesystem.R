@@ -1,5 +1,5 @@
 # Setup ----
-# Needed to avoid checking the class of `mv_path` objects in tests
+# Needed to avoid checking the class of `helpr_path` objects in tests
 expect_path_equal <- function(actual, expected) {
   if ( identical(class(expected), "character") ) {
     class(actual) <- NULL
@@ -11,57 +11,57 @@ expect_path_equal <- function(actual, expected) {
 
 
 # Testing ----
-test_that("`mv_path()` returns correct objects", {
-  x <- mv_path("foo", "bar", "baz")
-  expect_s3_class(x, "mv_path")
+test_that("`helpr_path()` returns correct objects", {
+  x <- helpr_path("foo", "bar", "baz")
+  expect_s3_class(x, "helpr_path")
   expect_s3_class(x, "character")
   expect_path_equal(x, "foo/bar/baz")
-  y <- mv_path("foo", "bar", "baz", ext = "zip")
+  y <- helpr_path("foo", "bar", "baz", ext = "zip")
   expect_path_equal(y, "foo/bar/baz.zip")
 })
 
-test_that("`mv_path()` does recycles the ext= argument if possible", {
-  x <- mv_path("foo", letters[1:3], ext = "txt")
+test_that("`helpr_path()` does recycles the ext= argument if possible", {
+  x <- helpr_path("foo", letters[1:3], ext = "txt")
   expect_path_equal(x, c("foo/a.txt", "foo/b.txt", "foo/c.txt"))
-  y <- mv_path("foo", letters[1:3], ext = c("txt", "csv", "zip"))
+  y <- helpr_path("foo", letters[1:3], ext = c("txt", "csv", "zip"))
   expect_path_equal(y, c("foo/a.txt", "foo/b.csv", "foo/c.zip"))
 })
 
-test_that("`mv_path()` removes duoble '//' in paths", {
-  true <- mv_path("foo/bar")
-  expect_path_equal(mv_path("foo", "/bar"), true)
-  expect_path_equal(mv_path("foo", "/", "bar"), true)
-  expect_path_equal(mv_path("foo/", "bar"), true)
+test_that("`helpr_path()` removes duoble '//' in paths", {
+  true <- helpr_path("foo/bar")
+  expect_path_equal(helpr_path("foo", "/bar"), true)
+  expect_path_equal(helpr_path("foo", "/", "bar"), true)
+  expect_path_equal(helpr_path("foo/", "bar"), true)
 })
 
-test_that("`mv_path()` handles empty path edge cases", {
-  expect_path_equal(mv_path(""), "")
-  expect_path_equal(mv_path("."), ".")
-  expect_path_equal(mv_path(), character(0))
-  expect_path_equal(mv_path(character(0)), character(0))
+test_that("`helpr_path()` handles empty path edge cases", {
+  expect_path_equal(helpr_path(""), "")
+  expect_path_equal(helpr_path("."), ".")
+  expect_path_equal(helpr_path(), character(0))
+  expect_path_equal(helpr_path(character(0)), character(0))
 })
 
-test_that("`mv_path()` correctly propogates NAs", {
-  expect_path_equal(mv_path(NA_character_), NA_character_)
-  expect_path_equal(mv_path("foo", NA_character_), NA_character_)
-  expect_path_equal(mv_path(c("foo", "bar"), c("baz", NA_character_)),
+test_that("`helpr_path()` correctly propogates NAs", {
+  expect_path_equal(helpr_path(NA_character_), NA_character_)
+  expect_path_equal(helpr_path("foo", NA_character_), NA_character_)
+  expect_path_equal(helpr_path(c("foo", "bar"), c("baz", NA_character_)),
                c("foo/baz", NA_character_))
-  expect_path_equal(mv_path(c("foo", NA_character_, "bar")), c("foo", NA, "bar"))
+  expect_path_equal(helpr_path(c("foo", NA_character_, "bar")), c("foo", NA, "bar"))
   expect_path_equal(
-    mv_path("foo", c(NA_character_, "bar"), "baz"),
+    helpr_path("foo", c(NA_character_, "bar"), "baz"),
     c(NA_character_, "foo/bar/baz")
   )
-  expect_path_equal(mv_path("foo", NA_character_, "bar"), NA_character_)
+  expect_path_equal(helpr_path("foo", NA_character_, "bar"), NA_character_)
 })
 
 test_that("fails with non-character inputs", {
   msg <- "All '...' must be character."
-  expect_error(mv_path(1), msg)
-  expect_error(mv_path(1L), msg)
-  expect_error(mv_path(factor("A")), msg)
-  expect_error(mv_path(TRUE), msg)
-  expect_error(mv_path(NULL), msg)
-  expect_error(mv_path("a", NULL), msg)
+  expect_error(helpr_path(1), msg)
+  expect_error(helpr_path(1L), msg)
+  expect_error(helpr_path(factor("A")), msg)
+  expect_error(helpr_path(TRUE), msg)
+  expect_error(helpr_path(NULL), msg)
+  expect_error(helpr_path("a", NULL), msg)
 })
 
 test_that("`colorize_paths()` returns the correct coloring", {
@@ -91,26 +91,26 @@ test_that("`colorize_paths()` returns the correct coloring", {
 })
 
 test_that("preserves the class with both subset and subset2", {
-  expect_s3_class(mv_path("foo")[1L], "mv_path")
-  expect_s3_class(mv_path("foo")[[1L]], "mv_path")
+  expect_s3_class(helpr_path("foo")[1L], "helpr_path")
+  expect_s3_class(helpr_path("foo")[[1L]], "helpr_path")
 })
 
 test_that("S3 `+` builds paths correctly", {
-  expect_path_equal(mv_path("foo") + "bar", "foo/bar")
-  expect_s3_class(mv_path("foo") + "bar", "mv_path")
-  expect_path_equal(mv_path("foo") + "bar/baz", "foo/bar/baz")
-  expect_s3_class(mv_path("foo") + "bar/baz", "mv_path")
+  expect_path_equal(helpr_path("foo") + "bar", "foo/bar")
+  expect_s3_class(helpr_path("foo") + "bar", "helpr_path")
+  expect_path_equal(helpr_path("foo") + "bar/baz", "foo/bar/baz")
+  expect_s3_class(helpr_path("foo") + "bar/baz", "helpr_path")
 })
 
 test_that("S3 `/` builds paths correctly", {
-  expect_path_equal(mv_path("foo") / "bar", "foo/bar")
-  expect_s3_class(mv_path("foo") / "bar", "mv_path")
-  expect_path_equal(mv_path("foo") / "bar/baz", "foo/bar/baz")
-  expect_s3_class(mv_path("foo") / "bar/baz", "mv_path")
+  expect_path_equal(helpr_path("foo") / "bar", "foo/bar")
+  expect_s3_class(helpr_path("foo") / "bar", "helpr_path")
+  expect_path_equal(helpr_path("foo") / "bar/baz", "foo/bar/baz")
+  expect_s3_class(helpr_path("foo") / "bar/baz", "helpr_path")
 })
 
 test_that("S3 `/` and `+` are the same path building", {
-  expect_path_equal(mv_path("foo") + "bar", mv_path("foo") / "bar")
+  expect_path_equal(helpr_path("foo") + "bar", helpr_path("foo") / "bar")
 })
 
 test_that("path permissions conversions are correctly mapped", {
@@ -143,7 +143,7 @@ test_that("`is.dir()` identifies directories", {
   ls <- info_dir()
   expect_named(ls, nms)
   expect_equal(dim(ls), c(length(ls_dir()), 9L))
-  liter(ls, c("mv_path", "character", "mv_bytes",
+  liter(ls, c("helpr_path", "character", "helpr_bytes",
               "character", "POSIXct", "character",
               "character", "POSIXct", "POSIXct"),
         function(.x, .y) expect_true(inherits(.x, .y))) |> invisible()
@@ -205,7 +205,7 @@ test_that("`set_file_ext()` handles files passed as a list", {
 })
 
 test_that("`set_file_ext()` recycles ext argument if appropriate", {
-  expect_s3_class(set_file_ext("foo.txt", "csv"), "mv_path")
+  expect_s3_class(set_file_ext("foo.txt", "csv"), "helpr_path")
   expect_path_equal(
     set_file_ext(c("foo.txt", "bar.csv"), "csv"),
     c("foo.csv", "bar.csv")
@@ -219,7 +219,7 @@ test_that("`set_file_ext()` recycles ext argument if appropriate", {
 
 test_that("`set_file_ext()` handles NAs correctly", {
   x <- set_file_ext(c("foo.txt", NA_character_, "bar.csv"), "R")
-  expect_s3_class(x, "mv_path")
+  expect_s3_class(x, "helpr_path")
   expect_path_equal(x, c("foo.R", NA_character_, "bar.R")
   )
 })
@@ -259,90 +259,90 @@ test_that("`file_ext<-()` sets extension via assignment", {
 # Bytes ----
 x <- 10^(0:9)
 
-test_that("`as_mv_bytes()` converts class", {
-  expect_s3_class(as_mv_bytes(x), "mv_bytes")
+test_that("`as_helpr_bytes()` converts class", {
+  expect_s3_class(as_helpr_bytes(x), "helpr_bytes")
 })
 
-test_that("`as_mv_bytes()` accepts numerics and returns them unchanged", {
-  expect_equal(unclass(as_mv_bytes(123)), 123)
-  expect_equal(unclass(as_mv_bytes(123L)), 123)
+test_that("`as_helpr_bytes()` accepts numerics and returns them unchanged", {
+  expect_equal(unclass(as_helpr_bytes(123)), 123)
+  expect_equal(unclass(as_helpr_bytes(123L)), 123)
 })
 
-test_that("`as_mv_bytes()` converts character values to numeics", {
-  expect_equal(unclass(as_mv_bytes("1")), 1)
-  expect_equal(unclass(as_mv_bytes("1000")), 1000)
-  expect_equal(unclass(as_mv_bytes("1000000")), 1e+06)
+test_that("`as_helpr_bytes()` converts character values to numeics", {
+  expect_equal(unclass(as_helpr_bytes("1")), 1)
+  expect_equal(unclass(as_helpr_bytes("1000")), 1000)
+  expect_equal(unclass(as_helpr_bytes("1000000")), 1e+06)
 })
 
-test_that("`format.mv_bytes()` formats values < 1024 to their identity values", {
-  expect_equal(format(as_mv_bytes(0)), "0")
-  expect_equal(format(as_mv_bytes(1)), "1B")
-  expect_equal(format(as_mv_bytes(1023)), "1023B")
+test_that("`format.helpr_bytes()` formats values < 1024 to their identity values", {
+  expect_equal(format(as_helpr_bytes(0)), "0")
+  expect_equal(format(as_helpr_bytes(1)), "1B")
+  expect_equal(format(as_helpr_bytes(1023)), "1023B")
 })
 
-test_that("`format.mv_bytes()` formats values > 1024 to group and colors", {
-  expect_snapshot(format(as_mv_bytes(1024)))
-  expect_snapshot(format(as_mv_bytes(1025)))
-  expect_snapshot(format(as_mv_bytes(1024 * 1024)))
-  expect_snapshot(format(as_mv_bytes(2^16)))
-  expect_snapshot(format(as_mv_bytes(2^24)))
-  expect_snapshot(format(as_mv_bytes(2^24 + 555555)))
-  expect_snapshot(format(as_mv_bytes(2^32)))
-  expect_snapshot(format(as_mv_bytes(2^48)))
-  expect_snapshot(format(as_mv_bytes(2^64))) # 'E' is not colored
+test_that("`format.helpr_bytes()` formats values > 1024 to group and colors", {
+  expect_snapshot(format(as_helpr_bytes(1024)))
+  expect_snapshot(format(as_helpr_bytes(1025)))
+  expect_snapshot(format(as_helpr_bytes(1024 * 1024)))
+  expect_snapshot(format(as_helpr_bytes(2^16)))
+  expect_snapshot(format(as_helpr_bytes(2^24)))
+  expect_snapshot(format(as_helpr_bytes(2^24 + 555555)))
+  expect_snapshot(format(as_helpr_bytes(2^32)))
+  expect_snapshot(format(as_helpr_bytes(2^48)))
+  expect_snapshot(format(as_helpr_bytes(2^64))) # 'E' is not colored
 })
 
-test_that("`format.mv_bytes()` is vectorized and colored", {
-  expect_snapshot(format(as_mv_bytes(x)))
+test_that("`format.helpr_bytes()` is vectorized and colored", {
+  expect_snapshot(format(as_helpr_bytes(x)))
 })
 
-test_that("`format.mv_bytes()` handles edge cases", {
-  expect_equal(unclass(as_mv_bytes(NA)), NA_real_)
-  expect_equal(format(as_mv_bytes(NA)), "NA")
-  expect_equal(unclass(as_mv_bytes(NaN)), NaN)
-  expect_equal(format(as_mv_bytes(NaN)), "NaN")
-  expect_equal(unclass(as_mv_bytes(NULL)), numeric(0))
-  expect_equal(format(as_mv_bytes(NULL)), character(0))
+test_that("`format.helpr_bytes()` handles edge cases", {
+  expect_equal(unclass(as_helpr_bytes(NA)), NA_real_)
+  expect_equal(format(as_helpr_bytes(NA)), "NA")
+  expect_equal(unclass(as_helpr_bytes(NaN)), NaN)
+  expect_equal(format(as_helpr_bytes(NaN)), "NaN")
+  expect_equal(unclass(as_helpr_bytes(NULL)), numeric(0))
+  expect_equal(format(as_helpr_bytes(NULL)), character(0))
 })
 
-test_that("`mv_bytes()` sum method is dispatched", {
-  expect_equal(sum(as_mv_bytes(0)), as_mv_bytes(sum(0)))
-  expect_equal(sum(as_mv_bytes(1:10)), as_mv_bytes(sum(1:10)))
-  expect_equal(sum(as_mv_bytes(c(1, NA))), as_mv_bytes(NA_real_))
-  expect_equal(unclass(sum(as_mv_bytes(x))), sum(x))
-  expect_snapshot(format(sum(as_mv_bytes(x))))
+test_that("`helpr_bytes()` sum method is dispatched", {
+  expect_equal(sum(as_helpr_bytes(0)), as_helpr_bytes(sum(0)))
+  expect_equal(sum(as_helpr_bytes(1:10)), as_helpr_bytes(sum(1:10)))
+  expect_equal(sum(as_helpr_bytes(c(1, NA))), as_helpr_bytes(NA_real_))
+  expect_equal(unclass(sum(as_helpr_bytes(x))), sum(x))
+  expect_snapshot(format(sum(as_helpr_bytes(x))))
 })
 
-test_that("`mv_bytes()` min method is dispatched", {
-  expect_equal(min(as_mv_bytes(0)), as_mv_bytes(0))
-  expect_equal(min(as_mv_bytes(c(1, 2))), as_mv_bytes(1))
-  expect_equal(min(as_mv_bytes(c(1, NA))), as_mv_bytes(NA_real_))
-  expect_equal(unclass(min(as_mv_bytes(x))), 1)
-  expect_equal(format(min(as_mv_bytes(x))), "1B")
+test_that("`helpr_bytes()` min method is dispatched", {
+  expect_equal(min(as_helpr_bytes(0)), as_helpr_bytes(0))
+  expect_equal(min(as_helpr_bytes(c(1, 2))), as_helpr_bytes(1))
+  expect_equal(min(as_helpr_bytes(c(1, NA))), as_helpr_bytes(NA_real_))
+  expect_equal(unclass(min(as_helpr_bytes(x))), 1)
+  expect_equal(format(min(as_helpr_bytes(x))), "1B")
 })
 
-test_that("`mv_bytes()` max method is dispatched", {
-  expect_equal(max(as_mv_bytes(0)), as_mv_bytes(0))
-  expect_equal(max(as_mv_bytes(c(1, 2))), as_mv_bytes(2))
-  expect_equal(max(as_mv_bytes(c(1, NA))), as_mv_bytes(NA_real_))
-  expect_equal(unclass(max(as_mv_bytes(x))), 1e+09)
-  expect_snapshot(format(max(as_mv_bytes(x))))
+test_that("`helpr_bytes()` max method is dispatched", {
+  expect_equal(max(as_helpr_bytes(0)), as_helpr_bytes(0))
+  expect_equal(max(as_helpr_bytes(c(1, 2))), as_helpr_bytes(2))
+  expect_equal(max(as_helpr_bytes(c(1, NA))), as_helpr_bytes(NA_real_))
+  expect_equal(unclass(max(as_helpr_bytes(x))), 1e+09)
+  expect_snapshot(format(max(as_helpr_bytes(x))))
 })
 
-test_that("`[.as_mv_bytes`", {
-  x <- as_mv_bytes(x)
+test_that("`[.as_helpr_bytes`", {
+  x <- as_helpr_bytes(x)
   expect_equal(x[], x)
-  expect_equal(x[5], as_mv_bytes(10000))
+  expect_equal(x[5], as_helpr_bytes(10000))
   expect_equal(unclass(x[5]), 10000)
   expect_snapshot(format(x[5]))
-  expect_equal(x[c(3, 6, 9)], as_mv_bytes(c(1e+02, 1e+05, 1e+08)))
+  expect_equal(x[c(3, 6, 9)], as_helpr_bytes(c(1e+02, 1e+05, 1e+08)))
   expect_equal(unclass(x[c(3, 6, 9)]), c(1e+02, 1e+05, 1e+08))
   expect_snapshot(format(x[c(3, 6, 9)]))
 })
 
-test_that("`[[.as_mv_bytes` retains the fs_bytes class", {
-  x <- as_mv_bytes(c(100, 200, 300))
-  expect_equal(x[[1L]], as_mv_bytes(100))
-  expect_equal(x[[2L]], as_mv_bytes(200))
-  expect_equal(x[[3L]], as_mv_bytes(300))
+test_that("`[[.as_helpr_bytes` retains the fs_bytes class", {
+  x <- as_helpr_bytes(c(100, 200, 300))
+  expect_equal(x[[1L]], as_helpr_bytes(100))
+  expect_equal(x[[2L]], as_helpr_bytes(200))
+  expect_equal(x[[3L]], as_helpr_bytes(300))
 })

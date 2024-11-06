@@ -1,9 +1,9 @@
 #' File System Utilities
 #'
 #' Generalized file system utilities and operations customized for
-#' data structures.
-#' It was heavily influenced by the
-#' \pkg{fs} package: \url{https://github.com/r-lib/fs}.
+#'   data structures.
+#'   It was heavily influenced by the
+#'   \pkg{fs} package: \url{https://github.com/r-lib/fs}.
 #'
 #' @name filesystem
 #'
@@ -16,20 +16,21 @@ NULL
 #'   Construct a path to a file.
 #'
 #' @param ext,value An optional extension to append to the generated path.
+#'
 #' @param ... Character vectors to construct paths, `length == 1`
 #'   values are recycled as appropriate too complete pasting.
 #'   Alternatively, arguments passed to [dir()] (for [ls_dir()]).
 #'
 #' @examples
 #' # paths
-#' mv_path("foo", "bar", "baz")    # no ext
+#' helpr_path("foo", "bar", "baz")    # no ext
 #'
-#' mv_path("foo", "bar", "baz", ext = "zip")  # ext
+#' helpr_path("foo", "bar", "baz", ext = "zip")  # ext
 #'
-#' mv_path("foo", letters[1:3], ext = "txt")  # recycled args
+#' helpr_path("foo", letters[1:3], ext = "txt")  # recycled args
 #'
 #' @export
-mv_path <- function(..., ext = "") {
+helpr_path <- function(..., ext = "") {
   args <- list(...)
   stopifnot(
     "All '...' must be character." = all(vapply(args, is.character, NA))
@@ -40,13 +41,13 @@ mv_path <- function(..., ext = "") {
   if ( !missing(ext) ) {
     set_file_ext(res, ext)
   } else {
-    as_mv_path(res)
+    as_helpr_path(res)
   }
 }
 
 #' @noRd
 #' @export
-print.mv_path <- function(x, ..., max = getOption("max.print")) {
+print.helpr_path <- function(x, ..., max = getOption("max.print")) {
   x <- x[seq_len(min(length(x), max))]
   if ( length(x) == 0L ) {
     print(character(0))
@@ -56,45 +57,45 @@ print.mv_path <- function(x, ..., max = getOption("max.print")) {
 }
 
 #' @describeIn filesystem
-#'   Coerce to a `mv_path` object.
+#'   Coerce to a `helpr_path` object.
 #'
 #' @export
-as_mv_path <- function(x) {
+as_helpr_path <- function(x) {
   x <- enc2utf8(as.character(x))
   x <- gsub("/+", "/", x)   # nuke duplicate slashes
   names(x) <- x
-  structure(x, class = c("mv_path", "character"))
+  structure(x, class = c("helpr_path", "character"))
 }
 
 #' @noRd
 #' @export
-`+.mv_path` <- function(e1, e2) {
+`+.helpr_path` <- function(e1, e2) {
   e1 <- path.expand(e1)
   x <- paste0(e1, "/", e2)
-  as_mv_path(x)
+  as_helpr_path(x)
 }
 
 #' @noRd
 #' @export
-`/.mv_path` <- function(e1, e2) {
+`/.helpr_path` <- function(e1, e2) {
   e1 <- path.expand(e1)
   x <- paste0(e1, "/", e2)
-  as_mv_path(x)
+  as_helpr_path(x)
 }
 
 #' @noRd
 #' @export
-`[.mv_path` <- function(x, i, ...) {
-  as_mv_path(NextMethod("["))
+`[.helpr_path` <- function(x, i, ...) {
+  as_helpr_path(NextMethod("["))
 }
 
 #' @noRd
 #' @export
-`[[.mv_path` <- function(x, i, ...) {
-  as_mv_path(NextMethod("["))
+`[[.helpr_path` <- function(x, i, ...) {
+  as_helpr_path(NextMethod("["))
 }
 
-pillar_shaft.mv_path <- function(x, ..., min_width = 15) {
+pillar_shaft.helpr_path <- function(x, ..., min_width = 15) {
   pillar::new_pillar_shaft_simple(colorize_paths(x), ..., min_width = min_width)
 }
 
@@ -122,11 +123,13 @@ is.dir <- function(x) {
 #' @describeIn filesystem
 #'   List the directory contents.
 #'
-#' @param regexp A regular expression, e.g. "`[.]csv$`", see the `pattern`
-#'   argument to [dir()]. Files are collated according to `"C"` locale rules,
-#'   so that they are ordered consistently with [fs::dir_ls()].
+#' @param regexp A regular expression, e.g. "`[.]csv$`",
+#'   see the `pattern` argument to [dir()]. Files are
+#'   collated according to `"C"` locale rules, so that
+#'   they are ordered consistently with [fs::dir_ls()].
 #'
 #' @param all If `TRUE` hidden files are also returned.
+#'
 #' @export
 ls_dir <- function(dir = ".", regexp = NULL, all = FALSE, ...) {
   withr::local_collate("C")
@@ -137,7 +140,7 @@ ls_dir <- function(dir = ".", regexp = NULL, all = FALSE, ...) {
     full.names = dir != ".",   # consistent with `fs`
     include.dirs = TRUE,
     no.. = TRUE, ...
-  ) |> as_mv_path()
+  ) |> as_helpr_path()
 }
 
 #' @describeIn filesystem
@@ -154,8 +157,8 @@ info_dir <- function(dir = ".", ...) {
   names(tbl) <- c("size", "isdir", "permissions", "changed", "modified",
                   "accessed", "user", "group")
   tbl <- rn2col(tbl, "path")
-  tbl$path <- as_mv_path(tbl$path)   # use S3 print
-  tbl$size <- as_mv_bytes(tbl$size)  # use S3 print
+  tbl$path <- as_helpr_path(tbl$path)   # use S3 print
+  tbl$size <- as_helpr_bytes(tbl$size)  # use S3 print
   tbl$type <- ifelse(tbl$isdir, "directory", "file")
   tbl$type[Sys.readlink(x) != ""] <- "symlink"
   tbl$permissions <- as_symperm(tbl$permissions)
@@ -227,7 +230,7 @@ set_file_ext <- function(file, ext) {
   dot  <- ifelse(add, ".", "")
   res  <- paste0(file, dot, ext)
   res[is.na(file)] <- NA_character_    # put NAs back
-  as_mv_path(res)
+  as_helpr_path(res)
 }
 
 
@@ -237,16 +240,16 @@ units <- c("B" = 1, "K" = 1024, "M" = 1024^2, "G" = 1024^3, "T" = 1024^4,
            "P" = 1024^5, "E" = 1024^6, "Z" = 1024^7, "Y" = 1024^8)
 
 #' @describeIn filesystem
-#'   Coerce to a `mv_bytes` object.
+#'   Coerce to a `helpr_bytes` object.
 #'
 #' @export
-as_mv_bytes <- function(x) {
+as_helpr_bytes <- function(x) {
   x <- as.numeric(x)
-  structure(x, class = c("mv_bytes", "numeric"))
+  structure(x, class = c("helpr_bytes", "numeric"))
 }
 
 #' @export
-format.mv_bytes <- function(x, scientific = FALSE, digits = 3,
+format.helpr_bytes <- function(x, scientific = FALSE, digits = 3,
                             drop0trailing = TRUE, ...) {
   bytes <- unclass(x)
   exponent <- pmin(floor(log(bytes, 1024)), length(units) - 1L)
@@ -275,39 +278,39 @@ format.mv_bytes <- function(x, scientific = FALSE, digits = 3,
 }
 
 #' @export
-print.mv_bytes <- function(x, ...) {
-  y <- format.mv_bytes(x)
+print.helpr_bytes <- function(x, ...) {
+  y <- format.helpr_bytes(x)
   cat(y, "\n")
   invisible(x)
 }
 
 #' @export
-sum.mv_bytes <- function(x, ...) {
-  as_mv_bytes(NextMethod())
+sum.helpr_bytes <- function(x, ...) {
+  as_helpr_bytes(NextMethod())
 }
 
 #' @export
-min.mv_bytes <- function(x, ...) {
-  as_mv_bytes(NextMethod())
+min.helpr_bytes <- function(x, ...) {
+  as_helpr_bytes(NextMethod())
 }
 
 #' @export
-max.mv_bytes <- function(x, ...) {
-  as_mv_bytes(NextMethod())
+max.helpr_bytes <- function(x, ...) {
+  as_helpr_bytes(NextMethod())
 }
 
 #' @export
-`[.mv_bytes` <- function(x, i, ...) {
-  as_mv_bytes(NextMethod("["))
+`[.helpr_bytes` <- function(x, i, ...) {
+  as_helpr_bytes(NextMethod("["))
 }
 
 #' @export
-`[[.mv_bytes` <- function(x, i, ...) {
-  as_mv_bytes(NextMethod("[["))
+`[[.helpr_bytes` <- function(x, i, ...) {
+  as_helpr_bytes(NextMethod("[["))
 }
 
-pillar_shaft.mv_bytes <- function(x, ...) {
-  pillar::new_pillar_shaft_simple(format.mv_bytes(x), align = "right", ...)
+pillar_shaft.helpr_bytes <- function(x, ...) {
+  pillar::new_pillar_shaft_simple(format.helpr_bytes(x), align = "right", ...)
 }
 
 

@@ -2,8 +2,8 @@
 % Please edit documentation in R/filesystem.R
 \name{filesystem}
 \alias{filesystem}
-\alias{mv_path}
-\alias{as_mv_path}
+\alias{helpr_path}
+\alias{as_helpr_path}
 \alias{is.dir}
 \alias{ls_dir}
 \alias{info_dir}
@@ -11,12 +11,12 @@
 \alias{file_ext<-}
 \alias{rm_file_ext}
 \alias{set_file_ext}
-\alias{as_mv_bytes}
+\alias{as_helpr_bytes}
 \title{File System Utilities}
 \usage{
-mv_path(..., ext = "")
+helpr_path(..., ext = "")
 
-as_mv_path(x)
+as_helpr_path(x)
 
 is.dir(x)
 
@@ -32,7 +32,7 @@ rm_file_ext(file)
 
 set_file_ext(file, ext)
 
-as_mv_bytes(x)
+as_helpr_bytes(x)
 }
 \arguments{
 \item{...}{Character vectors to construct paths, \code{length == 1}
@@ -41,9 +41,10 @@ Alternatively, arguments passed to \code{\link[=dir]{dir()}} (for \code{\link[=l
 
 \item{ext, value}{An optional extension to append to the generated path.}
 
-\item{regexp}{A regular expression, e.g. "\verb{[.]csv$}", see the \code{pattern}
-argument to \code{\link[=dir]{dir()}}. Files are collated according to \code{"C"} locale rules,
-so that they are ordered consistently with \code{\link[fs:dir_ls]{fs::dir_ls()}}.}
+\item{regexp}{A regular expression, e.g. "\verb{[.]csv$}",
+see the \code{pattern} argument to \code{\link[=dir]{dir()}}. Files are
+collated according to \code{"C"} locale rules, so that
+they are ordered consistently with \code{\link[fs:dir_ls]{fs::dir_ls()}}.}
 
 \item{all}{If \code{TRUE} hidden files are also returned.}
 
@@ -58,9 +59,9 @@ It was heavily influenced by the
 }
 \section{Functions}{
 \itemize{
-\item \code{mv_path()}: Construct a path to a file.
+\item \code{helpr_path()}: Construct a path to a file.
 
-\item \code{as_mv_path()}: Coerce to a \code{mv_path} object.
+\item \code{as_helpr_path()}: Coerce to a \code{helpr_path} object.
 
 \item \code{is.dir()}: Test if location is a directory.
 
@@ -77,16 +78,16 @@ It was heavily influenced by the
 \item \code{set_file_ext()}: Replaces the existing file extension with \code{ext}.
 Extensions of \code{length == 1} are recycled.
 
-\item \code{as_mv_bytes()}: Coerce to a \code{mv_bytes} object.
+\item \code{as_helpr_bytes()}: Coerce to a \code{helpr_bytes} object.
 
 }}
 \examples{
 # paths
-mv_path("foo", "bar", "baz")    # no ext
+helpr_path("foo", "bar", "baz")    # no ext
 
-mv_path("foo", "bar", "baz", ext = "zip")  # ext
+helpr_path("foo", "bar", "baz", ext = "zip")  # ext
 
-mv_path("foo", letters[1:3], ext = "txt")  # recycled args
+helpr_path("foo", letters[1:3], ext = "txt")  # recycled args
 
 # directories
 ls_dir()

@@ -110,73 +110,73 @@
     Output
       [1] "\033[01;36mbar\033[0m"
 
-# `format.mv_bytes()` formats values > 1024 to group and colors
+# `format.helpr_bytes()` formats values > 1024 to group and colors
 
     Code
-      format(as_mv_bytes(1024))
+      format(as_helpr_bytes(1024))
     Output
       [1] "\033[01;34m1K\033[0m"
 
 ---
 
     Code
-      format(as_mv_bytes(1025))
+      format(as_helpr_bytes(1025))
     Output
       [1] "\033[01;34m1K\033[0m"
 
 ---
 
     Code
-      format(as_mv_bytes(1024 * 1024))
+      format(as_helpr_bytes(1024 * 1024))
     Output
       [1] "\033[01;31m1M\033[0m"
 
 ---
 
     Code
-      format(as_mv_bytes(2^16))
+      format(as_helpr_bytes(2^16))
     Output
       [1] "\033[01;34m64K\033[0m"
 
 ---
 
     Code
-      format(as_mv_bytes(2^24))
+      format(as_helpr_bytes(2^24))
     Output
       [1] "\033[01;31m16M\033[0m"
 
 ---
 
     Code
-      format(as_mv_bytes(2^24 + 555555))
+      format(as_helpr_bytes(2^24 + 555555))
     Output
       [1] "\033[01;31m16.5M\033[0m"
 
 ---
 
     Code
-      format(as_mv_bytes(2^32))
+      format(as_helpr_bytes(2^32))
     Output
       [1] "\033[01;35m4G\033[0m"
 
 ---
 
     Code
-      format(as_mv_bytes(2^48))
+      format(as_helpr_bytes(2^48))
     Output
       [1] "\033[01;32m256T\033[0m"
 
 ---
 
     Code
-      format(as_mv_bytes(2^64))
+      format(as_helpr_bytes(2^64))
     Output
       [1] "16E"
 
-# `format.mv_bytes()` is vectorized and colored
+# `format.helpr_bytes()` is vectorized and colored
 
     Code
-      format(as_mv_bytes(x))
+      format(as_helpr_bytes(x))
     Output
        [1] "   1B"                      "  10B"                     
        [3] " 100B"                      "1000B"                     
@@ -184,21 +184,21 @@
        [7] "\033[01;34m 976.56K\033[0m" "\033[01;31m   9.54M\033[0m"
        [9] "\033[01;31m  95.37M\033[0m" "\033[01;31m 953.67M\033[0m"
 
-# `mv_bytes()` sum method is dispatched
+# `helpr_bytes()` sum method is dispatched
 
     Code
-      format(sum(as_mv_bytes(x)))
+      format(sum(as_helpr_bytes(x)))
     Output
       [1] "\033[01;35m1.03G\033[0m"
 
-# `mv_bytes()` max method is dispatched
+# `helpr_bytes()` max method is dispatched
 
     Code
-      format(max(as_mv_bytes(x)))
+      format(max(as_helpr_bytes(x)))
     Output
       [1] "\033[01;31m954M\033[0m"
 
-# `[.as_mv_bytes`
+# `[.as_helpr_bytes`
 
     Code
       format(x[5])

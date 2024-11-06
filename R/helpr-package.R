@@ -11,8 +11,8 @@
 .onLoad <- function(...) {
   # this is to register the S3 methods for the tibble print methods
   # so that the print methods are obeyed inside tibbles
-  register_s3_method("pillar", "pillar_shaft", "mv_path")
-  register_s3_method("pillar", "pillar_shaft", "mv_bytes")
+  register_s3_method("pillar", "pillar_shaft", "helpr_path")
+  register_s3_method("pillar", "pillar_shaft", "helpr_bytes")
 
   # this is to make the active binding switch between
   # UTF-8 and ASCII symbol encodings
