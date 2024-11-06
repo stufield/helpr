@@ -11,8 +11,8 @@
 \alias{signal_rule}
 \alias{add_color}
 \alias{add_style}
-\alias{print.mv_style}
-\alias{$.mv_style}
+\alias{print.helpr_style}
+\alias{$.helpr_style}
 \alias{has_style}
 \alias{rm_style}
 \title{Signal Feedback to the Console UI}
@@ -33,9 +33,9 @@ add_color(x, col)
 
 add_style
 
-\method{print}{mv_style}(x, ...)
+\method{print}{helpr_style}(x, ...)
 
-\method{$}{mv_style}(x, y)
+\method{$}{helpr_style}(x, y)
 
 has_style(x)
 
@@ -102,7 +102,7 @@ and a \code{blue} color is added.
 element is a color/style function wrapping around \code{add_color()} and
 each element determines the \code{col} argument. See examples.
 
-\item \code{print(mv_style)}: Functions in the \code{apply_style} object have their
+\item \code{print(helpr_style)}: Functions in the \code{apply_style} object have their
 own class, which allows for the special S3 print method and the chaining
 in the examples below.
 

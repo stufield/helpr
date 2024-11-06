@@ -266,7 +266,7 @@ add_color <- function(x, col) {
 add_style <- lapply(setNames(avail_col_sty, avail_col_sty), function(.x) {
   fun <- add_color
   formals(fun)$col <- .x
-  structure(fun, class = "mv_style", "_style" = .x)
+  structure(fun, class = "helpr_style", "_style" = .x)
 })
 
 #' @describeIn signal
@@ -275,7 +275,7 @@ add_style <- lapply(setNames(avail_col_sty, avail_col_sty), function(.x) {
 #'   in the examples below.
 #'
 #' @export
-print.mv_style <- function(x, ...) {
+print.helpr_style <- function(x, ...) {
   st <- attr(x, "_style")
   cat(
     "megaverse styling function, ",
@@ -303,17 +303,18 @@ print.mv_style <- function(x, ...) {
 #' }
 #'
 #' @export
-`$.mv_style` <- function(x, y) {
+`$.helpr_style` <- function(x, y) {
   if ( !y %in% avail_col_sty ) {
     stop("Invalid argument in `$`, is ", value(y), " a typo?", call. = FALSE)
   }
   sty <- add_style[[y]]
   fn  <- alist(string = , x(sty(string)))
-  structure(as.function(fn), class = "mv_style")
+  structure(as.function(fn), class = "helpr_style")
 }
 
 #' @describeIn signal
 #'   Logical. Test if string contains ANSI styles/colors.
+#'
 #' @examples
 #' # check for ANSI styling
 #' has_style(add_style$green("Hello world!"))
@@ -326,6 +327,7 @@ has_style <- function(x) {
 
 #' @describeIn signal
 #'   Remove a color or style from character strings.
+#'
 #' @examples
 #' # remove ANSI styling
 #' cat(rm_style(add_style$green("Hello world!")))
