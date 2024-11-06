@@ -1,14 +1,15 @@
 #' Signal Feedback to the Console UI
 #'
 #' Similar to `usethis::ui_*()` function suite but does not require
-#' importing the \pkg{usethis}, \pkg{crayon}, or \pkg{cli} packages.
-#' All `signal_*()` functions can be silenced by
-#' setting `options(signal.quiet = TRUE)`.
+#'   importing the \pkg{usethis}, \pkg{crayon}, or \pkg{cli} packages.
+#'   All `signal_*()` functions can be silenced by
+#'   setting `options(signal.quiet = TRUE)`.
 #'
 #' @name signal
+#'
 #' @param x Character. A string to report to the UI or to add a style/color.
 #' @param y A coloring function, i.e. an element the `add_style` object,
-#' see the `col` argument.
+#'   see the `col` argument.
 #' @param col Color (or style) for the text (or line). Currently one of:
 #'  * red
 #'  * green
@@ -24,6 +25,7 @@
 #'  * underline
 #'  * inverse
 #'  * strikethrough
+#'
 #' @param ... Elements passed directly to [cat()].
 NULL
 
@@ -31,6 +33,7 @@ NULL
 #'   Signal a value to the UI. Similar to [usethis::ui_value()].
 #'   Each element of `x` becomes an entry in a comma separated list
 #'   and a `blue` color is added.
+#'
 #' @examples
 #' n <- 4
 #' cat("You need this many bikes:", value(n + 1))
@@ -64,6 +67,7 @@ print.str_value <- function(x, ..., sep = "\n") {
 
 #' @describeIn signal
 #'   Signal a completed task to the UI. Similar to [usethis::ui_done()].
+#'
 #' @examples
 #' # signal_done()
 #' signal_done("Tests have passed!")
@@ -79,6 +83,7 @@ signal_done <- function(...) {
 
 #' @describeIn signal
 #'   Signal a to-do task to the UI. Similar to [usethis::ui_todo()].
+#'
 #' @export
 signal_todo <- function(...) {
   sym <- add_color(symbl$bullet, "red")
@@ -87,6 +92,7 @@ signal_todo <- function(...) {
 
 #' @describeIn signal
 #'   Signal oops error to the UI. Similar to [usethis::ui_oops()].
+#'
 #' @export
 signal_oops <- function(...) {
   sym <- add_color(symbl$cross, "red")
@@ -95,6 +101,7 @@ signal_oops <- function(...) {
 
 #' @describeIn signal
 #'   Signal info to the UI. Similar to [usethis::ui_info()].
+#'
 #' @export
 signal_info <- function(...) {
   sym <- add_color(symbl$info, "cyan")
@@ -103,65 +110,61 @@ signal_info <- function(...) {
 
 #' @describeIn signal
 #'   Make a rule with left aligned text. Similar to [cli::rule()].
-#' @param text Character. String of `length == 1`.
-#'   Added at the left margin of the horizontal rule.
+#'
+#' @param text `character(1)`. String added at the left margin
+#'   of the horizontal rule.
 #' @param line_col See `col`.
-#' @param lty Character. Either "single" or "double" line type (matched).
+#' @param lty `character(1)`. Either "single" or "double" line type (matched).
+#'
 #' @examples
 #' # add a horizontal rule
-#' writeLines(signal_rule())
+#' signal_rule()
 #'
-#' writeLines(signal_rule("Header", line_col = "green", lty = "double"))
+#' signal_rule("Header", line_col = "green", lty = "double")
 #'
 #' @export
-signal_rule <- function(text = "", line_col = NULL, lty = c("single", "double")) {
-  if ( isTRUE(getOption("signal.quiet")) ) {
-    return(invisible())
-  }
+signal_rule <- function(text = "", line_col = NULL,
+                        lty = c("single", "double")) {
   if ( is.null(line_col) ) {
     line_col <- ifelse(is_dark_theme(), "none", "black")
   }
   lty   <- match.arg(lty)
   line  <- switch(lty, single = symbl$line, double = symbl$double_line)
-  width <- getOption("width") %||% 80L
+  width <- getOption("width") %||% 50L
   nc    <- nchar(text)
   if ( nc == 0L ) {
-    ret <- add_color(paste(rep.int(line, width), collapse = ""), line_col)
+    rule <- add_color(paste(rep.int(line, width), collapse = ""), line_col)
   } else {
-    # if text is passed
+    # if text passed
     indent <- 2L
     left   <- add_color(paste(rep.int(line, indent), collapse = ""), line_col)
     right  <- paste(rep.int(line, max(0, width - nc - 4L)), collapse = "") |>
       add_color(line_col)
-    ret    <- paste(left, text, right)
+    rule   <- paste(left, text, right)
   }
-  structure(ret, class = c("signal_rule", "character"))
-}
-
-#' @noRd
-#' @export
-print.signal_rule <- function(x, ...) {
-  .inform(x)
-  invisible(x)
+  .inform(rule, class = "condition")  # not a message
+  invisible(NULL)
 }
 
 
-#' Slimmed down version of rlang::inform()
-#' @param ... A message to inform to the UI via a message handler.
-#' @keywords internal
+#' Slimmed down version of rlang::inform
+#' @param ... Arguments pasted together (with a space!) to form a message.
+#' @param class The handler class to signal. Defaults to a `message`.
 #' @noRd
-.inform <- function(..., quiet = getOption("signal.quiet", default = FALSE)) {
+.inform <- function(..., class = c("message", "condition"),
+                  quiet = getOption("signal.quiet", default = FALSE)) {
   if ( !quiet ) {
-    msg <- paste0(paste(...), "\n")
+    msg <- paste(...)
+    cnd <- structure(list(message = msg), class = class)
     withRestarts(muffleMessage = function() NULL, {
-      signalCondition(
-        structure(list(message = msg), class = c("message", "condition"))
-      )
-      cat(msg, sep = "", file = stdout())
+      signalCondition(cnd)
+      c_msg <- paste0(conditionMessage(cnd), "\n")
+      cat(c_msg, sep = "", file = stdout())
     })
   }
-  invisible()
+  invisible(NULL)
 }
+
 
 avail_col_sty <- c("red", "green", "yellow", "blue",
                    "magenta", "cyan", "black", "white",
@@ -170,6 +173,7 @@ avail_col_sty <- c("red", "green", "yellow", "blue",
 
 #' @describeIn signal
 #'   Add a color or style to a string. Similar to [crayon::crayon()].
+#'
 #' @examples
 #' cat(add_color("Hello world!", "blue"))
 #'
@@ -235,8 +239,10 @@ add_color <- function(x, col) {
 #'   An alternative syntax. A list object where each
 #'   element is a color/style function wrapping around `add_color()` and
 #'   each element determines the `col` argument. See examples.
+#'
 #' @format NULL
 #' @usage add_style
+#'
 #' @examples
 #' # colors and styles available via add_style()
 #' add_style
@@ -267,6 +273,7 @@ add_style <- lapply(setNames(avail_col_sty, avail_col_sty), function(.x) {
 #'   Functions in the `apply_style` object have their
 #'   own class, which allows for the special S3 print method and the chaining
 #'   in the examples below.
+#'
 #' @export
 print.mv_style <- function(x, ...) {
   st <- attr(x, "_style")
@@ -282,6 +289,7 @@ print.mv_style <- function(x, ...) {
 
 #' @describeIn signal
 #'   Easily chain styles with `$` S3 method.
+#'
 #' @examples
 #' # chain styles via `$`
 #' cat(add_style$bold("Success"))

@@ -46,12 +46,12 @@ rm_style(x)
 
 \item{...}{Elements passed directly to \code{\link[=cat]{cat()}}.}
 
-\item{text}{Character. String of \code{length == 1}.
-Added at the left margin of the horizontal rule.}
+\item{text}{\code{character(1)}. String added at the left margin
+of the horizontal rule.}
 
 \item{line_col}{See \code{col}.}
 
-\item{lty}{Character. Either "single" or "double" line type (matched).}
+\item{lty}{\code{character(1)}. Either "single" or "double" line type (matched).}
 
 \item{col}{Color (or style) for the text (or line). Currently one of:
 \itemize{
@@ -127,9 +127,9 @@ signal_done("Tests have passed!")
 signal_done("The 'LETTERS' vector has", value(length(LETTERS)), "elements")
 
 # add a horizontal rule
-writeLines(signal_rule())
+signal_rule()
 
-writeLines(signal_rule("Header", line_col = "green", lty = "double"))
+signal_rule("Header", line_col = "green", lty = "double")
 
 cat(add_color("Hello world!", "blue"))
 

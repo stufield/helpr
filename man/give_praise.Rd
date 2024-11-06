@@ -13,7 +13,7 @@ use your code appropriately and when it runs error free!
 This is a wrapper around the \pkg{praise} package and
 takes no arguments. Additional flexibility may be added
 in the future. Output can be suppressed by setting the
-\code{"praise_usr"} option (see example).
+\code{"signal.quiet"} option (see example).
 }
 \examples{
 # random praise 1
@@ -23,5 +23,5 @@ give_praise()
 give_praise()
 
 # suppress praise
-withr::with_options(list(praise_usr = FALSE), give_praise())
+withr::with_options(list(signal.quiet = TRUE), give_praise())
 }

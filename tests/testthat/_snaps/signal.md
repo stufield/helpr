@@ -18,11 +18,11 @@
       x Test oops
     Code
       signal_rule("Test single rule")
-    Message
+    Output
       -- Test single rule ------------------------------------------------------------
     Code
       signal_rule("Test double rule", lty = "double")
-    Message
+    Output
       == Test double rule ============================================================
 
 # the colors work correctly via `add_color()`

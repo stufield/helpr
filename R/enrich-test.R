@@ -89,16 +89,12 @@ enrich_test <- function(x, alternative = c("two.sided", "enrich", "deplete")) {
                                fisher$conf.int[1L], fisher$conf.int[2L]),
                        symbl$dot)
 
-  writeLines(
-    signal_rule("Counts Table", line_col = "blue")
-  )
+  signal_rule("Counts Table", line_col = "blue")
   print(ConfusionTable)
   cat("\n")
-  writeLines(
-    signal_rule("Tests", line_col = "blue")
-  )
+  signal_rule("Tests", line_col = "blue")
   print(hyper)
-  writeLines(signal_rule(lty = "double", line_col = "green"))
+  signal_rule(lty = "double", line_col = "green")
   invisible(list(results     = hyper,
                  confusion   = ConfusionTable,
                  alternative = altern))

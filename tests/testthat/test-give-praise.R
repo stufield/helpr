@@ -12,11 +12,11 @@ test_that("color is turned off in knitr/rmarkdown", {
   expect_snapshot(withr::with_seed(8, give_praise()))
 })
 
-test_that("give_praise() is silenced with `praise_usr` option", {
+test_that("give_praise() is silenced with `signal.quiet` option", {
   expect_silent(
-    withr::with_options(c(praise_usr = FALSE), give_praise())
+    withr::with_options(c(signal.quiet = TRUE), give_praise())
   )
   expect_null(
-    withr::with_options(c(praise_usr = FALSE), give_praise())
+    withr::with_options(c(signal.quiet = TRUE), give_praise())
   )
 })

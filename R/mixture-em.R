@@ -162,9 +162,7 @@ normal_k2_mixture <- function(data, pars = list(start.mu = NULL,
 #' @noRd
 #' @export
 print.mix_k2 <- function(x, ...) {
-  writeLines(
-    signal_rule(paste("Mix Type:", x$fn), line_col = "blue", lty = "double")
-  )
+  signal_rule(paste("Mix Type:", x$fn), line_col = "blue", lty = "double")
   key <- c("n", "iter", "mu", "sigma", "pi_hat",
            "lambda", "final loglik") |> pad(15)
   value <- list(n = length(x$y), iter = x$niter, muvec = x$mu,
@@ -180,7 +178,7 @@ print.mix_k2 <- function(x, ...) {
   liter(key, value, function(.x, .y) {
     writeLines(paste(add_style$red(symbl$bullet), .x, .y))
   })
-  writeLines(signal_rule(line_col = "green", lty = "double"))
+  signal_rule(line_col = "green", lty = "double")
   invisible(x)
 }
 

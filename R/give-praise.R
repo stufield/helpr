@@ -6,7 +6,7 @@
 #' This is a wrapper around the \pkg{praise} package and
 #' takes no arguments. Additional flexibility may be added
 #' in the future. Output can be suppressed by setting the
-#' `"praise_usr"` option (see example).
+#' `"signal.quiet"` option (see example).
 #'
 #' @examples
 #' # random praise 1
@@ -16,20 +16,17 @@
 #' give_praise()
 #'
 #' # suppress praise
-#' withr::with_options(list(praise_usr = FALSE), give_praise())
+#' withr::with_options(list(signal.quiet = TRUE), give_praise())
 #' @export
 give_praise <- function() {
-  if ( !isTRUE(getOption("praise_usr", TRUE)) ) {
-    return(invisible(NULL))
-  }
-  x   <- .cap(sample(praises$exclamation, 1L))
-  y   <- .cap(sample(praises$adjective, 1L))
+  x   <- .capitalize(sample(praises$exclamation, 1L))
+  y   <- .capitalize(sample(praises$adjective, 1L))
   pr  <- sprintf("%s! You are %s!", x, y)
   col <- sample(c("red", "green", "blue", "magenta", "cyan"), 1)
-  writeLines(add_color(pr, col))
+  .inform(add_color(pr, col), class = "condition")
 }
 
-.cap <- function(x) {
+.capitalize <- function(x) {
   paste0(toupper(substr(x, 1L, 1L)), substr(x, 2L, nchar(x)))
 }
 
