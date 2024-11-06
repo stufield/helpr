@@ -6,6 +6,7 @@
 #' \pkg{fs} package: \url{https://github.com/r-lib/fs}.
 #'
 #' @name filesystem
+#'
 #' @param file,x,dir A file-system location, directory, or path.
 #'   Vectorized paths are allowed where possible.
 NULL
@@ -13,10 +14,12 @@ NULL
 
 #' @describeIn filesystem
 #'   Construct a path to a file.
+#'
 #' @param ext,value An optional extension to append to the generated path.
 #' @param ... Character vectors to construct paths, `length == 1`
 #'   values are recycled as appropriate too complete pasting.
 #'   Alternatively, arguments passed to [dir()] (for [ls_dir()]).
+#'
 #' @examples
 #' # paths
 #' mv_path("foo", "bar", "baz")    # no ext
@@ -54,6 +57,7 @@ print.mv_path <- function(x, ..., max = getOption("max.print")) {
 
 #' @describeIn filesystem
 #'   Coerce to a `mv_path` object.
+#'
 #' @export
 as_mv_path <- function(x) {
   x <- enc2utf8(as.character(x))
@@ -98,6 +102,7 @@ pillar_shaft.mv_path <- function(x, ..., min_width = 15) {
 
 #' @describeIn filesystem
 #'   Test if location is a directory.
+#'
 #' @examples
 #' # directories
 #' ls_dir()
@@ -116,9 +121,11 @@ is.dir <- function(x) {
 
 #' @describeIn filesystem
 #'   List the directory contents.
+#'
 #' @param regexp A regular expression, e.g. "`[.]csv$`", see the `pattern`
 #'   argument to [dir()]. Files are collated according to `"C"` locale rules,
 #'   so that they are ordered consistently with [fs::dir_ls()].
+#'
 #' @param all If `TRUE` hidden files are also returned.
 #' @export
 ls_dir <- function(dir = ".", regexp = NULL, all = FALSE, ...) {
@@ -135,6 +142,7 @@ ls_dir <- function(dir = ".", regexp = NULL, all = FALSE, ...) {
 
 #' @describeIn filesystem
 #'   Lists the directory contents similar to `ls -l`.
+#'
 #' @export
 info_dir <- function(dir = ".", ...) {
   x <- ls_dir(dir, ...)
@@ -147,7 +155,7 @@ info_dir <- function(dir = ".", ...) {
                   "accessed", "user", "group")
   tbl <- rn2col(tbl, "path")
   tbl$path <- as_mv_path(tbl$path)   # use S3 print
-  tbl$size <- as_sv_bytes(tbl$size)  # use S3 print
+  tbl$size <- as_mv_bytes(tbl$size)  # use S3 print
   tbl$type <- ifelse(tbl$isdir, "directory", "file")
   tbl$type[Sys.readlink(x) != ""] <- "symlink"
   tbl$permissions <- as_symperm(tbl$permissions)
@@ -159,6 +167,7 @@ info_dir <- function(dir = ".", ...) {
 
 #' @describeIn filesystem
 #'   Extracts the file extension from a file path.
+#'
 #' @examples
 #' # extensions
 #' file_ext("foo.txt")
@@ -182,6 +191,7 @@ file_ext <- function(file) {
 
 #' @describeIn filesystem
 #'   Replaces an existing extension. See [set_file_ext()].
+#'
 #' @export
 `file_ext<-` <- function(file, value) {
   set_file_ext(file, value)
@@ -189,6 +199,7 @@ file_ext <- function(file) {
 
 #' @describeIn filesystem
 #'   Removes the file extension from a file path.
+#'
 #' @export
 rm_file_ext <- function(file) {
   file <- sub("[.](gz|bz2|xz)$", "", file)
@@ -198,6 +209,7 @@ rm_file_ext <- function(file) {
 #' @describeIn filesystem
 #'   Replaces the existing file extension with `ext`.
 #'   Extensions of `length == 1` are recycled.
+#'
 #' @export
 set_file_ext <- function(file, ext) {
   stopifnot(is.character(ext), !is.na(ext))
@@ -225,15 +237,16 @@ units <- c("B" = 1, "K" = 1024, "M" = 1024^2, "G" = 1024^3, "T" = 1024^4,
            "P" = 1024^5, "E" = 1024^6, "Z" = 1024^7, "Y" = 1024^8)
 
 #' @describeIn filesystem
-#'   Coerce to a `sv_bytes` object.
+#'   Coerce to a `mv_bytes` object.
+#'
 #' @export
-as_sv_bytes <- function(x) {
+as_mv_bytes <- function(x) {
   x <- as.numeric(x)
-  structure(x, class = c("sv_bytes", "numeric"))
+  structure(x, class = c("mv_bytes", "numeric"))
 }
 
 #' @export
-format.sv_bytes <- function(x, scientific = FALSE, digits = 3,
+format.mv_bytes <- function(x, scientific = FALSE, digits = 3,
                             drop0trailing = TRUE, ...) {
   bytes <- unclass(x)
   exponent <- pmin(floor(log(bytes, 1024)), length(units) - 1L)
@@ -262,39 +275,39 @@ format.sv_bytes <- function(x, scientific = FALSE, digits = 3,
 }
 
 #' @export
-print.sv_bytes <- function(x, ...) {
-  y <- format.sv_bytes(x)
+print.mv_bytes <- function(x, ...) {
+  y <- format.mv_bytes(x)
   cat(y, "\n")
   invisible(x)
 }
 
 #' @export
-sum.sv_bytes <- function(x, ...) {
-  as_sv_bytes(NextMethod())
+sum.mv_bytes <- function(x, ...) {
+  as_mv_bytes(NextMethod())
 }
 
 #' @export
-min.sv_bytes <- function(x, ...) {
-  as_sv_bytes(NextMethod())
+min.mv_bytes <- function(x, ...) {
+  as_mv_bytes(NextMethod())
 }
 
 #' @export
-max.sv_bytes <- function(x, ...) {
-  as_sv_bytes(NextMethod())
+max.mv_bytes <- function(x, ...) {
+  as_mv_bytes(NextMethod())
 }
 
 #' @export
-`[.sv_bytes` <- function(x, i, ...) {
-  as_sv_bytes(NextMethod("["))
+`[.mv_bytes` <- function(x, i, ...) {
+  as_mv_bytes(NextMethod("["))
 }
 
 #' @export
-`[[.sv_bytes` <- function(x, i, ...) {
-  as_sv_bytes(NextMethod("[["))
+`[[.mv_bytes` <- function(x, i, ...) {
+  as_mv_bytes(NextMethod("[["))
 }
 
-pillar_shaft.sv_bytes <- function(x, ...) {
-  pillar::new_pillar_shaft_simple(format.sv_bytes(x), align = "right", ...)
+pillar_shaft.mv_bytes <- function(x, ...) {
+  pillar::new_pillar_shaft_simple(format.mv_bytes(x), align = "right", ...)
 }
 
 

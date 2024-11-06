@@ -11,7 +11,7 @@
 \alias{file_ext<-}
 \alias{rm_file_ext}
 \alias{set_file_ext}
-\alias{as_sv_bytes}
+\alias{as_mv_bytes}
 \title{File System Utilities}
 \usage{
 mv_path(..., ext = "")
@@ -32,7 +32,7 @@ rm_file_ext(file)
 
 set_file_ext(file, ext)
 
-as_sv_bytes(x)
+as_mv_bytes(x)
 }
 \arguments{
 \item{...}{Character vectors to construct paths, \code{length == 1}
@@ -77,7 +77,7 @@ It was heavily influenced by the
 \item \code{set_file_ext()}: Replaces the existing file extension with \code{ext}.
 Extensions of \code{length == 1} are recycled.
 
-\item \code{as_sv_bytes()}: Coerce to a \code{sv_bytes} object.
+\item \code{as_mv_bytes()}: Coerce to a \code{mv_bytes} object.
 
 }}
 \examples{

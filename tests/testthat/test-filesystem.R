@@ -143,7 +143,7 @@ test_that("`is.dir()` identifies directories", {
   ls <- info_dir()
   expect_named(ls, nms)
   expect_equal(dim(ls), c(length(ls_dir()), 9L))
-  liter(ls, c("mv_path", "character", "sv_bytes",
+  liter(ls, c("mv_path", "character", "mv_bytes",
               "character", "POSIXct", "character",
               "character", "POSIXct", "POSIXct"),
         function(.x, .y) expect_true(inherits(.x, .y))) |> invisible()
@@ -259,90 +259,90 @@ test_that("`file_ext<-()` sets extension via assignment", {
 # Bytes ----
 x <- 10^(0:9)
 
-test_that("`as_sv_bytes()` converts class", {
-  expect_s3_class(as_sv_bytes(x), "sv_bytes")
+test_that("`as_mv_bytes()` converts class", {
+  expect_s3_class(as_mv_bytes(x), "mv_bytes")
 })
 
-test_that("`as_sv_bytes()` accepts numerics and returns them unchanged", {
-  expect_equal(unclass(as_sv_bytes(123)), 123)
-  expect_equal(unclass(as_sv_bytes(123L)), 123)
+test_that("`as_mv_bytes()` accepts numerics and returns them unchanged", {
+  expect_equal(unclass(as_mv_bytes(123)), 123)
+  expect_equal(unclass(as_mv_bytes(123L)), 123)
 })
 
-test_that("`as_sv_bytes()` converts character values to numeics", {
-  expect_equal(unclass(as_sv_bytes("1")), 1)
-  expect_equal(unclass(as_sv_bytes("1000")), 1000)
-  expect_equal(unclass(as_sv_bytes("1000000")), 1e+06)
+test_that("`as_mv_bytes()` converts character values to numeics", {
+  expect_equal(unclass(as_mv_bytes("1")), 1)
+  expect_equal(unclass(as_mv_bytes("1000")), 1000)
+  expect_equal(unclass(as_mv_bytes("1000000")), 1e+06)
 })
 
-test_that("`format.sv_bytes()` formats values < 1024 to their identity values", {
-  expect_equal(format(as_sv_bytes(0)), "0")
-  expect_equal(format(as_sv_bytes(1)), "1B")
-  expect_equal(format(as_sv_bytes(1023)), "1023B")
+test_that("`format.mv_bytes()` formats values < 1024 to their identity values", {
+  expect_equal(format(as_mv_bytes(0)), "0")
+  expect_equal(format(as_mv_bytes(1)), "1B")
+  expect_equal(format(as_mv_bytes(1023)), "1023B")
 })
 
-test_that("`format.sv_bytes()` formats values > 1024 to group and colors", {
-  expect_snapshot(format(as_sv_bytes(1024)))
-  expect_snapshot(format(as_sv_bytes(1025)))
-  expect_snapshot(format(as_sv_bytes(1024 * 1024)))
-  expect_snapshot(format(as_sv_bytes(2^16)))
-  expect_snapshot(format(as_sv_bytes(2^24)))
-  expect_snapshot(format(as_sv_bytes(2^24 + 555555)))
-  expect_snapshot(format(as_sv_bytes(2^32)))
-  expect_snapshot(format(as_sv_bytes(2^48)))
-  expect_snapshot(format(as_sv_bytes(2^64))) # 'E' is not colored
+test_that("`format.mv_bytes()` formats values > 1024 to group and colors", {
+  expect_snapshot(format(as_mv_bytes(1024)))
+  expect_snapshot(format(as_mv_bytes(1025)))
+  expect_snapshot(format(as_mv_bytes(1024 * 1024)))
+  expect_snapshot(format(as_mv_bytes(2^16)))
+  expect_snapshot(format(as_mv_bytes(2^24)))
+  expect_snapshot(format(as_mv_bytes(2^24 + 555555)))
+  expect_snapshot(format(as_mv_bytes(2^32)))
+  expect_snapshot(format(as_mv_bytes(2^48)))
+  expect_snapshot(format(as_mv_bytes(2^64))) # 'E' is not colored
 })
 
-test_that("`format.sv_bytes()` is vectorized and colored", {
-  expect_snapshot(format(as_sv_bytes(x)))
+test_that("`format.mv_bytes()` is vectorized and colored", {
+  expect_snapshot(format(as_mv_bytes(x)))
 })
 
-test_that("`format.sv_bytes()` handles edge cases", {
-  expect_equal(unclass(as_sv_bytes(NA)), NA_real_)
-  expect_equal(format(as_sv_bytes(NA)), "NA")
-  expect_equal(unclass(as_sv_bytes(NaN)), NaN)
-  expect_equal(format(as_sv_bytes(NaN)), "NaN")
-  expect_equal(unclass(as_sv_bytes(NULL)), numeric(0))
-  expect_equal(format(as_sv_bytes(NULL)), character(0))
+test_that("`format.mv_bytes()` handles edge cases", {
+  expect_equal(unclass(as_mv_bytes(NA)), NA_real_)
+  expect_equal(format(as_mv_bytes(NA)), "NA")
+  expect_equal(unclass(as_mv_bytes(NaN)), NaN)
+  expect_equal(format(as_mv_bytes(NaN)), "NaN")
+  expect_equal(unclass(as_mv_bytes(NULL)), numeric(0))
+  expect_equal(format(as_mv_bytes(NULL)), character(0))
 })
 
-test_that("`sv_bytes()` sum method is dispatched", {
-  expect_equal(sum(as_sv_bytes(0)), as_sv_bytes(sum(0)))
-  expect_equal(sum(as_sv_bytes(1:10)), as_sv_bytes(sum(1:10)))
-  expect_equal(sum(as_sv_bytes(c(1, NA))), as_sv_bytes(NA_real_))
-  expect_equal(unclass(sum(as_sv_bytes(x))), sum(x))
-  expect_snapshot(format(sum(as_sv_bytes(x))))
+test_that("`mv_bytes()` sum method is dispatched", {
+  expect_equal(sum(as_mv_bytes(0)), as_mv_bytes(sum(0)))
+  expect_equal(sum(as_mv_bytes(1:10)), as_mv_bytes(sum(1:10)))
+  expect_equal(sum(as_mv_bytes(c(1, NA))), as_mv_bytes(NA_real_))
+  expect_equal(unclass(sum(as_mv_bytes(x))), sum(x))
+  expect_snapshot(format(sum(as_mv_bytes(x))))
 })
 
-test_that("`sv_bytes()` min method is dispatched", {
-  expect_equal(min(as_sv_bytes(0)), as_sv_bytes(0))
-  expect_equal(min(as_sv_bytes(c(1, 2))), as_sv_bytes(1))
-  expect_equal(min(as_sv_bytes(c(1, NA))), as_sv_bytes(NA_real_))
-  expect_equal(unclass(min(as_sv_bytes(x))), 1)
-  expect_equal(format(min(as_sv_bytes(x))), "1B")
+test_that("`mv_bytes()` min method is dispatched", {
+  expect_equal(min(as_mv_bytes(0)), as_mv_bytes(0))
+  expect_equal(min(as_mv_bytes(c(1, 2))), as_mv_bytes(1))
+  expect_equal(min(as_mv_bytes(c(1, NA))), as_mv_bytes(NA_real_))
+  expect_equal(unclass(min(as_mv_bytes(x))), 1)
+  expect_equal(format(min(as_mv_bytes(x))), "1B")
 })
 
-test_that("`sv_bytes()` max method is dispatched", {
-  expect_equal(max(as_sv_bytes(0)), as_sv_bytes(0))
-  expect_equal(max(as_sv_bytes(c(1, 2))), as_sv_bytes(2))
-  expect_equal(max(as_sv_bytes(c(1, NA))), as_sv_bytes(NA_real_))
-  expect_equal(unclass(max(as_sv_bytes(x))), 1e+09)
-  expect_snapshot(format(max(as_sv_bytes(x))))
+test_that("`mv_bytes()` max method is dispatched", {
+  expect_equal(max(as_mv_bytes(0)), as_mv_bytes(0))
+  expect_equal(max(as_mv_bytes(c(1, 2))), as_mv_bytes(2))
+  expect_equal(max(as_mv_bytes(c(1, NA))), as_mv_bytes(NA_real_))
+  expect_equal(unclass(max(as_mv_bytes(x))), 1e+09)
+  expect_snapshot(format(max(as_mv_bytes(x))))
 })
 
-test_that("`[.as_sv_bytes`", {
-  x <- as_sv_bytes(x)
+test_that("`[.as_mv_bytes`", {
+  x <- as_mv_bytes(x)
   expect_equal(x[], x)
-  expect_equal(x[5], as_sv_bytes(10000))
+  expect_equal(x[5], as_mv_bytes(10000))
   expect_equal(unclass(x[5]), 10000)
   expect_snapshot(format(x[5]))
-  expect_equal(x[c(3, 6, 9)], as_sv_bytes(c(1e+02, 1e+05, 1e+08)))
+  expect_equal(x[c(3, 6, 9)], as_mv_bytes(c(1e+02, 1e+05, 1e+08)))
   expect_equal(unclass(x[c(3, 6, 9)]), c(1e+02, 1e+05, 1e+08))
   expect_snapshot(format(x[c(3, 6, 9)]))
 })
 
-test_that("`[[.as_sv_bytes` retains the fs_bytes class", {
-  x <- as_sv_bytes(c(100, 200, 300))
-  expect_equal(x[[1L]], as_sv_bytes(100))
-  expect_equal(x[[2L]], as_sv_bytes(200))
-  expect_equal(x[[3L]], as_sv_bytes(300))
+test_that("`[[.as_mv_bytes` retains the fs_bytes class", {
+  x <- as_mv_bytes(c(100, 200, 300))
+  expect_equal(x[[1L]], as_mv_bytes(100))
+  expect_equal(x[[2L]], as_mv_bytes(200))
+  expect_equal(x[[3L]], as_mv_bytes(300))
 })
