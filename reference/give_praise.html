@@ -5,13 +5,13 @@ use your code appropriately and when it runs error free!
 This is a wrapper around the praise package and
 takes no arguments. Additional flexibility may be added
 in the future. Output can be suppressed by setting the
-"praise_usr" option (see example).'><meta property="og:description" content='Part of collaboration is being friendly to your users.
+"signal.quiet" option (see example).'><meta property="og:description" content='Part of collaboration is being friendly to your users.
 Praise your colleagues with encouragement when they
 use your code appropriately and when it runs error free!
 This is a wrapper around the praise package and
 takes no arguments. Additional flexibility may be added
 in the future. Output can be suppressed by setting the
-"praise_usr" option (see example).'></head><body>
+"signal.quiet" option (see example).'></head><body>
     <a href="#container" class="visually-hidden-focusable">Skip to content</a>
 
 
@@ -58,7 +58,7 @@ use your code appropriately and when it runs error free!
 This is a wrapper around the <span class="pkg">praise</span> package and
 takes no arguments. Additional flexibility may be added
 in the future. Output can be suppressed by setting the
-<code>"praise_usr"</code> option (see example).</p>
+<code>"signal.quiet"</code> option (see example).</p>
     </div>
 
     <div class="section level2">
@@ -78,7 +78,7 @@ in the future. Output can be suppressed by setting the
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB00BB;">Yeah! You are Astounding!</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># suppress praise</span></span></span>
-<span class="r-in"><span><span class="fu">withr</span><span class="fu">::</span><span class="fu"><a href="https://withr.r-lib.org/reference/with_options.html" class="external-link">with_options</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>praise_usr <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>, <span class="fu">give_praise</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">withr</span><span class="fu">::</span><span class="fu"><a href="https://withr.r-lib.org/reference/with_options.html" class="external-link">with_options</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>signal.quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, <span class="fu">give_praise</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

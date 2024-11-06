@@ -70,10 +70,10 @@ setting <code>options(signal.quiet = TRUE)</code>.</p>
 <span></span>
 <span><span class="va">add_style</span></span>
 <span></span>
-<span><span class="co"># S3 method for class 'mv_style'</span></span>
+<span><span class="co"># S3 method for class 'helpr_style'</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># S3 method for class 'mv_style'</span></span>
+<span><span class="co"># S3 method for class 'helpr_style'</span></span>
 <span><span class="va">x</span><span class="op">$</span><span class="va">y</span></span>
 <span></span>
 <span><span class="fu">has_style</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
@@ -94,8 +94,8 @@ setting <code>options(signal.quiet = TRUE)</code>.</p>
 
 
 <dt id="arg-text">text<a class="anchor" aria-label="anchor" href="#arg-text"></a></dt>
-<dd><p>Character. String of <code>length == 1</code>.
-Added at the left margin of the horizontal rule.</p></dd>
+<dd><p><code>character(1)</code>. String added at the left margin
+of the horizontal rule.</p></dd>
 
 
 <dt id="arg-line-col">line_col<a class="anchor" aria-label="anchor" href="#arg-line-col"></a></dt>
@@ -103,7 +103,7 @@ Added at the left margin of the horizontal rule.</p></dd>
 
 
 <dt id="arg-lty">lty<a class="anchor" aria-label="anchor" href="#arg-lty"></a></dt>
-<dd><p>Character. Either "single" or "double" line type (matched).</p></dd>
+<dd><p><code>character(1)</code>. Either "single" or "double" line type (matched).</p></dd>
 
 
 <dt id="arg-col">col<a class="anchor" aria-label="anchor" href="#arg-col"></a></dt>
@@ -144,7 +144,7 @@ and a <code>blue</code> color is added.</p></li>
 <li><p><code>add_style</code>: An alternative syntax. A list object where each
 element is a color/style function wrapping around <code>add_color()</code> and
 each element determines the <code>col</code> argument. See examples.</p></li>
-<li><p><code>print(mv_style)</code>: Functions in the <code>apply_style</code> object have their
+<li><p><code>print(helpr_style)</code>: Functions in the <code>apply_style</code> object have their
 own class, which allows for the special S3 print method and the chaining
 in the examples below.</p></li>
 <li><p><code>$</code>: Easily chain styles with <code>$</code> S3 method.</p></li>
@@ -171,10 +171,10 @@ in the examples below.</p></li>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✓</span> The 'LETTERS' vector has <span style="color: #0000BB;">26</span> elements</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># add a horizontal rule</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="fu">signal_rule</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">signal_rule</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #000000;">──────────────────────────────────────────────────────────────────────────</span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="fu">signal_rule</span><span class="op">(</span><span class="st">"Header"</span>, line_col <span class="op">=</span> <span class="st">"green"</span>, lty <span class="op">=</span> <span class="st">"double"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">signal_rule</span><span class="op">(</span><span class="st">"Header"</span>, line_col <span class="op">=</span> <span class="st">"green"</span>, lty <span class="op">=</span> <span class="st">"double"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">══</span> Header <span style="color: #00BB00;">════════════════════════════════════════════════════════════════</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu">add_color</span><span class="op">(</span><span class="st">"Hello world!"</span>, <span class="st">"blue"</span><span class="op">)</span><span class="op">)</span></span></span>
