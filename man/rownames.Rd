@@ -25,25 +25,28 @@ add_rowid(data, name = ".rowid")
 \arguments{
 \item{data}{An object that inherits from class \code{data.frame}.}
 
-\item{name}{Character. The name of the column to move.}
+\item{name}{\code{character(1)}. The name of the column to move.}
 
-\item{value}{Character. The new set of names for the data frame.
+\item{value}{\code{character(n)}. The new set of names for the data frame.
 If duplicates exist they are modified on-the-fly via \code{\link[=make.unique]{make.unique()}}.}
 }
 \value{
-All functions attempt to return an object of the same class as
-the input with fully intact and unmodified attributes (aside from those
-required by the desired action). \code{\link[=has_rn]{has_rn()}} returns a scalar logical.
+All functions attempt to return an object of the
+same class as the input with fully intact and
+unmodified attributes (aside from those required by
+the desired action). \code{\link[=has_rn]{has_rn()}} returns a scalar logical.
 }
 \description{
-Easily move row names to a column and vice-versa without the unwanted
-side-effects to object class and attributes. Drop-in replacement for
-\code{tibble::rownames_to_column()} and \code{tibble::column_to_rownames()} which
-can have undesired side-effects to complex object attributes.
-Does not import any external packages, modify the environment, or change
-the object (other than the desired column). When using \code{\link[=col2rn]{col2rn()}}, if
-explicit row names exist, they are overwritten with a warning. \code{\link[=add_rowid]{add_rowid()}}
-does \emph{not} affect row names, which differs from \code{tibble::rowid_to_column()}.
+Easily move row names to a column and vice-versa without the
+unwanted side-effects to object class and attributes.
+Drop-in replacement for \code{tibble::rownames_to_column()}
+and \code{tibble::column_to_rownames()} which can have undesired
+side-effects to complex object attributes.
+Does not import any external packages, modify the environment,
+or change the object (other than the desired column).
+When using \code{\link[=col2rn]{col2rn()}}, if explicit row names exist, they
+are overwritten with a warning. \code{\link[=add_rowid]{add_rowid()}} does \emph{not}
+affect row names, which differs from \code{tibble::rowid_to_column()}.
 }
 \section{Functions}{
 \itemize{
