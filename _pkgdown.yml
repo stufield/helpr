@@ -29,11 +29,11 @@ navbar:
     right: [search, github]
   components:
     intro:
-      text: Git Started
+      text: Get Started
       href: articles/helpr.html
 
 articles:
-  - title: Git Started
+  - title: Get Started
     contents:
     - helpr
 
