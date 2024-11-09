@@ -14,8 +14,6 @@ set_Names(x, nms = x, ...)
 \item{...}{Arguments passed to \code{nms} if a function.}
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
-
 Similar to \code{\link[stats:setNames]{stats::setNames()}}, but with more features.
 You can specify names in the following ways:
 \itemize{

@@ -1,7 +1,8 @@
 #' Working with Strings
 #'
-#' Tools for working with character/text strings without importing the
-#' \pkg{stringr} package.
+#' Tools for working with character/text strings without
+#'   importing the \pkg{stringr} package.
+#'
 #' Below is a convenient table of the \pkg{stringr} to base \pkg{R} equivalents:
 #' \tabular{ll}{
 #'   \pkg{stringr}                \tab base \pkg{R} \cr
@@ -39,16 +40,19 @@
 #' }
 #'
 #' @name strings
+#'
 #' @param x A character vector.
-#' @param width Integer. The minimum width of padding for each element.
-#' @param side Pad to the left or right.
+#' @param width `integer(1)`. The minimum width of padding for each element.
+#' @param side `character(1)`. Pad to the left or right.
 #' @param text A character vector where matches are sought.
-#' @param pattern A character string *containing a group capture* regex.
+#' @param pattern `character(1)`. A string *containing a group capture* regex.
 #' @seealso [encodeString()], [trimws()], [regexpr()], [substring()]
 NULL
 
+
 #' @describeIn strings Similar to `stringr::str_pad()` but does
-#' uses *only* a blank space as the padding character.
+#'   uses *only* a blank space as the padding character.
+#'
 #' @examples
 #' pad("tidyverse", 20)
 #' pad("tidyverse", 20, "left")
@@ -62,8 +66,9 @@ pad <- function(x, width, side = c("right", "left", "both")) {
 }
 
 #' @describeIn strings The inverse of [pad()], removes whitespace on both
-#' sides *and* replicated internal whitespace.
-#' Similar to `stringr::str_squish()`.
+#'   sides *and* replicated internal whitespace.
+#'   Similar to `stringr::str_squish()`.
+#'
 #' @examples
 #' squish("  abcd   efgh   ")
 #' squish("  abcd   efgh   .")
@@ -74,10 +79,13 @@ squish <- function(x) {
   gsub("[[:space:]]+", " ", trim(x))
 }
 
-#' @describeIn strings A wrapper around [trimws()] but with unified
-#' argument names.
+#' @describeIn strings
+#'   A wrapper around [trimws()] but with unified
+#'   argument names.
+#'
 #' @param whitespace A string specifying a regular expression to
-#' match (one character of) "white space".
+#'   match (one character of) "white space".
+#'
 #' @examples
 #' trim("  abcd   efgh   ")
 #' trim("  abcd   efgh   .")
@@ -91,9 +99,10 @@ trim <- function(x, side = c("both", "left", "right"), whitespace = "[ \t\r\n]")
 #' Capture Regular Expression from String
 #'
 #' @describeIn strings
-#' Uses "group capture" regular expression from the `pattern` argument to
-#' extract matches from character string(s).
-#' Analogous to [stringr::str_extract()].
+#'   Uses "group capture" regular expression from the `pattern` argument to
+#'   extract matches from character string(s).
+#'   Analogous to [stringr::str_extract()].
+#'
 #' @examples
 #' # extract the group 'oo'
 #' capture(c("foo", "bar", "boo", "oops"), "(oo)")

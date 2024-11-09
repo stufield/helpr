@@ -4,7 +4,7 @@
 \alias{expect_error_free}
 \alias{skip_on_check}
 \alias{skip_on_test}
-\alias{skip_on_jenkins}
+\alias{expect_snapshot_plot}
 \title{Unit Test Helpers}
 \usage{
 expect_error_free(...)
@@ -13,15 +13,28 @@ skip_on_check()
 
 skip_on_test()
 
-skip_on_jenkins()
+expect_snapshot_plot(code, name, type = c("png", "pdf"), ...)
 }
 \arguments{
-\item{...}{Arguments passed to \code{\link[testthat:expect_no_error]{testthat::expect_no_error()}}.}
+\item{...}{Arguments passed to \code{\link[testthat:expect_no_error]{testthat::expect_no_error()}} or
+the logical \verb{gg =} param if in \code{\link[=expect_snapshot_plot]{expect_snapshot_plot()}}.}
+
+\item{code}{The code to execute.}
+
+\item{name}{\code{character(1)}. A temporary file name to use during the test.}
+
+\item{type}{\code{character(1)}. Either "png" or "pdf".}
 }
 \description{
 Manage whether certain tests are skipped during
-\code{\link[devtools:check]{devtools::check()}}, \code{\link[devtools:test]{devtools::test()}}, or during a temporary automated
-pipeline builds. This may be desired if certain tests are time consuming
-or special environment characteristics make them undesirable.
-See \code{\link[testthat:skip]{testthat::skip_if()}} and \code{\link[testthat:skip]{testthat::skip_on_cran()}} for details.
+\code{\link[devtools:check]{devtools::check()}}, \code{\link[devtools:test]{devtools::test()}}, or
+during a temporary automated pipeline builds.
+This may be desired if certain tests are time
+consuming or special environment characteristics
+make them undesirable.
+See \code{\link[testthat:skip]{testthat::skip_if()}} and
+\code{\link[testthat:skip]{testthat::skip_on_cran()}} for details.
+}
+\references{
+https://testthat.r-lib.org/reference/expect_snapshot_file.html
 }

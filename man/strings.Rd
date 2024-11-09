@@ -19,20 +19,22 @@ capture(text, pattern)
 \arguments{
 \item{x}{A character vector.}
 
-\item{width}{Integer. The minimum width of padding for each element.}
+\item{width}{\code{integer(1)}. The minimum width of padding for each element.}
 
-\item{side}{Pad to the left or right.}
+\item{side}{\code{character(1)}. Pad to the left or right.}
 
 \item{whitespace}{A string specifying a regular expression to
 match (one character of) "white space".}
 
 \item{text}{A character vector where matches are sought.}
 
-\item{pattern}{A character string \emph{containing a group capture} regex.}
+\item{pattern}{\code{character(1)}. A string \emph{containing a group capture} regex.}
 }
 \description{
-Tools for working with character/text strings without importing the
-\pkg{stringr} package.
+Tools for working with character/text strings without
+importing the \pkg{stringr} package.
+}
+\details{
 Below is a convenient table of the \pkg{stringr} to base \pkg{R} equivalents:
 \tabular{ll}{
 \pkg{stringr}                \tab base \pkg{R} \cr

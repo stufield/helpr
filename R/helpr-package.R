@@ -3,9 +3,6 @@
 "_PACKAGE"
 
 
-
-
-
 .dummy <- function() { }   # nolint: brace_linter.
 
 .onLoad <- function(...) {
