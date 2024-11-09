@@ -15,5 +15,5 @@ The file path, invisibly.
 \description{
 Opens a text file in an \code{RStudio} interactive session. Must be using
 \code{RStudio} interactively. Similar to \code{rstudioapi::navigateToFile()} but
-without the added dependency.
+without the added \pkg{rstudioapi} dependency.
 }
