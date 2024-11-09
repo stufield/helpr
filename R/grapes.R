@@ -1,13 +1,16 @@
 #' Special Infix Operators
 #'
 #' A series of useful infix operators, aka "grapes", that
-#' can be used to facilitate core functionality, test equality,
-#' perform set operations, etc.
+#'   can be used to facilitate core functionality, test equality,
+#'   perform set operations, etc.
 #'
 #' @name grapes
+#'
 #' @param x The left hand side of the infix operator.
 #' @param y The right hand side of the infix operator.
+#'
 #' @seealso [intersect()], [setdiff()], [all.equal()], [isTRUE()]
+#'
 #' @examples
 #' factor(1:3) %@@@@% levels
 #' factor(1:3, levels = LETTERS[1:3L]) %@@@@% levels
@@ -34,6 +37,7 @@ NULL
 #' @describeIn grapes
 #'   A friendly version of `attr(x, y)` to extract `"@@ribute"` elements.
 #'  `y` can be unquoted.
+#'
 #' @export
 `%@@%` <- function(x, y) {
   name <- as.character(substitute(y))
@@ -43,8 +47,10 @@ NULL
 #' @describeIn grapes
 #'   Assign `"@@ributes"` via infix operator.
 #'   A friendly version of `attr(x, y) <- value`. `y` can be unquoted.
+#'
 #' @param value New value for attribute `y`.
 #' @usage x \%@@@@\% y <- value
+#'
 #' @export
 `%@@%<-` <- function(x, y, value) {
   name <- as.character(substitute(y))
@@ -55,6 +61,7 @@ NULL
 #' @describeIn grapes
 #'   A gentler logical test for equality of two objects.
 #'   Attributes are *not* checked. Use `%===%` to check attributes.
+#'
 #' @export
 `%==%` <- function(x, y) {
   isTRUE(all.equal(x, y, check.attributes = FALSE))
@@ -62,6 +69,7 @@ NULL
 
 #' @describeIn grapes
 #'   A logical test that two objects are *not* equal.
+#'
 #' @export
 `%!=%` <- function(x, y) {
   !isTRUE(all.equal(x, y, check.attributes = FALSE))
@@ -69,6 +77,7 @@ NULL
 
 #' @describeIn grapes
 #'   Also tests attributes of `x` and `y`.
+#'
 #' @export
 `%===%` <- function(x, y) {
   isTRUE(all.equal(x, y, check.attributes = TRUE))
@@ -77,6 +86,7 @@ NULL
 #' @describeIn grapes
 #'   Subset values in `x` by `y`. Alias for `x[x %in% y]`.
 #'   Similar to `intersect(x, y)` except names and class of `x` are maintained.
+#'
 #' @export
 `%set%` <- function(x, y) {
   x[x %in% y]
@@ -85,6 +95,7 @@ NULL
 #' @describeIn grapes
 #'   Subset values in `x` *not* in `y`. Alias for `x[!x %in% y]`.
 #'   Similar to `setdiff(x, y)` except names and class of `x` are maintained.
+#'
 #' @export
 `%!set%` <- function(x, y) {
   x[!x %in% y]
@@ -93,8 +104,8 @@ NULL
 #' @describeIn grapes
 #'   Extracts the `ith` element for each of `n` elements of
 #'   a list or data frame, returning either a vector of length `n` or a single
-#'   row data frame with `n` columns.
-#'   Efficient alias for `purrr::map_*(x, y)`.
+#'   row data frame with `n` columns. Efficient alias for `purrr::map_*(x, y)`.
+#'
 #' @export
 `%[[%` <- function(x, y) {
   stopifnot(typeof(x) == "list")
@@ -108,9 +119,9 @@ NULL
 }
 
 # non-exported:
-#   this infix function allows you to `borrow`
+#   this infix allows you to `borrow`
 #   non-exported functions from  a package but
 #   avoids the CMD check warning regarding ':::'
-"%:::%" <- function(p, f) {
+`%:::%` <- function(p, f) {
   get(f, envir = asNamespace(p))
 }

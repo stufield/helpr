@@ -63,8 +63,7 @@ Similar to \code{setdiff(x, y)} except names and class of \code{x} are maintaine
 
 \item \code{x \%[[\% y}: Extracts the \code{ith} element for each of \code{n} elements of
 a list or data frame, returning either a vector of length \code{n} or a single
-row data frame with \code{n} columns.
-Efficient alias for \verb{purrr::map_*(x, y)}.
+row data frame with \code{n} columns. Efficient alias for \verb{purrr::map_*(x, y)}.
 
 }}
 \examples{
