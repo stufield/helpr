@@ -37,7 +37,7 @@ helpr_path <- function(..., ext = "") {
   )
   args$sep <- .Platform$file.sep
   res <- do.call(paste, args)
-  res <- ifelse(grepl("NA", res), NA_character_, res)  # put back NAs after paste
+  res <- ifelse(grepl("NA", res), NA_character_, res)  # replace NAs after paste
   if ( !missing(ext) ) {
     set_file_ext(res, ext)
   } else {

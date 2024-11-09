@@ -24,8 +24,9 @@ See \code{vignette("lib-mode")} for more details with examples.
 }
 \section{Functions}{
 \itemize{
-\item \code{lib_tree()}: A thin wrapper around \code{.libPaths()} to quickly and easily
-view the \emph{current} library tree of directories the session knows about.
+\item \code{lib_tree()}: A thin wrapper around \code{.libPaths()} to quickly
+and easily view the \emph{current} library tree of
+directories the session knows about.
 
 \item \code{is_lib_mode()}: Determines whether a session is \emph{currently} in "lib mode".
 
@@ -39,5 +40,5 @@ view the \emph{current} library tree of directories the session knows about.
 }
 }
 \seealso{
-\code{\link[=.libPaths]{.libPaths()}}, \code{\link[withr:with_libpaths]{withr::with_libpaths()}}
+\code{\link[=.libPaths]{.libPaths()}}
 }

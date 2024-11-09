@@ -17,21 +17,21 @@ parent directory must exist.}
 to add to the target file, if not already present. For \code{write_over()},
 these are the exact lines desired in the target file.}
 
-\item{overwrite}{Logical. If file already exists, over-write?}
+\item{overwrite}{\code{logical(1)}. If file exists, over-write it?}
 
 \item{n}{integer.  The (maximal) number of lines to
     read.  Negative values indicate that one should read up to the end of
     input on the connection.}
 }
 \description{
-Mostly for internal use, but useful as a general tool. Writes as UTF-8
-encoding and with \verb{\\n} line endings on UNIX systems and \verb{\\r\\n} on Windows.
+Writes as UTF-8 encoding and with \verb{\\n} line
+endings on UNIX systems and \verb{\\r\\n} on Windows.
 This avoids some of the unintended side-effects of
 \code{usethis::write_over()} with R-projects.
 }
 \section{Functions}{
 \itemize{
-\item \code{read_text()}: a convenient wrapper to \code{\link[=readLines]{readLines()}} with default UTF-8 encoding for
-reading text into an R session.
+\item \code{read_text()}: a convenient wrapper to \code{\link[=readLines]{readLines()}} with default
+UTF-8 encoding for reading text into an R session.
 
 }}

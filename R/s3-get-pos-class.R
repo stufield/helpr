@@ -6,18 +6,24 @@ get_pos_class.glm <- function(model, ...) {
     classes <- get_model_classes(model, ...)
     class   <- select_binary(classes, 2L)
   } else {
-    stop("`glm` models with family ", value(model$family$family),
-         " are not supported", call. = FALSE)
+    stop(
+      "`glm` models with family ",
+      value(model$family$family),
+      " are not supported",
+      call. = FALSE
+    )
   }
 
   if ( class == 0 || tolower(class) %in% c("n", "negative", "neg") ) {
-    # Because the documentation for `glm` is difficult to parse/easily skipped.
-    warning(
-      "Extracted positive class is `0`, `N`, `neg`, or `negative`; these are ",
-      "labels commonly used for negative classes. Check how the response was ",
-      "supplied to `glm()`. If a factor, the positive class should be the ",
-      "second level. If a matrix, the positive class size should be in the ",
-      "first column.", call. = FALSE
+    # Because the documentation for `glm` is
+    # difficult to parse/easily skipped
+    signal_info(
+      "Extracted positive class is `0`, `N`, `neg`, or `negative`;",
+      "these are labels commonly used for negative classes.",
+      "Check how the response was supplied to `glm()`.",
+      "If a factor, the positive class should be the second level.",
+      "If a matrix, the positive class size should be in the",
+      "first column."
     )
   }
   class
@@ -31,7 +37,7 @@ get_pos_class.lda <- function(model, ...) {
 
 #' @noRd
 #' @export
-get_pos_class.libml_nb <- function(model, ...) {# nolint: object_length_linter.
+get_pos_class.libml_nb <- function(model, ...) {
   select_binary(model$levels, 2L)
 }
 
@@ -97,10 +103,13 @@ get_pos_class.survregnet <- function(model, ...) "1"
 #' @export
 get_pos_class.coxnet2 <- function(model, ...) "1"
 
-# error trip if non-binary, otherwise extract the desired element
+
+# error trip if non-binary
+# otherwise extract the desired element
 select_binary <- function(x, i) {
   if ( length(unique(x)) != 2L ) {
-    stop("Non-binary classification model detected: ", value(x), call. = FALSE)
+    stop("Non-binary classification model detected: ",
+         value(x), call. = FALSE)
   } else {
     x[i]
   }

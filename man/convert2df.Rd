@@ -7,7 +7,7 @@
 convert2df(x)
 }
 \arguments{
-\item{x}{Currently one of the following class objects:
+\item{x}{One of the following classes:
 \itemize{
 \item \code{list}
 \item \code{table}
@@ -19,7 +19,7 @@ convert2df(x)
 }}
 }
 \value{
-The original object \code{x} converted into a \code{data.frame} class.
+\code{x}, converted into a \code{data.frame}.
 }
 \description{
 Attempt to "smartly" convert an arbitrary object

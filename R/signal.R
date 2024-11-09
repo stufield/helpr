@@ -10,7 +10,8 @@
 #' @param x Character. A string to report to the UI or to add a style/color.
 #' @param y A coloring function, i.e. an element the `add_style` object,
 #'   see the `col` argument.
-#' @param col Color (or style) for the text (or line). Currently one of:
+#' @param col `character(1)`. Color (or style) for the
+#'   text (or line). Currently one of:
 #'  * red
 #'  * green
 #'  * yellow
@@ -66,7 +67,8 @@ print.str_value <- function(x, ..., sep = "\n") {
 }
 
 #' @describeIn signal
-#'   Signal a completed task to the UI. Similar to [usethis::ui_done()].
+#'   Signal a completed task to the UI.
+#'   Similar to [usethis::ui_done()].
 #'
 #' @examples
 #' # signal_done()
@@ -82,7 +84,8 @@ signal_done <- function(...) {
 }
 
 #' @describeIn signal
-#'   Signal a to-do task to the UI. Similar to [usethis::ui_todo()].
+#'   Signal a to-do task to the UI.
+#'   Similar to [usethis::ui_todo()].
 #'
 #' @export
 signal_todo <- function(...) {
@@ -91,7 +94,8 @@ signal_todo <- function(...) {
 }
 
 #' @describeIn signal
-#'   Signal oops error to the UI. Similar to [usethis::ui_oops()].
+#'   Signal oops error to the UI.
+#'   Similar to [usethis::ui_oops()].
 #'
 #' @export
 signal_oops <- function(...) {
@@ -100,7 +104,8 @@ signal_oops <- function(...) {
 }
 
 #' @describeIn signal
-#'   Signal info to the UI. Similar to [usethis::ui_info()].
+#'   Signal info to the UI.
+#'   Similar to [usethis::ui_info()].
 #'
 #' @export
 signal_info <- function(...) {
@@ -109,12 +114,13 @@ signal_info <- function(...) {
 }
 
 #' @describeIn signal
-#'   Make a rule with left aligned text. Similar to [cli::rule()].
+#'   Make a rule with left aligned text.
+#'   Similar to [cli::rule()].
 #'
 #' @param text `character(1)`. String added at the left margin
 #'   of the horizontal rule.
 #' @param line_col See `col`.
-#' @param lty `character(1)`. Either "single" or "double" line type (matched).
+#' @param lty `character(1)`. Line type either "single" or "double" (matched).
 #'
 #' @examples
 #' # add a horizontal rule
@@ -148,8 +154,10 @@ signal_rule <- function(text = "", line_col = NULL,
 
 
 #' Slimmed down version of rlang::inform
-#' @param ... Arguments pasted together (with a space!) to form a message.
-#' @param class The handler class to signal. Defaults to a `message`.
+#' @param ... Arguments pasted together (with a space!)
+#'   to form a message.
+#' @param class The handler class to signal.
+#'   Defaults to a `message`.
 #' @noRd
 .inform <- function(..., class = c("message", "condition"),
                     quiet = getOption("signal.quiet", default = FALSE)) {
@@ -166,13 +174,26 @@ signal_rule <- function(text = "", line_col = NULL,
 }
 
 
-avail_col_sty <- c("red", "green", "yellow", "blue",
-                   "magenta", "cyan", "black", "white",
-                   "grey", "bold", "italic", "underline",
-                   "inverse", "strikethrough")
+avail_col_sty <- c(
+  "red",
+  "green",
+  "yellow",
+  "blue",
+  "magenta",
+  "cyan",
+  "black",
+  "white",
+  "grey",
+  "bold",
+  "italic",
+  "underline",
+  "inverse",
+  "strikethrough"
+)
 
 #' @describeIn signal
-#'   Add a color or style to a string. Similar to [crayon::crayon()].
+#'   Add a color or style to a string.
+#'   Similar to [crayon::crayon()].
 #'
 #' @examples
 #' cat(add_color("Hello world!", "blue"))
@@ -236,9 +257,10 @@ add_color <- function(x, col) {
 }
 
 #' @describeIn signal
-#'   An alternative syntax. A list object where each
-#'   element is a color/style function wrapping around `add_color()` and
-#'   each element determines the `col` argument. See examples.
+#'   An alternative syntax. A list object where
+#'   each element is a color/style function wrapping
+#'   around `add_color()` and each element determines
+#'   the `col` argument. See examples.
 #'
 #' @format NULL
 #' @usage add_style
@@ -251,12 +273,12 @@ add_color <- function(x, col) {
 #' cat(add_style$blue("Hello world!"))
 #' cat(add_color("Hello world!", "blue"))
 #'
-#' # Combine styles
+#' # Combine
 #' red <- add_style$red("This is red")
 #' string <- c(red, "and this is not")
 #' cat(string)
 #'
-#' # Combine styles
+#' # Combine colors
 #' blue <- add_style$blue("blue")
 #' red  <- add_style$red("red")
 #' string <- add_style$bold(c(blue, red, "nothing"))
@@ -270,9 +292,10 @@ add_style <- lapply(setNames(avail_col_sty, avail_col_sty), function(.x) {
 })
 
 #' @describeIn signal
-#'   Functions in the `apply_style` object have their
-#'   own class, which allows for the special S3 print method and the chaining
-#'   in the examples below.
+#'   Functions in the `apply_style` object
+#'   have their own class, which allows for
+#'   the special S3 print method and the
+#'   chaining in the examples below.
 #'
 #' @export
 print.helpr_style <- function(x, ...) {
@@ -313,7 +336,7 @@ print.helpr_style <- function(x, ...) {
 }
 
 #' @describeIn signal
-#'   Logical. Test if string contains ANSI styles/colors.
+#'   Logical testing if string contains ANSI styles/colors.
 #'
 #' @examples
 #' # check for ANSI styling

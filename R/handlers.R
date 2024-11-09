@@ -1,18 +1,30 @@
 #' Handle and Capture Side Effects
 #'
-#' Wrappers to capture side effects and silence function output. This can
-#' be particularly useful for instances where you know a function may
-#' generate a warning/error, but do not want to terminate any higher-level
-#' processes. Downstream code can then trap the returned object accordingly
-#' because the output is in an expected structure.
-#' Similar to [purrr::safely()], [purrr::quietly()], and [purrr::partial()].
-#' Note that [be_hard()] is not a simple drop-in replacement, does not
-#' support quasi-quotation, but should be a sufficient replacement in most cases.
+#' Wrappers to capture side effects and silence function output.
+#'   This can be particularly useful for instances where
+#'   you know a function may generate a warning/error,
+#'   but do not want to terminate any higher-level processes.
+#'   Downstream code can then trap the returned object accordingly
+#'   because the output is in an expected structure.
+#'   Note that [be_hard()] is not a simple drop-in replacement
+#'   for [purrr::partial()] as it does *not* support quasi-quotation,
+#'   but should be a sufficient replacement in most cases.
 #'
 #' @name handlers
-#' @param .f A function to capture and handle in a user controlled manner.
+#'
+#' @section purrr analogues:
+#' \tabular{ll}{
+#'   \pkg{helpr}  \tab \pkg{purrr} \cr
+#'   [be_safe()]  \tab [purrr::safely()] \cr
+#'   [be_quiet()] \tab [purrr::quietly()] \cr
+#'   [be_hard()]  \tab [purrr::partial()] \cr
+#' }
+#'
+#' @param .f A function to capture and handle in a
+#'   user controlled manner.
 #' @param otherwise The value of `result` in the event of an error.
 #' @param ... Named arguments to be hard-coded as key-value pairs.
+#'
 #' @examples
 #' # be safe
 #' safelog <- be_safe(log2)
@@ -34,22 +46,30 @@
 #' f2(5)
 #'
 #' # be hard-coded
-#' q2 <- be_hard(quantile, probs = c(0.025, 0.975), na.rm = TRUE)
 #' vec <- rnorm(50)
 #' navec <- c(NA_real_, vec)
+#' q2 <- be_hard(quantile, probs = c(0.025, 0.975), na.rm = TRUE)
+#'
+#' # `be_hard` has a special S3 print method
+#' q2
 #'
 #' quantile(vec, probs = c(0.025, 0.975))
+#'
 #' q2(vec)
 #'
 #' quantile(navec, probs = c(0.025, 0.975), na.rm = TRUE)
+#'
 #' q2(navec)
 NULL
 
 
-#' @describeIn handlers Roll through [stop()] or [usethis::ui_stop()] messages.
+#' @describeIn handlers
+#'   Roll through [stop()] or [usethis::ui_stop()] conditions.
+#'
 #' @return [be_safe()]: a list containing:
-#' * result: if `NULL` there was an error, see `error`.
-#' * error: if `NULL` no errors were encountered, see `result`.
+#'   * result: if `NULL` there was an error, see `error`.
+#'   * error: if `NULL` no errors were encountered, see `result`.
+#'
 #' @export
 be_safe <- function(.f, otherwise = NULL) {
   function(...) {
@@ -61,12 +81,15 @@ be_safe <- function(.f, otherwise = NULL) {
   }
 }
 
-#' @describeIn handlers Be quiet! ... always contains a `result`.
+#' @describeIn handlers
+#'   Be quiet! ... always contains a `result`.
+#'
 #' @return [be_quiet()]: a list containing:
-#' * result: the result of the evaluated expression.
-#' * output: any output that was captured during evaluation.
-#' * warnings: any warnings that were encountered during evaluation.
-#' * messages: any messages that were triggered during evaluation.
+#'   * result: the result of the evaluated expression.
+#'   * output: any output that was captured during evaluation.
+#'   * warnings: any warnings that were encountered during evaluation.
+#'   * messages: any messages that were triggered during evaluation.
+#'
 #' @export
 be_quiet <- function(.f) {
   function(...) {
@@ -86,7 +109,9 @@ be_quiet <- function(.f) {
       sink(NULL)
       close(temp)
     })
-    result <- withCallingHandlers(.f(...), warning = wHandler, message = mHandler)
+    result <- withCallingHandlers(.f(...),
+                                  warning = wHandler,
+                                  message = mHandler)
     list(
       result   = result,
       output   = paste0(readLines(temp, warn = FALSE), collapse = "\n"),
@@ -97,8 +122,11 @@ be_quiet <- function(.f) {
 }
 
 
-#' @describeIn handlers Be hard! ... coded for specified arguments.
+#' @describeIn handlers
+#'   Be hard! ... coded for specified arguments.
+#'
 #' @return [be_hard()]: a function with new hard-coded arguments.
+#'
 #' @export
 be_hard <- function(.f, ...) {
   stopifnot(is.function(.f))

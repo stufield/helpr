@@ -1,18 +1,19 @@
 #' Write to a Text File
 #'
-#' Mostly for internal use, but useful as a general tool. Writes as UTF-8
-#' encoding and with `\n` line endings on UNIX systems and `\r\n` on Windows.
-#' This avoids some of the unintended side-effects of
-#' `usethis::write_over()` with R-projects.
+#' Writes as UTF-8 encoding and with `\n` line
+#'   endings on UNIX systems and `\r\n` on Windows.
+#'   This avoids some of the unintended side-effects of
+#'   `usethis::write_over()` with R-projects.
 #'
 #' @inheritParams usethis::write_over
-#' @param overwrite Logical. If file already exists, over-write?
+#'
+#' @param overwrite `logical(1)`. If file exists, over-write it?
 #' @export
 write_text <- function(path, lines, overwrite = FALSE) {
   stopifnot(
-    is.character(path),
-    is.character(lines),
-    length(lines) > 0L
+    "`path` must be a character path to a file." = is.character(path),
+    "`lines` must be a character of text to write." = is.character(lines),
+    "`lines` must be a character of text to write." = length(lines) > 0L
   )
   path <- path.expand(path)
   if ( !overwrite && file.exists(path) ) {
@@ -29,9 +30,10 @@ write_text <- function(path, lines, overwrite = FALSE) {
 }
 
 #' @describeIn write_text
-#' a convenient wrapper to [readLines()] with default UTF-8 encoding for
-#' reading text into an R session.
+#'   a convenient wrapper to [readLines()] with default
+#'   UTF-8 encoding for reading text into an R session.
 #' @inheritParams base::readLines
+#'
 #' @export
 read_text <- function(path, n = -1L) {
   base::readLines(path, n = n, encoding = "UTF-8", warn = FALSE)

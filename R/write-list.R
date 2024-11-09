@@ -1,16 +1,21 @@
 #' Write List to CSV File
 #'
 #' Write a list of data frames of vectors (or a mixture
-#' of both) to a single `*.csv` file.
+#'   of both) to a single `*.csv` file.
 #'
 #' @inheritParams utils::write.table
-#' @param x A list to be written to file, typically a list of data frames.
-#' @param rn_title Title for the row names column (for data frames).
-#' Must match the length of the `x` argument. Defaults to empty `""`.
+#'
+#' @param x A list to be written to file,
+#'   typically a list of data frames.
+#' @param rn_title A title for the row names
+#'   column (for data frames).
+#'   Must match the length of the `x` argument.
 #' @param ... Additional arguments passed to [write.table()].
-#' @return The list object, invisibly.
+#'
+#' @return The `file`, invisibly.
 #' @author Stu Field
 #' @seealso [write.table()], [file()]
+#'
 #' @examples
 #' tmp <- lapply(LETTERS[1:5], function(x) rnorm(10, mean = 10, sd = 3))
 #' names(tmp) <- LETTERS[1:5]
@@ -53,18 +58,21 @@ write_list <- function(x, file, rn_title = NULL, append = FALSE, ...) {
     .append <- (append || .add)
     if ( is_vec ) {
       if ( length(.x) == 0L ) {
-        cat(sprintf("\n%s,", .name), file = f, append = .append, sep = "")
+        cat(sprintf("\n%s,", .name), file = f,
+            append = .append, sep = "")
         cat(NA, file = f, append = TRUE, sep = "\n")
       } else {
         nm <- names(.x)
         .x <- data.frame(as.list(.x))
         names(.x) <- nm
-        cat(sprintf("\n%s,", .name), file = f, append = .append, sep = "")
+        cat(sprintf("\n%s,", .name), file = f,
+            append = .append, sep = "")
         write.table(.x, file = f, append = TRUE, sep = ",",
                     col.names = !is.null(nm), row.names = FALSE, ...)
       }
     } else {   # if df/matrix/tibble
-      cat(sprintf("\n%s,\n%s,", .name, .title), file = f, append = .append, sep = "")
+      cat(sprintf("\n%s,\n%s,", .name, .title), file = f,
+          append = .append, sep = "")
       write.table(.x, file = f, append = TRUE, sep = ",",
                   col.names = TRUE, row.names = TRUE, ...)
     }

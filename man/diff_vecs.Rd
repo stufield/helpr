@@ -7,29 +7,30 @@
 diff_vecs(x, y, verbose = interactive())
 }
 \arguments{
-\item{x}{First vector to compare.}
+\item{x}{\code{character(n)}. First vector to compare.}
 
-\item{y}{Second vector to compare.}
+\item{y}{\code{character(n)}. Second vector to compare.}
 
-\item{verbose}{Should diff summary be printed directly to the console?
+\item{verbose}{\verb{logical(1).} Should diff summary
+be printed directly to the console?
 Is \code{TRUE} for interactive sessions.}
 }
 \value{
 An invisible list is returned with the set diffs of each vector.
 The elements of the list are:
-\item{unique_x:}{Entries unique to the \code{x} vector.}
-\item{unique_y:}{Entries unique to the \code{y} vector.}
-\item{inter:}{The intersect of the two vectors.}
-\item{unique:}{All unique entries of the union of the two vectors.}
+\item{unique_x:}{Entries unique to \code{x}.}
+\item{unique_y:}{Entries unique to \code{y}.}
+\item{inter:}{The intersect \code{x} and \code{y}.}
+\item{unique:}{The \code{\link[=union]{union()}} of \code{x} and \code{y}.}
 }
 \description{
 A convenient diff tool to determine
 how and where two character vectors differ.
 }
 \examples{
-diff_vecs(LETTERS[1:10], LETTERS[5:15])
+diff_vecs(LETTERS[1:10L], LETTERS[5:15L])
 
-diffs <- diff_vecs(LETTERS[1:10], LETTERS[5:15], verbose = FALSE)
+diffs <- diff_vecs(LETTERS[1:10L], LETTERS[5:15L], verbose = FALSE)
 diffs
 }
 \seealso{

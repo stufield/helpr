@@ -1,26 +1,36 @@
 #' Easily Subset Elements of Objects
 #'
-#' Local alternatives to [purrr::keep()], [purrr::discard()],
-#'   and [purrr::compact()], but without having to import the \pkg{purrr}
-#'   package. The syntax and behavior is generally the same, with some
-#'   exceptions (see Details). For example, [compact_it()] is similar
-#'   to [purrr::compact()], however only supports
+#' Alternatives to [purrr::keep()], [purrr::discard()],
+#'   and [purrr::compact()], but without having to load
+#'   the \pkg{purrr} namespace.
+#'   The syntax and behavior is generally the same, with some
+#'   exceptions (see `Details`). For example, [compact_it()]
+#'   is similar to [purrr::compact()], however only supports
 #'   the default behavior where non-empty elements are retained.
 #'
 #' These functions are not a simple drop-in replacement,
 #'   as they do not support quasi-quotation or formula syntax, but
 #'   should be a sufficient replacement in most cases.
 #'
+#' @section purrr analogues:
+#' \tabular{ll}{
+#'   \pkg{helpr}     \tab \pkg{purrr} \cr
+#'   [keep_it()]     \tab [purrr::keep()] \cr
+#'   [discard_it()]  \tab [purrr::discard()] \cr
+#'   [compact_it()]  \tab [purrr::compact()] \cr
+#' }
+#'
 #' @param x A list, data frame, or vector.
-#' @param lgl A logical vector or a function that returns a logical
-#'   vector when applied to the elements of `x`.
-#' @param ... Named arguments passed to `lgl` if `lgl` is a function.
+#' @param lgl `logical(n)`.  A vector or a function
+#'   that returns a logical vector when applied to
+#'   the elements of `x`.
+#' @param ... Named arguments passed to `lgl` if it is a function.
 #'
 #' @examples
 #' # pass a logical vector
 #' lst <- list(A = 1, B = 2, C = 3)
 #' keep_it(lst, c(TRUE, FALSE, TRUE))
-
+#'
 #' # logical vector on-the-fly
 #' vec <- unlist(lst)
 #' keep_it(vec, vec != 2)

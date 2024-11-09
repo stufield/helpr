@@ -1,14 +1,14 @@
 
 # Sets with no intersection
 withr::with_seed(101, {
-  a <- sample(LETTERS, 10)
-  b <- sample(letters, 10)
+  a <- sample(LETTERS, 10L)
+  b <- sample(letters, 10L)
 })
 diffs <- diff_vecs(a, b)
 
 # Sets with an intersection
-c <- LETTERS[1:10]
-d <- LETTERS[5:15]
+c <- LETTERS[1:10L]
+d <- LETTERS[5:15L]
 diffs2 <- diff_vecs(c, d)
 
 test_that("diff_vecs() identifies intersections as expected", {

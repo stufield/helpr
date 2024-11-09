@@ -16,7 +16,7 @@ openR <- function(file) {
     )
   }
   file  <- normalizePath(file, mustWork = TRUE)
-  .open <- get(".rs.api.navigateToFile", "tools:rstudio")
+  .open <- "tools:rstudio" %:::% ".rs.api.navigateToFile"
   .open(file)
   invisible(file)
 }

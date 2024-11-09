@@ -9,21 +9,24 @@ liter(.x, .y = NULL, .f, ...)
 \arguments{
 \item{.x, .y}{Vectors or objects of the same length.}
 
-\item{.f}{A function to map values over.}
+\item{.f}{A function to be applied to each element of \code{x}.}
 
-\item{...}{Additional arguments passed on to the mapped function.}
+\item{...}{Additional arguments passed to \code{.f}.}
 }
 \value{
 Always returns a list. The returned list is named by the
 names of \code{.x} or by \code{.x} itself if possible.
 }
 \description{
-A thin wrapper around \code{\link[=mapply]{mapply()}} that iterates over \emph{paired} \code{.x} and \code{.y}
-values. They \emph{must} have the same length elements but can be any
-R object to iterate over. Similar to \code{\link[purrr:map2]{purrr::map2()}} without having to
-import the \pkg{purrr} package.
-If \code{.y} is missing and \code{.x} is named, this is equal to
-\code{liter(.x, names(.x), ...)}, which is equal to \code{\link[purrr:imap]{purrr::imap()}}.
+A thin wrapper around \code{\link[=mapply]{mapply()}} that iterates
+over \emph{paired} \code{.x} and \code{.y} values.
+They \emph{must} have the same length elements
+but can be any R object to iterate over.
+Similar to \code{\link[purrr:map2]{purrr::map2()}} without having to
+load the \pkg{purrr} namespace.
+If \code{.y} is missing and \code{.x} is named,
+this is equal to \code{liter(.x, names(.x), ...)},
+which is the behavior of \code{\link[purrr:imap]{purrr::imap()}}.
 }
 \examples{
 x <- LETTERS

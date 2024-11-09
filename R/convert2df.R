@@ -1,10 +1,10 @@
 #' Convert R Objects to a Data Frame
 #'
 #' Attempt to "smartly" convert an arbitrary object
-#' into a `data.frame` object while keep the dimensions
-#' of the same style.
+#'   into a `data.frame` object while keep the dimensions
+#'   of the same style.
 #'
-#' @param x Currently one of the following class objects:
+#' @param x One of the following classes:
 #'   * `list`
 #'   * `table`
 #'   * `matrix`
@@ -12,9 +12,11 @@
 #'   * `integer`
 #'   * `factor`
 #'   * `character`
-#' @return The original object `x` converted into a `data.frame` class.
+#'
+#' @return `x`, converted into a `data.frame`.
 #' @author Stu Field
 #' @seealso [as.data.frame()]
+#'
 #' @examples
 #' # Compare outputs:
 #'

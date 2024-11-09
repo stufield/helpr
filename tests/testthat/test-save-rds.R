@@ -20,7 +20,7 @@ test_that("file extensions are coerced properly", {
 
 test_that("compression type is 'xz' and file saved correstly", {
   expect_true(file.exists("out.rds"))
-  expect_equal(getCompression("out.rds"), "xz")
+  expect_equal(get_compression("out.rds"), "xz")
 })
 
 test_that("error trips if invalid file path passed", {
@@ -31,14 +31,14 @@ test_that("error trips if invalid file path passed", {
   )
 })
 
-test_that("getCompression() returns proper compression type", {
+test_that("`get_Compression()` returns proper compression type", {
   x <- seq(100)
   save(x, file = "test.rda")
-  expect_equal(getCompression("test.rda"), "gzip")
+  expect_equal(get_compression("test.rda"), "gzip")
   save(x, file = "test.rda", compress = "bzip2")
-  expect_equal(getCompression("test.rda"), "bzip2")
+  expect_equal(get_compression("test.rda"), "bzip2")
   save(x, file = "test.rda", compress = "xz")
-  expect_equal(getCompression("test.rda"), "xz")
+  expect_equal(get_compression("test.rda"), "xz")
 })
 
 test_that("save_rda() saves serialized objects properly", {
@@ -46,5 +46,5 @@ test_that("save_rda() saves serialized objects properly", {
   y <- LETTERS
   save_rda(x, y, file = "out.rda")
   expect_true(file.exists("out.rda"))
-  expect_equal(getCompression("out.rda"), "xz")
+  expect_equal(get_compression("out.rda"), "xz")
 })

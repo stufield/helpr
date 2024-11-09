@@ -1,13 +1,14 @@
 #' Activate and Deactivate Lib Mode
 #'
 #' When activated, [lib_mode()] adds a new library location
-#' (aka `lib.loc`) to the top of the library tree.
-#' This allows you to run code in an "sandbox", without
-#' interfering with the other packages you have installed previously.
-#' See `vignette("lib-mode")` for more details with examples.
+#'   (aka `lib.loc`) to the top of the library tree.
+#'   This allows you to run code in an "sandbox", without
+#'   interfering with the other packages you have installed previously.
+#'   See `vignette("lib-mode")` for more details with examples.
 #'
 #' @param path A directory location of an R library.
-#' @seealso [.libPaths()], [withr::with_libpaths()]
+#' @seealso [.libPaths()]
+#'
 #' @examples
 #' \dontrun{
 #'   dir.create("new-lib")
@@ -72,8 +73,9 @@ lib_mode <- local({
 })
 
 #' @describeIn lib_mode
-#'   A thin wrapper around `.libPaths()` to quickly and easily
-#'   view the *current* library tree of directories the session knows about.
+#'   A thin wrapper around `.libPaths()` to quickly
+#'   and easily view the *current* library tree of
+#'   directories the session knows about.
 #' @export
 lib_tree <- function() {
   .libPaths()

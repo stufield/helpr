@@ -1,11 +1,13 @@
 #' Standardize Date Format
 #'
-#' A convenient wrapper to print the current date
-#' in a consistent format for all package suite`functionality.
+#' A convenient wrapper to print the current date in a
+#'   consistent format for all package suite functionality.
 #'
 #' @param x An alternative format to the standard format.
+#'
 #' @return The current date in `YYYY-MM-DD` format (default).
 #' @seealso [format()]
+#'
 #' @examples
 #' # with default format
 #' dater()

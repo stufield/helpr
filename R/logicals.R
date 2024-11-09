@@ -6,7 +6,6 @@
 #' @name logicals
 #'
 #' @param x A vector, data frame or `tibble` to be tested.
-#'   or integers.
 #'
 #' @author Stu Field
 #'
@@ -44,10 +43,11 @@ is_int_vec <- function(x) {
 #' Check for log-space
 #'
 #' @describeIn logicals
-#'   Checks if an object containing numeric data is already in log space.
-#'   This check assumes proteomic values are being passed and that the
-#'   median of a vector, or of an entire data matrix, will be greater than
-#'   15 if in linear space and less than 10 if log-transformed.
+#'   Checks if an object containing numeric data
+#'   is already in log space. This check assumes
+#'   proteomic values (RFU) and that the vector median,
+#'   or the entire data matrix, will be greater than
+#'   15 if in linear space and less than 10 if log10-transformed.
 #'
 #' @examples
 #' # log-space
@@ -107,13 +107,14 @@ is_logspace.soma_adat <- function(x) {
 #' @describeIn logicals
 #'   A general test of whether the numeric vector `x` is
 #'   monotonically *increasing* or *decreasing* in value.
+#'
+#' @seealso [diff()], [all()]
 #' @examples
 #' # monotonic
 #' is_monotonic(1:10)      # TRUE
 #' is_monotonic(10:1)      # TRUE
 #' is_monotonic(rnorm(10)) # FALSE
 #' is_monotonic(seq(10, -10, by = -1)) # TRUE
-#' @seealso [diff()], [all()]
 #' @export
 is_monotonic <- function(x) {
   stopifnot(is.numeric(x))

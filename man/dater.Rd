@@ -13,8 +13,8 @@ dater(x = "\%Y-\%m-\%d")
 The current date in \code{YYYY-MM-DD} format (default).
 }
 \description{
-A convenient wrapper to print the current date
-in a consistent format for all package suite`functionality.
+A convenient wrapper to print the current date in a
+consistent format for all package suite functionality.
 }
 \examples{
 # with default format

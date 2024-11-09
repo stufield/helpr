@@ -5,7 +5,7 @@
 \alias{show_symbols}
 \title{A list of UTF-8 or ASCII symbols.}
 \format{
-A named list, see \code{names(symbl)} for all symbol names.
+A named list, see \code{names(symbl)}.
 }
 \usage{
 symbl
@@ -20,13 +20,13 @@ otherwise the \code{\link[=l10n_info]{l10n_info()}}\verb{$UTF-8} local informati
 UTF-8 support.
 }
 \details{
-\code{show_symbols()} is a convenient print output to list of various
-available UTF-8 (or ASCII) symbols to the screen.
+\code{show_symbols()} is a convenient print output to list
+of various available UTF-8 (or ASCII) symbols to the screen.
 }
 \examples{
 # available symbols
 show_symbols()
 
 # ascii versions
-withr::with_options(list(cli.unicode = FALSE, width = 80), show_symbols())
+withr::with_options(list(cli.unicode = FALSE, width = 80L), show_symbols())
 }

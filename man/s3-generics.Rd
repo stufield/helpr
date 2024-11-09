@@ -48,14 +48,15 @@ calc_predictions(model, newdata, ...)
 
 \item{k}{The number of folds to perform (k-fold cross-validation).}
 
-\item{newdata}{The test set (\code{data.frame}) containing protein
+\item{newdata}{The test set (\code{data.frame}) containing
 (features) corresponding to the model parameters.
-For some models, if \code{newdata = NULL}, training (or out-of-bag)
-predictions are returned.}
+For some models, if \code{newdata = NULL}, training
+(or out-of-bag) predictions are returned.}
 }
 \description{
-These are S3 generic functions that can be used to minimize package
-dependencies across multiple packages that have the same method.
+These are S3 generic functions that can be
+used to minimize package dependencies across
+multiple packages that have the same method.
 }
 \section{Functions}{
 \itemize{
@@ -66,45 +67,35 @@ dependencies across multiple packages that have the same method.
 \item \code{get_pos_class()}: For a binary classification model, determine the
 positive class, i.e. the "disease" or "case" class.
 
-\item \code{get_model_classes()}: In a binary classification model, determine the classes in the model.
+\item \code{get_model_classes()}: In a binary classification model,
+determine the classes in the model.
 
 \item \code{get_model_features()}: Returns a character vector of the model predictors/covariates
 contained within a model object.
 After interrogating the model object, this function returns
 the covariates (features) contained in the object, both proteomic
-or clinical meta data. Currently available for:\tabular{rll}{
-   Class \tab Model type \tab See examples \cr
-   \code{"glm"} \tab Logistic & linear regression \tab \code{\link[=glm]{glm()}} \cr
-   \code{"glmnet"} \tab Regularized logistic or linear regression \tab \code{\link[glmnet:glmnet]{glmnet::glmnet()}} \cr
-   \code{"naiveBayes"} \tab Standard naive Bayes \tab \code{e1071::naiveBayes()} \cr
-   \code{"fit_nb"} \tab Naive Bayes (robust pars) \tab \code{fit_nb()} \cr
-   \code{"randomForest"} \tab Random Forests \tab \code{\link[randomForest:randomForest]{randomForest::randomForest()}} \cr
-   \code{"lda"} \tab Linear Discriminant Analysis \tab \code{\link[MASS:lda]{MASS::lda()}} \cr
-   \code{"kknn"} \tab k-nearest neighbor \tab \code{\link[kknn:kknn]{kknn::kknn()}} \cr
-   \code{"gbm"} \tab generalized boosted regression models \tab \code{\link[gbm:gbm]{gbm::gbm()}} \cr
-   \code{"svm"} \tab Support Vector Machines \tab \code{\link[e1071:svm]{e1071::svm()}} \cr
-   \code{"survreg"} \tab Survival models \tab \code{\link[survival:survreg]{survival::survreg()}} \cr
-   \code{"psm"} \tab Survival models \tab \code{rms::psm()} \cr
-   \code{"coxnet2"} \tab Regularized cox \tab \code{fitCoxnet()} \cr
-   \code{"survregnet"} \tab Regularized survival \tab \code{fitSurvregnet()} \cr
-   \code{"train"} \tab \pkg{caret} models \tab \code{\link[caret:train]{caret::train()}} \cr
-}
+or clinical meta data.
 
-\item \code{get_model_coef()}: Returns a named numeric vector of the regression coefficients of a linear
-model contained within a model object.
+\item \code{get_model_coef()}: Returns a named numeric vector of the regression
+coefficients of a linear model contained within a
+model object.
 
-\item \code{get_model_type()}: A S3 generic to determine the model type, e.g. classification,
-regression, or survival.
+\item \code{get_model_type()}: A S3 generic to determine the model type,
+e.g. classification, regression, or survival.
 
 \item \code{get_model_params()}: A S3 generic to determine the model parameters.
 
-\item \code{calc_model_metrics()}: A S3 generic to calculate performance metrics of a model.
+\item \code{calc_model_metrics()}: A S3 generic to calculate performance
+metrics of a model.
 
-\item \code{cross_validate()}: A S3 generic to perform k-fold cross-validation for a given model.
+\item \code{cross_validate()}: A S3 generic to perform k-fold
+cross-validation for a given model.
 
-\item \code{calc_predictions()}: Calculate predictions of a given model on a test set defined by \code{newdata}.
-The return object is always a \code{data.frame} class object in 1 of 3 formats,
-depending on the model type, and containing model predictions for \code{newdata}.
+\item \code{calc_predictions()}: Calculate predictions of a given model on a test set
+defined by \code{newdata}.
+The return object is always a \code{data.frame} class object
+in 1 of 3 formats, depending on the model type,
+and containing model predictions for \code{newdata}.
 The data frame is named according to:
 \tabular{lll}{
 \strong{Model Type}     \tab \strong{Format} \tab \strong{Example} (n = 1) \cr
@@ -122,13 +113,34 @@ The data frame is named according to:
 
 }}
 \note{
-\code{\link[=get_model_coef]{get_model_coef()}}: non-linear models will not have a linear predictor,
-and thus return \code{NULL}.
+\code{\link[=get_model_coef]{get_model_coef()}}: non-linear models will not
+have a linear predictor, and thus return \code{NULL}.
 See specific S3 method \code{?get_model_coef.class} for details.
 
-\code{\link[=calc_predictions]{calc_predictions()}}: not all classification models will have
-a linear predictor, any non-GLM model, e.g. random forest or SVM, will not.
+\code{\link[=calc_predictions]{calc_predictions()}}: not all classification
+models will have a linear predictor, any non-GLM
+model, e.g. random forest or SVM, will not.
 }
+\section{Model Features Classes}{
+\tabular{rll}{
+   Class \tab Model type \tab See examples \cr
+   \code{"glm"} \tab Logistic & linear regression \tab \code{\link[=glm]{glm()}} \cr
+   \code{"glmnet"} \tab Regularized logistic or linear regression \tab \code{\link[glmnet:glmnet]{glmnet::glmnet()}} \cr
+   \code{"naiveBayes"} \tab Standard naive Bayes \tab \code{e1071::naiveBayes()} \cr
+   \code{"fit_nb"} \tab Naive Bayes (robust pars) \tab \code{fit_nb()} \cr
+   \code{"randomForest"} \tab Random Forests \tab \code{\link[randomForest:randomForest]{randomForest::randomForest()}} \cr
+   \code{"lda"} \tab Linear Discriminant Analysis \tab \code{\link[MASS:lda]{MASS::lda()}} \cr
+   \code{"kknn"} \tab k-nearest neighbor \tab \code{\link[kknn:kknn]{kknn::kknn()}} \cr
+   \code{"gbm"} \tab generalized boosted regression models \tab \code{\link[gbm:gbm]{gbm::gbm()}} \cr
+   \code{"svm"} \tab Support Vector Machines \tab \code{\link[e1071:svm]{e1071::svm()}} \cr
+   \code{"survreg"} \tab Survival models \tab \code{\link[survival:survreg]{survival::survreg()}} \cr
+   \code{"psm"} \tab Survival models \tab \code{rms::psm()} \cr
+   \code{"coxnet2"} \tab Regularized cox \tab \code{fitCoxnet()} \cr
+   \code{"survregnet"} \tab Regularized survival \tab \code{fitSurvregnet()} \cr
+   \code{"train"} \tab \pkg{caret} models \tab \code{\link[caret:train]{caret::train()}} \cr
+}
+}
+
 \author{
 Stu Field
 }

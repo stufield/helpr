@@ -1,17 +1,19 @@
 #' A list of UTF-8 or ASCII symbols.
 #'
 #' Similar to the \pkg{cli} package listing of UTF-8/Unicode symbols
-#' and their ASCII fall-backs depending on the environment they are called
-#' into. Can be controlled by the option `options(cli.unicode = T/F)` if set,
-#' otherwise the [l10n_info()]`$UTF-8` local information is used to detect
-#' UTF-8 support.
+#'   and their ASCII fall-backs depending on the environment they are called
+#'   into. Can be controlled by the option `options(cli.unicode = T/F)` if set,
+#'   otherwise the [l10n_info()]`$UTF-8` local information is used to detect
+#'   UTF-8 support.
 #'
-#' `show_symbols()` is a convenient print output to list of various
-#' available UTF-8 (or ASCII) symbols to the screen.
+#' `show_symbols()` is a convenient print output to list
+#'   of various available UTF-8 (or ASCII) symbols to the screen.
 #'
 #' @name symbl
-#' @format A named list, see `names(symbl)` for all symbol names.
+#'
+#' @format A named list, see `names(symbl)`.
 #' @usage symbl
+#'
 #' @export symbl
 NULL
 
@@ -21,7 +23,7 @@ NULL
 #' show_symbols()
 #'
 #' # ascii versions
-#' withr::with_options(list(cli.unicode = FALSE, width = 80), show_symbols())
+#' withr::with_options(list(cli.unicode = FALSE, width = 80L), show_symbols())
 #' @export
 show_symbols <- function() {
   nms <- format(names(symbl))
@@ -40,7 +42,7 @@ show_symbols <- function() {
 
 # A list UTF-8/unicode symbols
 symbol_utf8 <- list(
-  # borrowed from:
+  # borrowed from cli:
   #   https://github.com/r-lib/clisymbols/blob/master/R/symbols.R
   "tick"                 = "\u2713",
   "cross"                = "\u2716",
@@ -101,7 +103,7 @@ symbol_utf8 <- list(
 
 # ASCII fallbacks of UTF-8 symbols
 symbol_ascii <- list(
-  # borrowed from:
+  # borrowed from cli:
   #   https://github.com/r-lib/clisymbols/blob/master/R/symbols.R
   "tick"                 = "v",
   "cross"                = "x",

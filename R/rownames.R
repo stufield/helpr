@@ -89,7 +89,6 @@ has_rn <- function(data) {
   .row_names_info(data, 1L) > 0L && !is.na(.row_names_info(data, 0L)[[1L]])
 }
 
-# does the data frame have implicit rownames?
 has_implicit_rn <- function(data) {
   .row_names_info(data, 1L) < 0L
 }
@@ -120,9 +119,10 @@ set_rn <- function(data, value) {
 }
 
 #' @describeIn rownames
-#'   adds a sequential integer row identifier; starting at `1:nrow(data)`.
-#'   It does *not* remove existing row names currently, but may in the future
-#'   (please code accordingly).
+#'   adds a sequential integer row identifier;
+#'   starting at `1:nrow(data)`.
+#'   It does *not* remove existing row names currently,
+#'   but may in the future (please code accordingly).
 #'
 #' @export
 add_rowid <- function(data, name = ".rowid") {

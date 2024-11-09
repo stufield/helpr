@@ -1,7 +1,7 @@
 #' Calculate q-values
 #'
 #' Calculates a vector of q-values corresponding
-#' to a vector of p-values.
+#'   to a vector of p-values.
 #'
 #' @param p A vector of p-values.
 #' @param lambda A sequence of lambdas to evaluate.
@@ -9,6 +9,7 @@
 #'   defaults to the maximum value of the `lambda` sequence.
 #' @param match_storey `logical(1)`. Should the output be matched
 #'   to Storey's `qvalue()` function?
+#'
 #' @return A list of class `q_value` containing:
 #'   \item{call}{The original call to `calc_qvalue()`.}
 #'   \item{p_value}{The original vector of p-values.}
@@ -19,17 +20,19 @@
 #'   \item{spline_fit}{?}
 #'   \item{pi0}{?}
 #'   \item{q_value}{A a vector of q-values.}
+#'
 #' @author Stu Field
 #' @seealso [smooth.spline()]
 #' @references John Storey. PNAS. 2003.
+#'
 #' @examples
 #' x <- withr::with_seed(101, c(seq(0.0001, 0.05, length = 50), runif(950)))
 #' q <- calc_qvalue(x)
 #'
 #' @importFrom stats smooth.spline predict
 #' @export
-calc_qvalue <- function(p, lambda = seq(0, 0.95, 0.01), lambda_eval = NULL,
-                        match_storey = FALSE) {
+calc_qvalue <- function(p, lambda = seq(0, 0.95, 0.01),
+                        lambda_eval = NULL, match_storey = FALSE) {
 
   if ( match_storey ) {
     lambda <- seq(0, 0.9, 0.05)
@@ -85,14 +88,15 @@ calc_qvalue <- function(p, lambda = seq(0, 0.95, 0.01), lambda_eval = NULL,
 
 #' Plot q_value Object
 #'
-#' S3 plot method for "q_value" class objects
-#'
 #' @rdname calc_qvalue
-#' @param x Object class `q_value`.
+#'
+#' @param x A `q_value` class object.
 #' @param rng `numeric(2)`. Range of values.
-#' @param ... Additional arguments passed to the S3 generic method `plot`.
+#' @param ... Additional arguments passed to the S3 plot generic.
+#'
 #' @return A cool plot.
 #' @author Stu Field
+#'
 #' @examples
 #' # S3 plot method
 #' plot(q)

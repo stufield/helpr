@@ -11,24 +11,25 @@ create_form(response, features, collapse = c("+", "*"), env = NULL)
 formula, i.e. the response variable (\code{Y}).}
 
 \item{features}{A vector of quoted strings representing the
-model features/predictors. Used to generate the right-hand side (RHS)
-of the formula.}
+model features/predictors. Used to generate the right-hand
+side (RHS) of the formula.}
 
-\item{collapse}{Character. The separator for features.
-Either \code{+} for main effects, \code{*} for interactions.}
+\item{collapse}{\code{character(1)}. The separator for features.
+Typically either \code{+} for main effects, \code{*} for interactions.}
 
 \item{env}{The environment in which to evaluate the formula.
-To keep the formula object as light-weight as possible, the default is
-the current function environment/scope. However, some occasions
-(e.g. unit testing)  may require the formula's environment to capture
-certain objects necessary to fit a model (e.g. weights).}
+To keep the formula object as light-weight as possible,
+the default is the current function environment/scope.
+However, some occasions (e.g. unit testing) may require
+the formula's environment to capture certain objects
+necessary to fit a model (e.g. weights).}
 }
 \value{
 A stats formula. See \code{\link[=formula]{formula()}}.
 }
 \description{
-A convenient utility to quickly generate formula objects in a
-standardized format and environment.
+A convenient utility to quickly generate formula
+objects in a standardized format and environment.
 }
 \examples{
 ft <- c("ft_1234.56", "ft_8899.8", "ft_3334.3")

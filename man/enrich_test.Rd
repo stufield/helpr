@@ -7,12 +7,13 @@
 enrich_test(x, alternative = c("two.sided", "enrich", "deplete"))
 }
 \arguments{
-\item{x}{A 2x2 confusion matrix (or contingency table) containing
+\item{x}{A \eqn{2x2} confusion matrix (or contingency table) containing
 the binary decisions for each contingency. Can also be a (named) list
 containing each of the 4 contingencies. See above.}
 
-\item{alternative}{Whether to check for "two.sided" (both Enrich/Deplete)
-or specifically one or the other; "enrich" or "deplete".}
+\item{alternative}{\code{character(1)}. Whether to check
+for "two.sided" (both Enrich/Deplete)
+or specifically one or the other ("enrich" or "deplete").}
 }
 \value{
 Both the comparison to the Hypergeometric Distribution and

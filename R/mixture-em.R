@@ -2,18 +2,19 @@
 #'
 #' A single step of the EM algorithm.
 #'
-#' @param y value
-#' @param mu1 value
-#' @param mu2 value
-#' @param sd1 value
-#' @param sd2 value
-#' @param pi.hat value
+#' @param y value.
+#' @param mu1 value.
+#' @param mu2 value.
+#' @param sd1 value.
+#' @param sd2 value.
+#' @param pi_hat value.
+#'
 #' @importFrom stats dnorm
 #' @noRd
-em_1_step <- function(y, mu1, mu2, sd1, sd2, pi.hat) {
+em_1_step <- function(y, mu1, mu2, sd1, sd2, pi_hat) {
   # responsibilities of dist-2
-  gamma      <- pi.hat * dnorm(y, mu2, sd2) / ((1 - pi.hat) * dnorm(y, mu1, sd1) +
-    pi.hat * dnorm(y, mu2, sd2))
+  gamma      <- pi_hat * dnorm(y, mu2, sd2) / ((1 - pi_hat) * dnorm(y, mu1, sd1) +
+    pi_hat * dnorm(y, mu2, sd2))
   new_mu1    <- sum((1 - gamma) * y) / sum(1 - gamma)
   new_mu2    <- sum(gamma * y) / sum(gamma)
   new_var1   <- sum((1 - gamma) * (y - mu1)^2) / sum(1 - gamma) # this is variance
@@ -44,7 +45,7 @@ choose_init <- function(y, k = 2) {
   }
   sigma_k <- 1 / rexp(k, rate = emp_sd)
   mu_k    <- rnorm(k, mean = emp_mu, sd = sigma_k)
-  list(start.mu = mu_k, start.sd = sigma_k, start.pi = runif(1))
+  list(start_mu = mu_k, start_sd = sigma_k, start_pi = runif(1))
 }
 
 #' 2-distribution (k2) Gaussian Mixture Model
@@ -52,14 +53,16 @@ choose_init <- function(y, k = 2) {
 #' Estimates the parameters of a 2 distribution mixture model
 #' via expectation maximization.
 #'
-#' @param data Numeric vector.
-#' @param pars Initial values for `start.mu`, `start.sd`, and `start.pi`.
-#' @param max.iter Max number of iterations to perform.
-#' @param max.restarts Max number of restarts ro perform.
-#' @param eps The machine precision for determining when to stop the algorithm.
+#' @param data `numeric(n)`.
+#' @param pars Initial values for `start_mu`, `start_sd`, and `start_pi`.
+#' @param max_iter `integer(1)`. Max number of iterations to perform.
+#' @param max_restarts `integer(1)`. Max number of restarts ro perform.
+#' @param eps `double(1)`. Machine precision for when to stop the algorithm.
+#'
 #' @return A `mix_k2` class object.
 #' @author Stu Field
 #' @references Tibshirani and Hastie
+#'
 #' @examples
 #' # Generate 2 gaussian distributions
 #' x <- withr::with_seed(101,
@@ -68,19 +71,22 @@ choose_init <- function(y, k = 2) {
 #' mix_theta
 #'
 #' @export
-normal_k2_mixture <- function(data, pars = list(start.mu = NULL,
-                                                start.sd = NULL,
-                                                start.pi = NULL),
-                              max.iter = 1000,
-                              max.restarts = 25,
+normal_k2_mixture <- function(data, pars = list(start_mu = NULL,
+                                                start_sd = NULL,
+                                                start_pi = NULL),
+                              max_iter = 1000,
+                              max_restarts = 25,
                               eps = 1e-08) {
 
-  good_names <- c("start.mu", "start.sd", "start.pi")
+  good_names <- c("start_mu", "start_sd", "start_pi")
 
   if ( any(!names(pars) %in% good_names) ) {
     signal_oops("Pars arg is:", value(names(pars)))
     signal_info("Should be:", value(good_names))
-    stop("Check spelling of list names for `pars =` argument.", call. = FALSE)
+    stop(
+      "Check spelling of list names for `pars =` argument.",
+      call. = FALSE
+    )
   }
 
   nulls <- vapply(pars, is.null, NA)
@@ -91,9 +97,9 @@ normal_k2_mixture <- function(data, pars = list(start.mu = NULL,
     pars[null_nms] <- def_pars[null_nms]     # replace NULLs with starts
   }
 
-  mu_par     <- pars$start.mu
-  sigma_par  <- pars$start.sd
-  pi_par     <- pars$start.pi
+  mu_par     <- pars$start_mu
+  sigma_par  <- pars$start_sd
+  pi_par     <- pars$start_pi
   iter       <- numeric(1)
   loglik     <- numeric(1)
   loglik_vec <- numeric(0)
@@ -107,24 +113,24 @@ normal_k2_mixture <- function(data, pars = list(start.mu = NULL,
                       mu2 = mu_par[2L],
                       sd1 = sigma_par[1L],
                       sd2 = sigma_par[2L],
-                      pi.hat = pi_par)
+                      pi_hat = pi_par)
     mu_par    <- tmp$mu
     sigma_par <- tmp$sigma
     pi_par    <- tmp$pi_hat
     dll       <- abs(loglik - tmp$loglik)
     loglik    <- tmp$loglik
     loglik_vec[iter] <- loglik
-    if ( iter >= max.iter || min(sigma_par) < 1e-06 ) {
+    if ( iter >= max_iter || min(sigma_par) < 1e-06 ) {
       signal_oops(
         "No convergence ... OR ... One of the variances is going to zero."
       )
       signal_info("Restarting with new initial conditions.")
       new_pars  <- choose_init(y = data, k = 2)
-      mu_par    <- new_pars$start.mu
-      sigma_par <- new_pars$start.sd
-      pi_par    <- new_pars$start.pi
+      mu_par    <- new_pars$start_mu
+      sigma_par <- new_pars$start_sd
+      pi_par    <- new_pars$start_pi
       restarts  <- restarts + 1
-      if ( restarts > max.restarts ) {
+      if ( restarts > max_restarts ) {
         stop(
           "Too many restarts. Possible extreme outliers in distribution.",
           call. = FALSE
@@ -155,9 +161,6 @@ normal_k2_mixture <- function(data, pars = list(start.mu = NULL,
 }
 
 #' Print Method
-#'
-#' S3 print method for `"mix_k2"` objects.
-#'
 #' @param x A `mix_k2` object generated from [normal_k2_mixture()].
 #' @noRd
 #' @export
@@ -187,13 +190,16 @@ print.mix_k2 <- function(x, ...) {
 #' S3 plot method for `"mix_k2"` objects.
 #'
 #' @rdname normal_k2_mixture
+#'
 #' @param x A `mix_k2` object generated from `normal_k2_mixture`.
-#' @param type Character. Matched string one of: "density", "likelihood" or
-#'   "posterior".
-#' @param title Character. Title for the plot.
+#' @param type `character(1)`. Matched string one of: "density",
+#'   "likelihood" or "posterior".
+#' @param title `character(1)`. Title for the plot.
 #' @param ... Additional parameters for extensibility.
+#'
 #' @author Stu Field
 #' @references See Tibshirani and Hastie ("bible"); pg. 273.
+#'
 #' @examples
 #' plot(mix_theta)
 #' plot(mix_theta, "like")

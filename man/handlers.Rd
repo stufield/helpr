@@ -14,7 +14,8 @@ be_quiet(.f)
 be_hard(.f, ...)
 }
 \arguments{
-\item{.f}{A function to capture and handle in a user controlled manner.}
+\item{.f}{A function to capture and handle in a
+user controlled manner.}
 
 \item{otherwise}{The value of \code{result} in the event of an error.}
 
@@ -38,24 +39,35 @@ be_hard(.f, ...)
 \code{\link[=be_hard]{be_hard()}}: a function with new hard-coded arguments.
 }
 \description{
-Wrappers to capture side effects and silence function output. This can
-be particularly useful for instances where you know a function may
-generate a warning/error, but do not want to terminate any higher-level
-processes. Downstream code can then trap the returned object accordingly
+Wrappers to capture side effects and silence function output.
+This can be particularly useful for instances where
+you know a function may generate a warning/error,
+but do not want to terminate any higher-level processes.
+Downstream code can then trap the returned object accordingly
 because the output is in an expected structure.
-Similar to \code{\link[purrr:safely]{purrr::safely()}}, \code{\link[purrr:quietly]{purrr::quietly()}}, and \code{\link[purrr:partial]{purrr::partial()}}.
-Note that \code{\link[=be_hard]{be_hard()}} is not a simple drop-in replacement, does not
-support quasi-quotation, but should be a sufficient replacement in most cases.
+Note that \code{\link[=be_hard]{be_hard()}} is not a simple drop-in replacement
+for \code{\link[purrr:partial]{purrr::partial()}} as it does \emph{not} support quasi-quotation,
+but should be a sufficient replacement in most cases.
 }
 \section{Functions}{
 \itemize{
-\item \code{be_safe()}: Roll through \code{\link[=stop]{stop()}} or \code{\link[usethis:ui]{usethis::ui_stop()}} messages.
+\item \code{be_safe()}: Roll through \code{\link[=stop]{stop()}} or \code{\link[usethis:ui]{usethis::ui_stop()}} conditions.
 
 \item \code{be_quiet()}: Be quiet! ... always contains a \code{result}.
 
 \item \code{be_hard()}: Be hard! ... coded for specified arguments.
 
 }}
+\section{purrr analogues}{
+
+\tabular{ll}{
+\pkg{helpr}  \tab \pkg{purrr} \cr
+\code{\link[=be_safe]{be_safe()}}  \tab \code{\link[purrr:safely]{purrr::safely()}} \cr
+\code{\link[=be_quiet]{be_quiet()}} \tab \code{\link[purrr:quietly]{purrr::quietly()}} \cr
+\code{\link[=be_hard]{be_hard()}}  \tab \code{\link[purrr:partial]{purrr::partial()}} \cr
+}
+}
+
 \examples{
 # be safe
 safelog <- be_safe(log2)
@@ -77,13 +89,18 @@ f2 <- be_quiet(f)
 f2(5)
 
 # be hard-coded
-q2 <- be_hard(quantile, probs = c(0.025, 0.975), na.rm = TRUE)
 vec <- rnorm(50)
 navec <- c(NA_real_, vec)
+q2 <- be_hard(quantile, probs = c(0.025, 0.975), na.rm = TRUE)
+
+# `be_hard` has a special S3 print method
+q2
 
 quantile(vec, probs = c(0.025, 0.975))
+
 q2(vec)
 
 quantile(navec, probs = c(0.025, 0.975), na.rm = TRUE)
+
 q2(navec)
 }

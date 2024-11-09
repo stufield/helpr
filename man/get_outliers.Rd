@@ -6,30 +6,33 @@
 \usage{
 get_outliers(
   x,
-  n.sigma = 3,
-  mad.crit = 6,
-  fold.crit = 5,
+  n_sigma = 3,
+  mad_crit = 6,
+  fold_crit = 5,
   type = c("nonparametric", "parametric")
 )
 }
 \arguments{
-\item{x}{A numeric (double) vector of values to evaluate.}
+\item{x}{`numeric(n). A vector of values to evaluate.}
 
-\item{n.sigma}{Numeric. The the number of standard deviations from the mean
-a \code{n.sigma} threshold for outliers. Ignored if \code{type = "nonparametric"}.}
+\item{n_sigma}{\code{numeric(1)}. The the number of standard
+deviations from the mean a \code{n.sigma} threshold for outliers.
+Ignored if \code{type = "nonparametric"}.}
 
-\item{mad.crit}{The median absolute deviation ("MAD") criterion to use.
-Ignored if \code{type = "parametric"}. Defaults to \code{(6 * mad)}.}
+\item{mad_crit}{The median absolute deviation ("MAD")
+criterion to use. Ignored if \code{type = "parametric"}.
+Defaults to \code{(6 * mad)}.}
 
-\item{fold.crit}{The fold-change criterion to evaluate.
+\item{fold_crit}{The fold-change criterion to evaluate.
 Ignored if \code{type = "parametric"}. Defaults to \verb{5x}.}
 
-\item{type}{Matched string. One of "parametric" or "nonparametric" to
-determine the outliers detection implementation.}
+\item{type}{\code{character(1)}. Matched. Either
+"parametric" or "nonparametric" to determine
+the type of outliers detection implementation.}
 }
 \value{
-If "nonparametric": an integer vector of indices corresponding
-to detected outliers.
+If "nonparametric": an integer vector of
+indices corresponding to detected outliers.
 
 If "parametric": an integer vector of indices with these additional attributes:
 \item{mu}{the robustly fit mean (\eqn{\mu}).}
@@ -42,7 +45,8 @@ Calculates the indices of a vector of values that exceed a specified
 statistical outlier criterion. This criterion is defined by differently
 depending on the type of outlier detection implemented (see Details).
 }
-\details{
+\section{outlier detection}{
+
 There are 2 possible methods used to define an outlier measurement
 and the return value depends on which method is implemented:
 \enumerate{
@@ -58,13 +62,14 @@ from the the estimated \eqn{\mu}.\cr
 \strong{Note:} \code{mad.crit} and \code{fold.crit} are ignored.
 }
 }
+
 \examples{
 withr::with_seed(101, {
   x <- rnorm(26, 15, 2)         # Gaussian
   x <- c(2, 2.5, x, 25, 25.9)   # add 4 outliers (2hi, 2lo)
 })
-get_outliers(x)                # default = non-parametric
-get_outliers(x, type = "para") # type matching; parametric
+get_outliers(x)                # non-parametric (default)
+get_outliers(x, type = "para") # parametric
 }
 \seealso{
 \code{\link[=fit_gauss]{fit_gauss()}}

@@ -7,22 +7,24 @@
 fit_gauss(x, mad = FALSE)
 }
 \arguments{
-\item{x}{A numeric vector of numeric values to fit to Gaussian assumptions.}
+\item{x}{\code{numeric(n)}. A vector of numeric values to
+fit to Gaussian assumptions.}
 
-\item{mad}{Logical. Should \code{\link[=median]{median()}} and \code{\link[=mad]{mad()}} \verb{* 1.4826} be used as
-robust (i.e. distribution-free) estimates of population mean and
-standard deviation?}
+\item{mad}{\code{logical(1)}. Should \code{\link[=median]{median()}} and \code{\link[=mad]{mad()}}
+\verb{* 1.4826} be used as robust (i.e. distribution-free)
+estimates of population mean and standard deviation?}
 }
 \value{
-A named vector consisting of non-linear least-squares
-estimates of \code{mu} and \code{sigma} for \code{x}.
+A named vector consisting of non-linear
+least-squares estimates of \code{mu} and \code{sigma} for \code{x}.
 }
 \description{
 Estimates parameters of the Gaussian distribution
 (\eqn{\mu}, \eqn{\sigma}) via non-linear least-squares,
 making Gaussian assumptions of the error function, see \code{\link[=pnorm]{pnorm()}}.
 Initial starting values are chosen via robust estimates,
-\code{\link[=median]{median()}} and \code{\link[=mad]{mad()}}. If \code{mad = TRUE}, these starting values are returned.
+\code{\link[=median]{median()}} and \code{\link[=mad]{mad()}}. If \code{mad = TRUE}, these starting
+values are returned.
 }
 \examples{
 x <- rnorm(100, 25, 3)

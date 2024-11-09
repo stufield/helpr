@@ -7,18 +7,18 @@
 rep_lgl(x)
 }
 \arguments{
-\item{x}{A vector of values. Can be one of the following objects
-classes: \code{numeric}, \code{character}, \code{factor}, or \code{logical}.
-If the vector is of type \code{double} and NA values are present,
-they will be removed.}
+\item{x}{A vector of values. Can be one of:
+\code{numeric}, \code{character}, \code{factor}, or \code{logical}.
+If the vector is type \code{double} and NA values are present,
+they are first removed.}
 }
 \value{
-Logical.
+\code{logical(1)}.
 }
 \description{
-Returns a logical as to whether all values \emph{within} a vector
+Returns a boolean testing if all values of a vector
 are identical. This function does NOT compare two independent
-vectors. Please use \code{isTRUE(all.equal())} for such comparisons.
+vectors. Use \code{isTRUE(all.equal())} for such comparisons.
 }
 \examples{
 rep_lgl(1:4)

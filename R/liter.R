@@ -1,17 +1,22 @@
 #' List Iteration
 #'
-#' A thin wrapper around [mapply()] that iterates over *paired* `.x` and `.y`
-#' values. They *must* have the same length elements but can be any
-#' R object to iterate over. Similar to [purrr::map2()] without having to
-#' import the \pkg{purrr} package.
-#' If `.y` is missing and `.x` is named, this is equal to
-#' `liter(.x, names(.x), ...)`, which is equal to [purrr::imap()].
+#' A thin wrapper around [mapply()] that iterates
+#'   over *paired* `.x` and `.y` values.
+#'   They *must* have the same length elements
+#'   but can be any R object to iterate over.
+#'   Similar to [purrr::map2()] without having to
+#'   load the \pkg{purrr} namespace.
+#'   If `.y` is missing and `.x` is named,
+#'   this is equal to `liter(.x, names(.x), ...)`,
+#'   which is the behavior of [purrr::imap()].
 #'
 #' @param .x,.y Vectors or objects of the same length.
-#' @param .f A function to map values over.
-#' @param ... Additional arguments passed on to the mapped function.
+#' @param .f A function to be applied to each element of `x`.
+#' @param ... Additional arguments passed to `.f`.
+#'
 #' @return Always returns a list. The returned list is named by the
-#' names of `.x` or by `.x` itself if possible.
+#'   names of `.x` or by `.x` itself if possible.
+#'
 #' @examples
 #' x <- LETTERS
 #' names(x) <- letters

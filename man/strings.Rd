@@ -23,8 +23,8 @@ capture(text, pattern)
 
 \item{side}{\code{character(1)}. Pad to the left or right.}
 
-\item{whitespace}{A string specifying a regular expression to
-match (one character of) "white space".}
+\item{whitespace}{A string specifying a regular
+expression to match (one character of) "white space".}
 
 \item{text}{A character vector where matches are sought.}
 
@@ -34,7 +34,25 @@ match (one character of) "white space".}
 Tools for working with character/text strings without
 importing the \pkg{stringr} package.
 }
-\details{
+\section{Functions}{
+\itemize{
+\item \code{pad()}: Similar to \code{stringr::str_pad()} but does
+uses \emph{only} a blank space as the padding character.
+
+\item \code{squish()}: The inverse of \code{\link[=pad]{pad()}}, removes whitespace
+on both sides \emph{and} replicated internal whitespace.
+Similar to \code{\link[stringr:str_trim]{stringr::str_squish()}}.
+
+\item \code{trim()}: A wrapper around \code{\link[=trimws]{trimws()}} but with unified
+argument names.
+
+\item \code{capture()}: Uses "group capture" regular expression from
+the \code{pattern} argument to extract matches from
+character string(s). Analogous to \code{\link[stringr:str_extract]{stringr::str_extract()}}.
+
+}}
+\section{base vs stringr}{
+
 Below is a convenient table of the \pkg{stringr} to base \pkg{R} equivalents:
 \tabular{ll}{
 \pkg{stringr}                \tab base \pkg{R} \cr
@@ -71,23 +89,7 @@ And those found only in \pkg{helpr}:
 \code{\link[stringr:str_trim]{stringr::str_trim()}}    \tab \code{\link[=trim]{trim()}}
 }
 }
-\section{Functions}{
-\itemize{
-\item \code{pad()}: Similar to \code{stringr::str_pad()} but does
-uses \emph{only} a blank space as the padding character.
 
-\item \code{squish()}: The inverse of \code{\link[=pad]{pad()}}, removes whitespace on both
-sides \emph{and} replicated internal whitespace.
-Similar to \code{stringr::str_squish()}.
-
-\item \code{trim()}: A wrapper around \code{\link[=trimws]{trimws()}} but with unified
-argument names.
-
-\item \code{capture()}: Uses "group capture" regular expression from the \code{pattern} argument to
-extract matches from character string(s).
-Analogous to \code{\link[stringr:str_extract]{stringr::str_extract()}}.
-
-}}
 \examples{
 pad("tidyverse", 20)
 pad("tidyverse", 20, "left")

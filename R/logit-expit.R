@@ -1,11 +1,14 @@
 #' Logit and Expit Transformations
 #'
-#' `logit()` computes the binary logit function. This is a simple wrapper for
-#' `stats::qlogis()` with default input arguments.
+#' `logit()` computes the binary logit function.
+#'   This is a simple wrapper for `stats::qlogis()`
+#'   with default input arguments.
 #'
 #' @rdname logit
-#' @param x A numeric vector.
-#' @returns A numeric vector of the same length as `x`.
+#'
+#' @param x `numeric(n)`.
+#' @return A `numeric(n)` corresponding to transformed `x`.
+#'
 #' @examples
 #' x <- stats::runif(n = 100L)
 #' logit(x)
@@ -41,10 +44,12 @@ logit <- function(x) {
 
 #' Logit and Expit Transformations
 #'
-#' `expit()` computes the logistic function. This is a simple wrapper for
-#'   `stats::plogis()` with default input arguments.
+#' `expit()` computes the logistic function. This is a
+#'   simple wrapper for `stats::plogis()` with
+#'   default input arguments.
 #'
 #' @rdname logit
+#'
 #' @examples
 #' x <- stats::rnorm(n = 100L)
 #' expit(x)

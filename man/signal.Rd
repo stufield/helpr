@@ -51,9 +51,10 @@ of the horizontal rule.}
 
 \item{line_col}{See \code{col}.}
 
-\item{lty}{\code{character(1)}. Either "single" or "double" line type (matched).}
+\item{lty}{\code{character(1)}. Line type either "single" or "double" (matched).}
 
-\item{col}{Color (or style) for the text (or line). Currently one of:
+\item{col}{\code{character(1)}. Color (or style) for the
+text (or line). Currently one of:
 \itemize{
 \item red
 \item green
@@ -86,29 +87,37 @@ setting \code{options(signal.quiet = TRUE)}.
 Each element of \code{x} becomes an entry in a comma separated list
 and a \code{blue} color is added.
 
-\item \code{signal_done()}: Signal a completed task to the UI. Similar to \code{\link[usethis:ui]{usethis::ui_done()}}.
+\item \code{signal_done()}: Signal a completed task to the UI.
+Similar to \code{\link[usethis:ui]{usethis::ui_done()}}.
 
-\item \code{signal_todo()}: Signal a to-do task to the UI. Similar to \code{\link[usethis:ui]{usethis::ui_todo()}}.
+\item \code{signal_todo()}: Signal a to-do task to the UI.
+Similar to \code{\link[usethis:ui]{usethis::ui_todo()}}.
 
-\item \code{signal_oops()}: Signal oops error to the UI. Similar to \code{\link[usethis:ui]{usethis::ui_oops()}}.
+\item \code{signal_oops()}: Signal oops error to the UI.
+Similar to \code{\link[usethis:ui]{usethis::ui_oops()}}.
 
-\item \code{signal_info()}: Signal info to the UI. Similar to \code{\link[usethis:ui]{usethis::ui_info()}}.
+\item \code{signal_info()}: Signal info to the UI.
+Similar to \code{\link[usethis:ui]{usethis::ui_info()}}.
 
-\item \code{signal_rule()}: Make a rule with left aligned text. Similar to \code{\link[cli:rule]{cli::rule()}}.
+\item \code{signal_rule()}: Make a rule with left aligned text.
+Similar to \code{\link[cli:rule]{cli::rule()}}.
 
-\item \code{add_color()}: Add a color or style to a string. Similar to \code{\link[crayon:crayon]{crayon::crayon()}}.
+\item \code{add_color()}: Add a color or style to a string.
+Similar to \code{\link[crayon:crayon]{crayon::crayon()}}.
 
-\item \code{add_style}: An alternative syntax. A list object where each
-element is a color/style function wrapping around \code{add_color()} and
-each element determines the \code{col} argument. See examples.
+\item \code{add_style}: An alternative syntax. A list object where
+each element is a color/style function wrapping
+around \code{add_color()} and each element determines
+the \code{col} argument. See examples.
 
-\item \code{print(helpr_style)}: Functions in the \code{apply_style} object have their
-own class, which allows for the special S3 print method and the chaining
-in the examples below.
+\item \code{print(helpr_style)}: Functions in the \code{apply_style} object
+have their own class, which allows for
+the special S3 print method and the
+chaining in the examples below.
 
 \item \code{$}: Easily chain styles with \code{$} S3 method.
 
-\item \code{has_style()}: Logical. Test if string contains ANSI styles/colors.
+\item \code{has_style()}: Logical testing if string contains ANSI styles/colors.
 
 \item \code{rm_style()}: Remove a color or style from character strings.
 
@@ -143,12 +152,12 @@ add_style
 cat(add_style$blue("Hello world!"))
 cat(add_color("Hello world!", "blue"))
 
-# Combine styles
+# Combine
 red <- add_style$red("This is red")
 string <- c(red, "and this is not")
 cat(string)
 
-# Combine styles
+# Combine colors
 blue <- add_style$blue("blue")
 red  <- add_style$red("red")
 string <- add_style$bold(c(blue, red, "nothing"))

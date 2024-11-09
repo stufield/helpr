@@ -9,13 +9,13 @@ add_class(x, class)
 \arguments{
 \item{x}{The object to receive new class(es).}
 
-\item{class}{Character. The name of additional class(es).}
+\item{class}{\code{character(n)}. The name of additional class(es).}
 }
 \value{
 An object with new classes.
 }
 \description{
-Utility to add (prepend) a class(es) to existing objects.
+Utility to \emph{prepend} a new class(es) to existing objects.
 }
 \examples{
 class(iris)

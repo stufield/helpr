@@ -33,7 +33,6 @@
 #' data.frame(x) %[[% 2L     # data frame -> same as x[2L, ]
 NULL
 
-
 #' @describeIn grapes
 #'   A friendly version of `attr(x, y)` to extract `"@@ribute"` elements.
 #'  `y` can be unquoted.
@@ -60,7 +59,8 @@ NULL
 
 #' @describeIn grapes
 #'   A gentler logical test for equality of two objects.
-#'   Attributes are *not* checked. Use `%===%` to check attributes.
+#'   Attributes are *not* checked.
+#'   Use `%===%` to check attributes.
 #'
 #' @export
 `%==%` <- function(x, y) {
@@ -84,8 +84,10 @@ NULL
 }
 
 #' @describeIn grapes
-#'   Subset values in `x` by `y`. Alias for `x[x %in% y]`.
-#'   Similar to `intersect(x, y)` except names and class of `x` are maintained.
+#'   Subset values in `x` by `y`.
+#'   Alias for `x[x %in% y]`.
+#'   Similar to `intersect(x, y)` except names
+#'   and class of `x` are maintained.
 #'
 #' @export
 `%set%` <- function(x, y) {
@@ -93,8 +95,10 @@ NULL
 }
 
 #' @describeIn grapes
-#'   Subset values in `x` *not* in `y`. Alias for `x[!x %in% y]`.
-#'   Similar to `setdiff(x, y)` except names and class of `x` are maintained.
+#'   Subset values in `x` *not* in `y`.
+#'   Alias for `x[!x %in% y]`.
+#'   Similar to `setdiff(x, y)` except names
+#'   and class of `x` are maintained.
 #'
 #' @export
 `%!set%` <- function(x, y) {
@@ -102,9 +106,11 @@ NULL
 }
 
 #' @describeIn grapes
-#'   Extracts the `ith` element for each of `n` elements of
-#'   a list or data frame, returning either a vector of length `n` or a single
-#'   row data frame with `n` columns. Efficient alias for `purrr::map_*(x, y)`.
+#'   Extracts the `i^th` element for each
+#'   of `n` elements of a list or data frame,
+#'   returning either a vector of length `n`
+#'   or a single row data frame with `n` columns.
+#'   More efficient alias for `purrr::map_*(x, y)`.
 #'
 #' @export
 `%[[%` <- function(x, y) {
@@ -118,10 +124,17 @@ NULL
   }
 }
 
-# non-exported:
-#   this infix allows you to `borrow`
-#   non-exported functions from  a package but
-#   avoids the CMD check warning regarding ':::'
+
+# non-exported ----
+
+#' Infix allows you to `borrow`
+#' non-exported functions from  a package but
+#' avoids the CMD check warning regarding ':::'
+#'
+#' @examples
+#' purrr::map_int(LETTERS, nchar)
+#' "purrr":::"map_int"(LETTERS, nchar)
+#' @noRd
 `%:::%` <- function(p, f) {
-  get(f, envir = asNamespace(p))
+  base::get(f, envir = asNamespace(p))
 }

@@ -25,9 +25,9 @@ defaults to the maximum value of the \code{lambda} sequence.}
 \item{match_storey}{\code{logical(1)}. Should the output be matched
 to Storey's \code{qvalue()} function?}
 
-\item{x}{Object class \code{q_value}.}
+\item{x}{A \code{q_value} class object.}
 
-\item{...}{Additional arguments passed to the S3 generic method \code{plot}.}
+\item{...}{Additional arguments passed to the S3 plot generic.}
 
 \item{rng}{\code{numeric(2)}. Range of values.}
 }
@@ -48,8 +48,6 @@ A cool plot.
 \description{
 Calculates a vector of q-values corresponding
 to a vector of p-values.
-
-S3 plot method for "q_value" class objects
 }
 \examples{
 x <- withr::with_seed(101, c(seq(0.0001, 0.05, length = 50), runif(950)))

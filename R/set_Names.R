@@ -1,13 +1,15 @@
 #' Set Names of an Object
 #'
 #' Similar to [stats::setNames()], but with more features.
-#' You can specify names in the following ways:
-#'   * a character vector (recycled if `length(nms) != length(x)`)
-#'   * a function to be applied to names of `x`
-#'   * via `...` if not passing a function, `c(nms, ...)`
+#'   You can specify names in the following ways:
+#'     * a character vector (recycled if `length(nms) != length(x)`)
+#'     * a function to be applied to names of `x`
+#'     * via `...` if not passing a function, `c(nms, ...)`
 #'
-#' @param x The object to name.
-#' @param nms The names to apply to `x`. Recycled as necessary.
+#' @param x An R object to name.
+#' @param nms The names to apply to `x`. If empty, names
+#'   are "self" applied. Alternatively a function
+#'   to be applied to the names.
 #' @param ... Arguments passed to `nms` if a function.
 #'
 #' @examples

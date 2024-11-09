@@ -63,9 +63,10 @@ has explicit row names assigned.
 
 \item \code{set_rn()}: sets (and overwrites) existing row names for data frames only.
 
-\item \code{add_rowid()}: adds a sequential integer row identifier; starting at \code{1:nrow(data)}.
-It does \emph{not} remove existing row names currently, but may in the future
-(please code accordingly).
+\item \code{add_rowid()}: adds a sequential integer row identifier;
+starting at \code{1:nrow(data)}.
+It does \emph{not} remove existing row names currently,
+but may in the future (please code accordingly).
 
 }}
 \examples{

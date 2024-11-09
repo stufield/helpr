@@ -3,6 +3,7 @@
 #' Tools for working with character/text strings without
 #'   importing the \pkg{stringr} package.
 #'
+#' @section base vs stringr:
 #' Below is a convenient table of the \pkg{stringr} to base \pkg{R} equivalents:
 #' \tabular{ll}{
 #'   \pkg{stringr}                \tab base \pkg{R} \cr
@@ -50,7 +51,8 @@
 NULL
 
 
-#' @describeIn strings Similar to `stringr::str_pad()` but does
+#' @describeIn strings
+#'   Similar to `stringr::str_pad()` but does
 #'   uses *only* a blank space as the padding character.
 #'
 #' @examples
@@ -65,9 +67,10 @@ pad <- function(x, width, side = c("right", "left", "both")) {
   encodeString(x, width = width, justify = just)
 }
 
-#' @describeIn strings The inverse of [pad()], removes whitespace on both
-#'   sides *and* replicated internal whitespace.
-#'   Similar to `stringr::str_squish()`.
+#' @describeIn strings
+#'   The inverse of [pad()], removes whitespace
+#'   on both sides *and* replicated internal whitespace.
+#'   Similar to [stringr::str_squish()].
 #'
 #' @examples
 #' squish("  abcd   efgh   ")
@@ -83,15 +86,16 @@ squish <- function(x) {
 #'   A wrapper around [trimws()] but with unified
 #'   argument names.
 #'
-#' @param whitespace A string specifying a regular expression to
-#'   match (one character of) "white space".
+#' @param whitespace A string specifying a regular
+#'   expression to match (one character of) "white space".
 #'
 #' @examples
 #' trim("  abcd   efgh   ")
 #' trim("  abcd   efgh   .")
 #'
 #' @export
-trim <- function(x, side = c("both", "left", "right"), whitespace = "[ \t\r\n]") {
+trim <- function(x, side = c("both", "left", "right"),
+                 whitespace = "[ \t\r\n]") {
   side <- match.arg(side)
   trimws(x, side, whitespace)
 }
@@ -99,9 +103,9 @@ trim <- function(x, side = c("both", "left", "right"), whitespace = "[ \t\r\n]")
 #' Capture Regular Expression from String
 #'
 #' @describeIn strings
-#'   Uses "group capture" regular expression from the `pattern` argument to
-#'   extract matches from character string(s).
-#'   Analogous to [stringr::str_extract()].
+#'   Uses "group capture" regular expression from
+#'   the `pattern` argument to extract matches from
+#'   character string(s). Analogous to [stringr::str_extract()].
 #'
 #' @examples
 #' # extract the group 'oo'
@@ -114,11 +118,13 @@ capture <- function(text, pattern) {
   stopifnot(is.character(text))
   regex <- regexpr(pattern, text, perl = TRUE)
   if ( !"capture.start" %in% names(attributes(regex)) ) {
-    stop("Bad pattern argument! Must contain a group capture regex.",
-         call. = FALSE)
+    stop(
+      "Bad pattern argument! Must contain a group capture regex.",
+      call. = FALSE
+    )
   }
   start <- attr(regex, "capture.start")
-  len <- attr(regex, "capture.length") - 1L
+  len   <- attr(regex, "capture.length") - 1L
   strings <- substring(text, start, start + len) # nolint: undesirable_linter.
   ret <- data.frame(matrix(strings, ncol = ncol(start)), stringsAsFactors = FALSE)
   nms <- attr(regex, "capture.names")

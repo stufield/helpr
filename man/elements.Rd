@@ -16,17 +16,19 @@ compact_it(x)
 \arguments{
 \item{x}{A list, data frame, or vector.}
 
-\item{lgl}{A logical vector or a function that returns a logical
-vector when applied to the elements of \code{x}.}
+\item{lgl}{\code{logical(n)}.  A vector or a function
+that returns a logical vector when applied to
+the elements of \code{x}.}
 
-\item{...}{Named arguments passed to \code{lgl} if \code{lgl} is a function.}
+\item{...}{Named arguments passed to \code{lgl} if it is a function.}
 }
 \description{
-Local alternatives to \code{\link[purrr:keep]{purrr::keep()}}, \code{\link[purrr:keep]{purrr::discard()}},
-and \code{\link[purrr:keep]{purrr::compact()}}, but without having to import the \pkg{purrr}
-package. The syntax and behavior is generally the same, with some
-exceptions (see Details). For example, \code{\link[=compact_it]{compact_it()}} is similar
-to \code{\link[purrr:keep]{purrr::compact()}}, however only supports
+Alternatives to \code{\link[purrr:keep]{purrr::keep()}}, \code{\link[purrr:keep]{purrr::discard()}},
+and \code{\link[purrr:keep]{purrr::compact()}}, but without having to load
+the \pkg{purrr} namespace.
+The syntax and behavior is generally the same, with some
+exceptions (see \code{Details}). For example, \code{\link[=compact_it]{compact_it()}}
+is similar to \code{\link[purrr:keep]{purrr::compact()}}, however only supports
 the default behavior where non-empty elements are retained.
 }
 \details{
@@ -43,10 +45,21 @@ should be a sufficient replacement in most cases.
 \item \code{compact_it()}: subsets elements that have non-zero length.
 
 }}
+\section{purrr analogues}{
+
+\tabular{ll}{
+\pkg{helpr}     \tab \pkg{purrr} \cr
+\code{\link[=keep_it]{keep_it()}}     \tab \code{\link[purrr:keep]{purrr::keep()}} \cr
+\code{\link[=discard_it]{discard_it()}}  \tab \code{\link[purrr:keep]{purrr::discard()}} \cr
+\code{\link[=compact_it]{compact_it()}}  \tab \code{\link[purrr:keep]{purrr::compact()}} \cr
+}
+}
+
 \examples{
 # pass a logical vector
 lst <- list(A = 1, B = 2, C = 3)
 keep_it(lst, c(TRUE, FALSE, TRUE))
+
 # logical vector on-the-fly
 vec <- unlist(lst)
 keep_it(vec, vec != 2)

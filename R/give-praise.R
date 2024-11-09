@@ -1,12 +1,11 @@
 #' Praise User
 #'
 #' Part of collaboration is being friendly to your users.
-#' Praise your colleagues with encouragement when they
-#' use your code appropriately and when it runs error free!
-#' This is a wrapper around the \pkg{praise} package and
-#' takes no arguments. Additional flexibility may be added
-#' in the future. Output can be suppressed by setting the
-#' `"signal.quiet"` option (see example).
+#'   Praise your colleagues with encouragement when they
+#'   use your code appropriately and when it runs error free!
+#'   This is an dependency-free version of the \pkg{praise}
+#'   package the takes no arguments. Output can be suppressed
+#'   by setting the `"signal.quiet"` option (see example).
 #'
 #' @examples
 #' # random praise 1

@@ -1,8 +1,8 @@
 #' Test for Enrichment
 #'
 #' Calculated whether `2x2` table is enriched
-#' for a particular group using Hypergeometric Distribution and
-#' the Fisher's Exact test for count data.
+#'   for a particular group using Hypergeometric Distribution and
+#'   the Fisher's Exact test for count data.
 #'
 #' Can also pass a *named* list containing:
 #' \describe{
@@ -11,16 +11,20 @@
 #'   \item{n_1}{The sum of the first column of the table.}
 #'   \item{n}{The sum of the table.}
 #' }
-#' @param x A 2x2 confusion matrix (or contingency table) containing
+#'
+#' @param x A \eqn{2x2} confusion matrix (or contingency table) containing
 #'   the binary decisions for each contingency. Can also be a (named) list
 #'   containing each of the 4 contingencies. See above.
-#' @param alternative Whether to check for "two.sided" (both Enrich/Deplete)
-#'   or specifically one or the other; "enrich" or "deplete".
+#' @param alternative `character(1)`. Whether to check
+#'   for "two.sided" (both Enrich/Deplete)
+#'   or specifically one or the other ("enrich" or "deplete").
+#'
 #' @return Both the comparison to the Hypergeometric Distribution and
 #'   The Fisher Exact Test for Count Data with confidence intervals
 #' @note Similar result to Fisher Exact test
 #' @author Stu Field
 #' @seealso [stats::dhyper()], [stats::fisher.test()]
+#'
 #' @examples
 #' c_mat <- matrix(c(4, 2, 3, 11), ncol = 2)
 #' enrich_test(c_mat)

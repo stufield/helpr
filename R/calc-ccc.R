@@ -3,17 +3,17 @@
 #' Calculate the concordance correlation coefficient (CCC)
 #'   and it's significance value from two vectors of related data.
 #'
-#' @param x A numeric vector of values to compare against `y`.
-#' @param y A numeric vector of values to compare against `x`.
+#' @param x,y `numeric(n)` vectors of the same length.
 #'
 #' @return A list of the following:
-#' \item{rho.c:}{The concordance correlation coefficient (CCC).}
-#' \item{ci95:}{The 95 percent confidence intervals of the CCC.}
-#' \item{Z:}{The z-score of the CCC.}
-#' \item{p.value:}{The p-value corresponding to the Z-score.}
+#'   \item{rho.c:}{The concordance correlation coefficient (CCC).}
+#'   \item{ci95:}{The 95 percent confidence intervals of the CCC.}
+#'   \item{Z:}{The z-score of the CCC.}
+#'   \item{p.value:}{The p-value corresponding to the Z-score.}
 #'
 #' @author Stu Field
 #' @seealso [cor()], [pnorm()]
+#'
 #' @references Lawrence Lin, Biometrics (45): 255-268.
 #'
 #' @examples
@@ -25,7 +25,11 @@
 #' @export
 calc_ccc <- function(x, y) {
 
-  stopifnot(length(x) == length(y), is.numeric(x), is.numeric(y) )
+  stopifnot(
+    length(x) == length(y),
+    is.numeric(x),
+    is.numeric(y)
+  )
 
   k   <- length(x)
   sdx <- sd(x)

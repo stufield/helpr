@@ -5,7 +5,7 @@ linters: linters_with_defaults(
   )
 exclusions: list(
   "R/lib-mode.R"                   = list(undesirable_linter = Inf),
-  "R/handlers.R"                   = list(undesirable_linter = c(84, 86)), # sink()
+  "R/handlers.R"                   = list(undesirable_linter = c(107, 109)), # sink()
   "tests/testthat/test-lib-mode.R" = list(undesirable_linter = c(11, 14, 24, 28, 49)), # .libPaths()
   "tests/testthat/helper.R",
   "tests/testthat.R"

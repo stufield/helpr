@@ -3,14 +3,14 @@
 \name{save_rds}
 \alias{save_rds}
 \alias{save_rda}
-\alias{getCompression}
+\alias{get_compression}
 \title{Save Compressed \verb{*.rds} File}
 \usage{
 save_rds(object, file)
 
 save_rda(..., file)
 
-getCompression(file)
+get_compression(file)
 }
 \arguments{
 \item{object}{\R object to serialize.}
@@ -29,14 +29,16 @@ A thin wrapper around \code{\link[=saveRDS]{saveRDS()}} that ensures two things:
 \itemize{
 \item The path extension is consistent and lowercase \verb{*.rds}
 \item The compression used is \code{"xz"}, which is often optimal
-for our data types
+for proteomic data
 }
 }
 \section{Functions}{
 \itemize{
-\item \code{save_rda()}: similar to \code{\link[=save_rds]{save_rds()}}, but for saving serialized \verb{*.rda} compressed files.
+\item \code{save_rda()}: similar to \code{\link[=save_rds]{save_rds()}}, but for saving
+serialized \verb{*.rda} compressed files.
 
-\item \code{getCompression()}: determine the type of compression for a serialized binary file.
+\item \code{get_compression()}: determine the type of compression for a
+serialized binary file.
 
 }}
 \examples{
@@ -51,6 +53,6 @@ save_rds(x, "outfile.Rds")
 save_rda(x, file = "outfile.rda")
 
 # determine the compression ('xz')
-getCompression("outfile.rda")
+get_compression("outfile.rda")
 }
 }

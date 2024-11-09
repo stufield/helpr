@@ -32,8 +32,7 @@ is_lgl(x)
 is_int(x)
 }
 \arguments{
-\item{x}{A vector, data frame or \code{tibble} to be tested.
-or integers.}
+\item{x}{A vector, data frame or \code{tibble} to be tested.}
 }
 \value{
 Logical/boolean
@@ -50,10 +49,11 @@ This is a fix for the generally
 undesired behavior of \code{\link[=is.integer]{is.integer()}} which
 doesn't actually test for integer numbers (see its ?help).
 
-\item \code{is_logspace()}: Checks if an object containing numeric data is already in log space.
-This check assumes proteomic values are being passed and that the
-median of a vector, or of an entire data matrix, will be greater than
-15 if in linear space and less than 10 if log-transformed.
+\item \code{is_logspace()}: Checks if an object containing numeric data
+is already in log space. This check assumes
+proteomic values (RFU) and that the vector median,
+or the entire data matrix, will be greater than
+15 if in linear space and less than 10 if log10-transformed.
 
 \item \code{is_monotonic()}: A general test of whether the numeric vector \code{x} is
 monotonically \emph{increasing} or \emph{decreasing} in value.

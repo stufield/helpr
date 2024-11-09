@@ -5,12 +5,14 @@ is_dark_theme <- function() {
   identical(.Platform$GUI, "RStudio") && .rs.readUserState("theme")$isDark
 }
 
-is_seq <- function(x) {
-  grepl("[0-9]{4,5}[-.][0-9]{1,3}([._][0-9]{1,3})?$", x)
+add_seq <- function(x) {
+  stopifnot(inherits(x, "character"))
+  x <- vapply(strsplit(x, "_", fixed = TRUE), `[[`, i = 1L, "")
+  paste0("seq.", sub("-", ".", x))
 }
 
-is.soma_adat <- function(x) {
-  inherits(x, "soma_adat")
+is_seq <- function(x) {
+  grepl("[0-9]{4,5}[-.][0-9]{1,3}([._][0-9]{1,3})?$", x)
 }
 
 get_analytes <- function(x) {
@@ -27,8 +29,6 @@ get_meta <- function(x) {
   setdiff(x, get_analytes(x))
 }
 
-add_seq <- function(x) {
-  stopifnot(inherits(x, "character"))
-  x <- vapply(strsplit(x, "_", fixed = TRUE), `[[`, i = 1L, "")
-  paste0("seq.", sub("-", ".", x))
+is_soma_adat <- function(x) {
+  inherits(x, "soma_adat")
 }

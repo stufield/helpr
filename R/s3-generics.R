@@ -1,21 +1,24 @@
 #' Common S3 Generics
 #'
-#' These are S3 generic functions that can be used to minimize package
-#' dependencies across multiple packages that have the same method.
+#' These are S3 generic functions that can be
+#'   used to minimize package dependencies across
+#'   multiple packages that have the same method.
 #'
 #' @name s3-generics
+#' @author Stu Field
+#'
 #' @param model,object A model object.
 #' @param data The data on which to assess the model.
 #' @param k The number of folds to perform (k-fold cross-validation).
 #' @param params Model parameters. Optional depending on model type.
 #' @param ... Used for extensibility of downstream S3 methods.
-#' @author Stu Field
 NULL
 
 
 
 #' @describeIn s3-generics
 #'   A S3 generic to "fit" a model.
+#'
 #' @export
 fit <- function(object, data, params, ...) UseMethod("fit")
 
@@ -27,6 +30,7 @@ fit.default <- function(object, data, params, ...) {
 
 #' @describeIn s3-generics
 #'   A S3 generic to "tune" a model.
+#'
 #' @export
 tune <- function(model, ...) UseMethod("tune")
 
@@ -39,6 +43,7 @@ tune.default <- function(model, ...) {
 #' @describeIn s3-generics
 #'   For a binary classification model, determine the
 #'   positive class, i.e. the "disease" or "case" class.
+#'
 #' @export
 get_pos_class <- function(model, ...) UseMethod("get_pos_class")
 
@@ -49,7 +54,9 @@ get_pos_class.default <- function(model, ...) {
 }
 
 #' @describeIn s3-generics
-#'   In a binary classification model, determine the classes in the model.
+#'   In a binary classification model,
+#'   determine the classes in the model.
+#'
 #' @export
 get_model_classes <- function(model, ...) UseMethod("get_model_classes")
 
@@ -64,8 +71,9 @@ get_model_classes.default <- function(model, ...) {
 #'   contained within a model object.
 #'   After interrogating the model object, this function returns
 #'   the covariates (features) contained in the object, both proteomic
-#'   or clinical meta data. Currently available for:
+#'   or clinical meta data.
 #'
+#' @section Model Features Classes:
 #'   | Class          | Model type                    | See examples           |
 #'   | -------------: | ----------------------------- | ---------------------- |
 #'   | `"glm"`        | Logistic & linear regression  | [glm()] |
@@ -92,11 +100,14 @@ get_model_features.default <- function(model, ...) {
 }
 
 #' @describeIn s3-generics
-#'   Returns a named numeric vector of the regression coefficients of a linear
-#'   model contained within a model object.
-#' @note [get_model_coef()]: non-linear models will not have a linear predictor,
-#'   and thus return `NULL`.
+#'   Returns a named numeric vector of the regression
+#'   coefficients of a linear model contained within a
+#'   model object.
+#'
+#' @note [get_model_coef()]: non-linear models will not
+#'   have a linear predictor, and thus return `NULL`.
 #'   See specific S3 method `?get_model_coef.class` for details.
+#'
 #' @export
 get_model_coef <- function(model, ...) UseMethod("get_model_coef")
 
@@ -107,8 +118,8 @@ get_model_coef.default <- function(model, ...) {
 }
 
 #' @describeIn s3-generics
-#'   A S3 generic to determine the model type, e.g. classification,
-#'   regression, or survival.
+#'   A S3 generic to determine the model type,
+#'   e.g. classification, regression, or survival.
 #' @export
 get_model_type <- function(model, ...) UseMethod("get_model_type")
 
@@ -120,6 +131,7 @@ get_model_type.default <- function(model, ...) {
 
 #' @describeIn s3-generics
 #'   A S3 generic to determine the model parameters.
+#'
 #' @export
 get_model_params <- function(model, ...) UseMethod("get_model_params")
 
@@ -130,7 +142,9 @@ get_model_params.default <- function(model, ...) {
 }
 
 #' @describeIn s3-generics
-#'   A S3 generic to calculate performance metrics of a model.
+#'   A S3 generic to calculate performance
+#'   metrics of a model.
+#'
 #' @export
 calc_model_metrics <- function(model, data, ...) UseMethod("calc_model_metrics")
 
@@ -141,7 +155,9 @@ calc_model_metrics.default <- function(model, data, ...) {
 }
 
 #' @describeIn s3-generics
-#'   A S3 generic to perform k-fold cross-validation for a given model.
+#'   A S3 generic to perform k-fold
+#'   cross-validation for a given model.
+#'
 #' @export
 cross_validate <- function(model, data, k, ...) UseMethod("cross_validate")
 
@@ -155,9 +171,11 @@ cross_validate.default <- function(model, data, k, ...) {
 #' Calculate Predictions
 #'
 #' @describeIn s3-generics
-#'   Calculate predictions of a given model on a test set defined by `newdata`.
-#'   The return object is always a `data.frame` class object in 1 of 3 formats,
-#'   depending on the model type, and containing model predictions for `newdata`.
+#'   Calculate predictions of a given model on a test set
+#'   defined by `newdata`.
+#'   The return object is always a `data.frame` class object
+#'   in 1 of 3 formats, depending on the model type,
+#'   and containing model predictions for `newdata`.
 #'   The data frame is named according to:
 #' \tabular{lll}{
 #'   __Model Type__     \tab __Format__ \tab __Example__ (n = 1) \cr
@@ -173,12 +191,15 @@ cross_validate.default <- function(model, data, k, ...) {
 #'     `data.frame(pred_status = "MI", risk_noMI = 0.2, risk_MI = 0.8)` \cr
 #' }
 #'
-#' @param newdata The test set (`data.frame`) containing protein
+#' @param newdata The test set (`data.frame`) containing
 #'   (features) corresponding to the model parameters.
-#'   For some models, if `newdata = NULL`, training (or out-of-bag)
-#'   predictions are returned.
-#' @note [calc_predictions()]: not all classification models will have
-#'   a linear predictor, any non-GLM model, e.g. random forest or SVM, will not.
+#'   For some models, if `newdata = NULL`, training
+#'   (or out-of-bag) predictions are returned.
+#'
+#' @note [calc_predictions()]: not all classification
+#'   models will have a linear predictor, any non-GLM
+#'   model, e.g. random forest or SVM, will not.
+#'
 #' @export
 calc_predictions <- function(model, newdata, ...) {
   UseMethod("calc_predictions")
@@ -197,7 +218,8 @@ s3_default_stop <- function(.x) {
   s3gen <- deparse(sys.calls()[[sys.nframe() - 1L]])
   s3gen <- sub("\\..*", "", s3gen)
   stop(
-    "Could not find a `", s3gen, "()` S3 method for this model type: ",
+    "Could not find a `", s3gen,
+    "()` S3 method for this model type: ",
     value(cls), call. = FALSE
   )
 }

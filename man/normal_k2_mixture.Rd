@@ -7,31 +7,31 @@
 \usage{
 normal_k2_mixture(
   data,
-  pars = list(start.mu = NULL, start.sd = NULL, start.pi = NULL),
-  max.iter = 1000,
-  max.restarts = 25,
+  pars = list(start_mu = NULL, start_sd = NULL, start_pi = NULL),
+  max_iter = 1000,
+  max_restarts = 25,
   eps = 1e-08
 )
 
 \method{plot}{mix_k2}(x, type = c("density", "likelihood", "posterior"), title = NULL, ...)
 }
 \arguments{
-\item{data}{Numeric vector.}
+\item{data}{\code{numeric(n)}.}
 
-\item{pars}{Initial values for \code{start.mu}, \code{start.sd}, and \code{start.pi}.}
+\item{pars}{Initial values for \code{start_mu}, \code{start_sd}, and \code{start_pi}.}
 
-\item{max.iter}{Max number of iterations to perform.}
+\item{max_iter}{\code{integer(1)}. Max number of iterations to perform.}
 
-\item{max.restarts}{Max number of restarts ro perform.}
+\item{max_restarts}{\code{integer(1)}. Max number of restarts ro perform.}
 
-\item{eps}{The machine precision for determining when to stop the algorithm.}
+\item{eps}{\code{double(1)}. Machine precision for when to stop the algorithm.}
 
 \item{x}{A \code{mix_k2} object generated from \code{normal_k2_mixture}.}
 
-\item{type}{Character. Matched string one of: "density", "likelihood" or
-"posterior".}
+\item{type}{\code{character(1)}. Matched string one of: "density",
+"likelihood" or "posterior".}
 
-\item{title}{Character. Title for the plot.}
+\item{title}{\code{character(1)}. Title for the plot.}
 
 \item{...}{Additional parameters for extensibility.}
 }

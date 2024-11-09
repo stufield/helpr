@@ -7,20 +7,20 @@
 set_Names(x, nms = x, ...)
 }
 \arguments{
-\item{x}{The object to name.}
+\item{x}{An R object to name.}
 
-\item{nms}{The names to apply to \code{x}. Recycled as necessary.}
+\item{nms}{The names to apply to \code{x}. If empty, names
+are "self" applied. Alternatively a function
+to be applied to the names.}
 
 \item{...}{Arguments passed to \code{nms} if a function.}
 }
 \description{
 Similar to \code{\link[stats:setNames]{stats::setNames()}}, but with more features.
 You can specify names in the following ways:
-\itemize{
-\item a character vector (recycled if \code{length(nms) != length(x)})
-\item a function to be applied to names of \code{x}
-\item via \code{...} if not passing a function, \code{c(nms, ...)}
-}
+* a character vector (recycled if \code{length(nms) != length(x)})
+* a function to be applied to names of \code{x}
+* via \code{...} if not passing a function, \code{c(nms, ...)}
 }
 \examples{
 set_Names(head(letters), head(LETTERS)) # apply names

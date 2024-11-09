@@ -7,9 +7,7 @@
 calc_ccc(x, y)
 }
 \arguments{
-\item{x}{A numeric vector of values to compare against \code{y}.}
-
-\item{y}{A numeric vector of values to compare against \code{x}.}
+\item{x, y}{\code{numeric(n)} vectors of the same length.}
 }
 \value{
 A list of the following:

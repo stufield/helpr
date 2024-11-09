@@ -18,10 +18,12 @@
 #'   \item{idx}{The indices of the original p-values.}
 #'   \item{fdr_p}{The FDR-adjusted p-values ordered by `idx`.}
 #'   \item{alpha}{The chosen significance threshold.}
+#'
 #' @author Stu Field
 #' @note You are basically solving for the slope (`k/m`)
 #'   that makes the p-value (`alpha`) significant.
 #' @seealso [p.adjust()], [cummin()]
+#'
 #' @references
 #' Benjamini, Y., and Hochberg, Y. (1995). Controlling the false
 #'   discovery rate: a practical and powerful approach to multiple
@@ -80,8 +82,10 @@ p_value_FDR <- function(p, alpha = 0.05) {
 
 
 #' @rdname p_value_FDR
+#'
 #' @param x A `fdr` object.
 #' @param ... Unused. For compliance with the [plot()] generic default params.
+#'
 #' @export
 plot.fdr <- function(x, ...) {
   withr::local_par(list(mgp = c(1.5, 0.5, 0), mar = c(3, 3, 3, 1) + 0.1))

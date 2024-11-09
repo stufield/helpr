@@ -4,12 +4,14 @@
 #' \itemize{
 #'   \item The path extension is consistent and lowercase `*.rds`
 #'   \item The compression used is `"xz"`, which is often optimal
-#'         for our data types
+#'         for proteomic data
 #' }
 #'
 #' @inheritParams base::saveRDS
 #' @inheritParams base::save
+#'
 #' @return Returns `file`, invisibly.
+#'
 #' @examples
 #' \dontrun{
 #' # all are the same
@@ -22,7 +24,7 @@
 #' save_rda(x, file = "outfile.rda")
 #'
 #' # determine the compression ('xz')
-#' getCompression("outfile.rda")
+#' get_compression("outfile.rda")
 #' }
 #' @export
 save_rds <- function(object, file) {
@@ -38,12 +40,14 @@ save_rds <- function(object, file) {
 }
 
 #' @describeIn save_rds
-#' similar to [save_rds()], but for saving serialized `*.rda` compressed files.
+#'   similar to [save_rds()], but for saving
+#'   serialized `*.rda` compressed files.
 #' @export
 save_rda <- function(..., file) {
   ext <- file_ext(file)
   if ( "rda" != tolower(ext) ) {
-    stop(paste("Incorrect file extension to `*.rda` file:", value(ext)), call. = FALSE)
+    stop(paste("Incorrect file extension to `*.rda` file:",
+               value(ext)), call. = FALSE)
   }
   file_ext(file) <- tolower(ext)
   con  <- xzfile(file)
@@ -53,15 +57,16 @@ save_rda <- function(..., file) {
 }
 
 #' @describeIn save_rds
-#' determine the type of compression for a serialized binary file.
+#'   determine the type of compression for a
+#'   serialized binary file.
 #' @export
-getCompression <- function(file) {
+get_compression <- function(file) {
   magic <- readBin(file, what = "raw", n = 5)
   if ( all(magic[1:2] == c(31, 139)) ) {
     "gzip"
   } else if ( rawToChar(magic[1:3]) == "BZh" ) {
     "bzip2"
-  } else if ( magic[1L] == 253 && rawToChar(magic[2:5]) == "7zXZ" ) {
+  } else if ( magic[1L] == 253 && rawToChar(magic[2:5L]) == "7zXZ" ) {
     "xz"
   } else if ( grepl("RD[ABX][1-9]", rawToChar(magic), useBytes = TRUE) ) {
     "none"

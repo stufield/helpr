@@ -22,6 +22,6 @@ test_that("get_outliers() unit test 'non-parametric' returns as expected", {
   a <- get_outliers(x)
   expect_type(a, "integer")
   expect_equal(get_outliers(x[-a], type = "non"), integer(0))     # no outliers
-  y <- get_outliers(x, mad.crit = 1, fold.crit = 1, type = "non") # 2 outliers
+  y <- get_outliers(x, mad_crit = 1, fold_crit = 1, type = "non") # 2 outliers
   expect_type(y, "integer")
 })

@@ -7,13 +7,15 @@
 write_list(x, file, rn_title = NULL, append = FALSE, ...)
 }
 \arguments{
-\item{x}{A list to be written to file, typically a list of data frames.}
+\item{x}{A list to be written to file,
+typically a list of data frames.}
 
 \item{file}{either a character string naming a file or a \link{connection}
     open for writing.  \code{""} indicates output to the console.}
 
-\item{rn_title}{Title for the row names column (for data frames).
-Must match the length of the \code{x} argument. Defaults to empty \code{""}.}
+\item{rn_title}{A title for the row names
+column (for data frames).
+Must match the length of the \code{x} argument.}
 
 \item{append}{logical. Only relevant if \code{file} is a character
     string.  If \code{TRUE}, the output is appended to the
@@ -22,7 +24,7 @@ Must match the length of the \code{x} argument. Defaults to empty \code{""}.}
 \item{...}{Additional arguments passed to \code{\link[=write.table]{write.table()}}.}
 }
 \value{
-The list object, invisibly.
+The \code{file}, invisibly.
 }
 \description{
 Write a list of data frames of vectors (or a mixture

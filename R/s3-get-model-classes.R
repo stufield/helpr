@@ -1,3 +1,4 @@
+
 #' @noRd
 #' @export
 get_model_classes.glm <- function(model, ...) {
@@ -9,8 +10,8 @@ get_model_classes.glm <- function(model, ...) {
     model$classes
   } else if ( "model" %in% names(model) ) {
     response <- stats::model.response(stats::model.frame(model))
-    # Depending on how the data were originally supplied, `glm` stores the
-    # class information in different ways
+    # Depending on how the data were originally supplied,
+    # `glm` stores the class information in different ways
     if ( is.factor(response) ) {
       levels(response)
     } else if ( is.matrix(response) ) {

@@ -4,8 +4,10 @@
 #'   a vector of numeric data.
 #'
 #' @param x A numeric vector of data.
+#'
 #' @return The Sum of Squared Errors (SSE) of `x`.
 #' @author Stu Field
+#'
 #' @examples
 #' calc_ss(rnorm(100, 50, 5))
 #' @export

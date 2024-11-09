@@ -10,17 +10,19 @@ logit(x)
 expit(x)
 }
 \arguments{
-\item{x}{A numeric vector.}
+\item{x}{\code{numeric(n)}.}
 }
 \value{
-A numeric vector of the same length as \code{x}.
+A \code{numeric(n)} corresponding to transformed \code{x}.
 }
 \description{
-\code{logit()} computes the binary logit function. This is a simple wrapper for
-\code{stats::qlogis()} with default input arguments.
+\code{logit()} computes the binary logit function.
+This is a simple wrapper for \code{stats::qlogis()}
+with default input arguments.
 
-\code{expit()} computes the logistic function. This is a simple wrapper for
-\code{stats::plogis()} with default input arguments.
+\code{expit()} computes the logistic function. This is a
+simple wrapper for \code{stats::plogis()} with
+default input arguments.
 }
 \examples{
 x <- stats::runif(n = 100L)

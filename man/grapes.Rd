@@ -49,21 +49,28 @@ perform set operations, etc.
 A friendly version of \code{attr(x, y) <- value}. \code{y} can be unquoted.
 
 \item \code{x \%==\% y}: A gentler logical test for equality of two objects.
-Attributes are \emph{not} checked. Use \verb{\%===\%} to check attributes.
+Attributes are \emph{not} checked.
+Use \verb{\%===\%} to check attributes.
 
 \item \code{x \%!=\% y}: A logical test that two objects are \emph{not} equal.
 
 \item \code{x \%===\% y}: Also tests attributes of \code{x} and \code{y}.
 
-\item \code{x \%set\% y}: Subset values in \code{x} by \code{y}. Alias for \code{x[x \%in\% y]}.
-Similar to \code{intersect(x, y)} except names and class of \code{x} are maintained.
+\item \code{x \%set\% y}: Subset values in \code{x} by \code{y}.
+Alias for \code{x[x \%in\% y]}.
+Similar to \code{intersect(x, y)} except names
+and class of \code{x} are maintained.
 
-\item \code{x \%!set\% y}: Subset values in \code{x} \emph{not} in \code{y}. Alias for \code{x[!x \%in\% y]}.
-Similar to \code{setdiff(x, y)} except names and class of \code{x} are maintained.
+\item \code{x \%!set\% y}: Subset values in \code{x} \emph{not} in \code{y}.
+Alias for \code{x[!x \%in\% y]}.
+Similar to \code{setdiff(x, y)} except names
+and class of \code{x} are maintained.
 
-\item \code{x \%[[\% y}: Extracts the \code{ith} element for each of \code{n} elements of
-a list or data frame, returning either a vector of length \code{n} or a single
-row data frame with \code{n} columns. Efficient alias for \verb{purrr::map_*(x, y)}.
+\item \code{x \%[[\% y}: Extracts the \code{i^th} element for each
+of \code{n} elements of a list or data frame,
+returning either a vector of length \code{n}
+or a single row data frame with \code{n} columns.
+More efficient alias for \verb{purrr::map_*(x, y)}.
 
 }}
 \examples{
