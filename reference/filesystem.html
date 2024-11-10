@@ -21,7 +21,7 @@ fs package: https://github.com/r-lib/fs."></head><body>
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
-      <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../articles/helpr.html">Git Started</a></li>
+      <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../articles/helpr.html">Get Started</a></li>
 <li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
@@ -135,40 +135,39 @@ Extensions of <code>length == 1</code> are recycled.</p></li>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># directories</span></span></span>
 <span class="r-in"><span><span class="fu">ls_dir</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> add_class.html    calc_brier.html   calc_ccc.html     <span style="color: #0000BB; font-weight: bold;">calc_qvalue-1.png</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> calc_qvalue.html  calc_ss.html      convert2df.html   create_form.html  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cross_tab.html    dater.html        diff_vecs.html    elements.html     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> enrich_test.html  <span style="color: #0000BB; font-weight: bold;">figures</span>           index.html        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> add_class.html    calc_ccc.html     <span style="color: #0000BB; font-weight: bold;">calc_qvalue-1.png</span> calc_qvalue.html  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> calc_ss.html      convert2df.html   create_form.html  cross_tab.html    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> dater.html        diff_vecs.html    elements.html     enrich_test.html  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB; font-weight: bold;">figures</span>           index.html        </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">is.dir</span><span class="op">(</span><span class="fu">ls_dir</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    add_class.html   calc_brier.html     calc_ccc.html calc_qvalue-1.png </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    add_class.html     calc_ccc.html calc_qvalue-1.png  calc_qvalue.html </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             FALSE             FALSE             FALSE             FALSE </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  calc_qvalue.html      calc_ss.html   convert2df.html  create_form.html </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      calc_ss.html   convert2df.html  create_form.html    cross_tab.html </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             FALSE             FALSE             FALSE             FALSE </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    cross_tab.html        dater.html    diff_vecs.html     elements.html </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        dater.html    diff_vecs.html     elements.html  enrich_test.html </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             FALSE             FALSE             FALSE             FALSE </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  enrich_test.html           figures        index.html </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             FALSE              TRUE             FALSE </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           figures        index.html </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              TRUE             FALSE </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">info_dir</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 15 × 9</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 14 × 9</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    path              type       size permissions modified            user </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;hlpr_pth&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;hlpr_&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> add_class.html    file    <span style="color: #0000BB; font-weight: bold;">  9.02K</span> rw-r--r--   2024-11-06 <span style="color: #949494;">23:57:42</span> runn…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> calc_brier.html   file    <span style="color: #0000BB; font-weight: bold;">  8.36K</span> rw-r--r--   2024-11-06 <span style="color: #949494;">23:57:43</span> runn…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> calc_ccc.html     file    <span style="color: #0000BB; font-weight: bold;">  9.58K</span> rw-r--r--   2024-11-06 <span style="color: #949494;">23:57:43</span> runn…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> <span style="color: #0000BB; font-weight: bold;">calc_qvalue-1.png</span> file    <span style="color: #0000BB; font-weight: bold;">173.37K</span> rw-r--r--   2024-11-06 <span style="color: #949494;">23:57:43</span> runn…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> calc_qvalue.html  file    <span style="color: #0000BB; font-weight: bold;"> 10.14K</span> rw-r--r--   2024-11-06 <span style="color: #949494;">23:57:44</span> runn…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> calc_ss.html      file    <span style="color: #0000BB; font-weight: bold;">  6.03K</span> rw-r--r--   2024-11-06 <span style="color: #949494;">23:57:44</span> runn…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> convert2df.html   file       <span style="color: #0000BB; font-weight: bold;"> 12K</span> rw-r--r--   2024-11-06 <span style="color: #949494;">23:57:44</span> runn…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> create_form.html  file    <span style="color: #0000BB; font-weight: bold;"> 10.58K</span> rw-r--r--   2024-11-06 <span style="color: #949494;">23:57:45</span> runn…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> cross_tab.html    file    <span style="color: #0000BB; font-weight: bold;"> 13.22K</span> rw-r--r--   2024-11-06 <span style="color: #949494;">23:57:45</span> runn…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> dater.html        file    <span style="color: #0000BB; font-weight: bold;">  6.49K</span> rw-r--r--   2024-11-06 <span style="color: #949494;">23:57:46</span> runn…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> diff_vecs.html    file    <span style="color: #0000BB; font-weight: bold;">  8.93K</span> rw-r--r--   2024-11-06 <span style="color: #949494;">23:57:46</span> runn…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> elements.html     file    <span style="color: #0000BB; font-weight: bold;"> 17.06K</span> rw-r--r--   2024-11-06 <span style="color: #949494;">23:57:47</span> runn…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> enrich_test.html  file    <span style="color: #0000BB; font-weight: bold;"> 14.83K</span> rw-r--r--   2024-11-06 <span style="color: #949494;">23:57:47</span> runn…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> <span style="color: #0000BB; font-weight: bold;">figures</span>           direct…    224B rwxr-xr-x   2024-11-06 <span style="color: #949494;">23:57:42</span> runn…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> index.html        file    <span style="color: #0000BB; font-weight: bold;"> 17.93K</span> rw-r--r--   2024-11-06 <span style="color: #949494;">23:57:42</span> runn…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> add_class.html    file    <span style="color: #0000BB; font-weight: bold;">  9.04K</span> rw-r--r--   2024-11-10 <span style="color: #949494;">00:37:16</span> runn…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> calc_ccc.html     file    <span style="color: #0000BB; font-weight: bold;">  9.43K</span> rw-r--r--   2024-11-10 <span style="color: #949494;">00:37:16</span> runn…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> <span style="color: #0000BB; font-weight: bold;">calc_qvalue-1.png</span> file    <span style="color: #0000BB; font-weight: bold;">173.37K</span> rw-r--r--   2024-11-10 <span style="color: #949494;">00:37:17</span> runn…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> calc_qvalue.html  file    <span style="color: #0000BB; font-weight: bold;">  9.99K</span> rw-r--r--   2024-11-10 <span style="color: #949494;">00:37:17</span> runn…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> calc_ss.html      file    <span style="color: #0000BB; font-weight: bold;">  6.03K</span> rw-r--r--   2024-11-10 <span style="color: #949494;">00:37:17</span> runn…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> convert2df.html   file    <span style="color: #0000BB; font-weight: bold;"> 11.96K</span> rw-r--r--   2024-11-10 <span style="color: #949494;">00:37:18</span> runn…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> create_form.html  file     <span style="color: #0000BB; font-weight: bold;"> 10.6K</span> rw-r--r--   2024-11-10 <span style="color: #949494;">00:37:18</span> runn…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> cross_tab.html    file    <span style="color: #0000BB; font-weight: bold;"> 13.22K</span> rw-r--r--   2024-11-10 <span style="color: #949494;">00:37:18</span> runn…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> dater.html        file    <span style="color: #0000BB; font-weight: bold;">  6.49K</span> rw-r--r--   2024-11-10 <span style="color: #949494;">00:37:18</span> runn…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> diff_vecs.html    file    <span style="color: #0000BB; font-weight: bold;">  9.09K</span> rw-r--r--   2024-11-10 <span style="color: #949494;">00:37:19</span> runn…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> elements.html     file    <span style="color: #0000BB; font-weight: bold;"> 17.85K</span> rw-r--r--   2024-11-10 <span style="color: #949494;">00:37:20</span> runn…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> enrich_test.html  file    <span style="color: #0000BB; font-weight: bold;"> 14.86K</span> rw-r--r--   2024-11-10 <span style="color: #949494;">00:37:20</span> runn…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> <span style="color: #0000BB; font-weight: bold;">figures</span>           direct…    224B rwxr-xr-x   2024-11-10 <span style="color: #949494;">00:37:15</span> runn…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> index.html        file    <span style="color: #0000BB; font-weight: bold;"> 17.72K</span> rw-r--r--   2024-11-10 <span style="color: #949494;">00:37:15</span> runn…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 3 more variables: group &lt;chr&gt;, changed &lt;dttm&gt;, accessed &lt;dttm&gt;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># extensions</span></span></span>

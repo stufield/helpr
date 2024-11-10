@@ -17,7 +17,7 @@ of both) to a single *.csv file."></head><body>
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
-      <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../articles/helpr.html">Git Started</a></li>
+      <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../articles/helpr.html">Get Started</a></li>
 <li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
@@ -56,7 +56,8 @@ of both) to a single <code>*.csv</code> file.</p>
 
 
 <dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
-<dd><p>A list to be written to file, typically a list of data frames.</p></dd>
+<dd><p>A list to be written to file,
+typically a list of data frames.</p></dd>
 
 
 <dt id="arg-file">file<a class="anchor" aria-label="anchor" href="#arg-file"></a></dt>
@@ -65,8 +66,9 @@ of both) to a single <code>*.csv</code> file.</p>
 
 
 <dt id="arg-rn-title">rn_title<a class="anchor" aria-label="anchor" href="#arg-rn-title"></a></dt>
-<dd><p>Title for the row names column (for data frames).
-Must match the length of the <code>x</code> argument. Defaults to empty <code>""</code>.</p></dd>
+<dd><p>A title for the row names
+column (for data frames).
+Must match the length of the <code>x</code> argument.</p></dd>
 
 
 <dt id="arg-append">append<a class="anchor" aria-label="anchor" href="#arg-append"></a></dt>
@@ -81,7 +83,7 @@ Must match the length of the <code>x</code> argument. Defaults to empty <code>""
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>The list object, invisibly.</p>
+    <p>The <code>file</code>, invisibly.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -97,12 +99,12 @@ Must match the length of the <code>x</code> argument. Defaults to empty <code>""
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, mean <span class="op">=</span> <span class="fl">10</span>, sd <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">tmp</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></span>
 <span class="r-in"><span><span class="fu">write_list</span><span class="op">(</span><span class="va">tmp</span>, file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".csv"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✓</span> Writing <span style="color: #0000BB;">'tmp'</span> to: <span style="color: #0000BB;">'/var/folders/t5/14gs56bj7djcylkj26c908n40000gn/T//Rtmp0IzUY6/file25b7438d83c5.csv'</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✓</span> Writing <span style="color: #0000BB;">'tmp'</span> to: <span style="color: #0000BB;">'/var/folders/t5/14gs56bj7djcylkj26c908n40000gn/T//Rtmp9xWhGD/file1c9c323b1978.csv'</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># with a data frame in list</span></span></span>
 <span class="r-in"><span><span class="va">tmp</span><span class="op">$</span><span class="va">mtcars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fl">10</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">write_list</span><span class="op">(</span><span class="va">tmp</span>, file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".csv"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✓</span> Writing <span style="color: #0000BB;">'tmp'</span> to: <span style="color: #0000BB;">'/var/folders/t5/14gs56bj7djcylkj26c908n40000gn/T//Rtmp0IzUY6/file25b77fc61d28.csv'</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✓</span> Writing <span style="color: #0000BB;">'tmp'</span> to: <span style="color: #0000BB;">'/var/folders/t5/14gs56bj7djcylkj26c908n40000gn/T//Rtmp9xWhGD/file1c9c46052f0b.csv'</span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

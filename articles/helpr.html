@@ -31,7 +31,7 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item"><a class="nav-link" href="../articles/helpr.html">Git Started</a></li>
+<li class="nav-item"><a class="nav-link" href="../articles/helpr.html">Get Started</a></li>
 <li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
@@ -336,11 +336,8 @@ other contexts (e.g. ANOVA, CVs):</p>
 </h3>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/diff_vecs.html">diff_vecs</a></span><span class="op">(</span><span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10L</span><span class="op">]</span>, <span class="va">LETTERS</span><span class="op">[</span><span class="fl">5</span><span class="op">:</span><span class="fl">15L</span><span class="op">]</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="co"># return invisible</span></span>
-<span><span class="co">#&gt; Vectors differ by:</span></span>
-<span><span class="co">#&gt;    Unique to LETTERS[1:10L] &gt;&gt; 4</span></span>
-<span><span class="co">#&gt;    Unique to LETTERS[5:15L] &gt;&gt; 5</span></span>
-<span><span class="co">#&gt;    Common Intersect         &gt;&gt; 6</span></span>
-<span><span class="co">#&gt;    Union                    &gt;&gt; 15</span></span>
+<span><span class="co">#&gt; ℹ Vectors differ by:• Unique to LETTERS[1:10L] &gt;&gt; 4• Unique to</span></span>
+<span><span class="co">#&gt; LETTERS[5:15L] &gt;&gt; 5• Common Intersect &gt;&gt; 6• Union &gt;&gt; 15</span></span>
 <span></span>
 <span><span class="op">(</span><span class="fu"><a href="../reference/diff_vecs.html">diff_vecs</a></span><span class="op">(</span><span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10L</span><span class="op">]</span>, <span class="va">LETTERS</span><span class="op">[</span><span class="fl">5</span><span class="op">:</span><span class="fl">15L</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $`unique_LETTERS[1:10L]`</span></span>
