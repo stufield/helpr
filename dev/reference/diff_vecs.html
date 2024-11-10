@@ -56,15 +56,16 @@ how and where two character vectors differ.</p>
 
 
 <dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
-<dd><p>First vector to compare.</p></dd>
+<dd><p><code>character(n)</code>. First vector to compare.</p></dd>
 
 
 <dt id="arg-y">y<a class="anchor" aria-label="anchor" href="#arg-y"></a></dt>
-<dd><p>Second vector to compare.</p></dd>
+<dd><p><code>character(n)</code>. Second vector to compare.</p></dd>
 
 
 <dt id="arg-verbose">verbose<a class="anchor" aria-label="anchor" href="#arg-verbose"></a></dt>
-<dd><p>Should diff summary be printed directly to the console?
+<dd><p><code>logical(1).</code> Should diff summary
+be printed directly to the console?
 Is <code>TRUE</code> for interactive sessions.</p></dd>
 
 </dl></div>
@@ -73,16 +74,16 @@ Is <code>TRUE</code> for interactive sessions.</p></dd>
     <p>An invisible list is returned with the set diffs of each vector.
 The elements of the list are:</p>
 <dl><dt>unique_x:</dt>
-<dd><p>Entries unique to the <code>x</code> vector.</p></dd>
+<dd><p>Entries unique to <code>x</code>.</p></dd>
 
 <dt>unique_y:</dt>
-<dd><p>Entries unique to the <code>y</code> vector.</p></dd>
+<dd><p>Entries unique to <code>y</code>.</p></dd>
 
 <dt>inter:</dt>
-<dd><p>The intersect of the two vectors.</p></dd>
+<dd><p>The intersect <code>x</code> and <code>y</code>.</p></dd>
 
 <dt>unique:</dt>
-<dd><p>All unique entries of the union of the two vectors.</p></dd>
+<dd><p>The <code><a href="https://rdrr.io/r/base/sets.html" class="external-link">union()</a></code> of <code>x</code> and <code>y</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -96,14 +97,14 @@ The elements of the list are:</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">diff_vecs</span><span class="op">(</span><span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span>, <span class="va">LETTERS</span><span class="op">[</span><span class="fl">5</span><span class="op">:</span><span class="fl">15</span><span class="op">]</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">diff_vecs</span><span class="op">(</span><span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10L</span><span class="op">]</span>, <span class="va">LETTERS</span><span class="op">[</span><span class="fl">5</span><span class="op">:</span><span class="fl">15L</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">diffs</span> <span class="op">&lt;-</span> <span class="fu">diff_vecs</span><span class="op">(</span><span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span>, <span class="va">LETTERS</span><span class="op">[</span><span class="fl">5</span><span class="op">:</span><span class="fl">15</span><span class="op">]</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">diffs</span> <span class="op">&lt;-</span> <span class="fu">diff_vecs</span><span class="op">(</span><span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10L</span><span class="op">]</span>, <span class="va">LETTERS</span><span class="op">[</span><span class="fl">5</span><span class="op">:</span><span class="fl">15L</span><span class="op">]</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">diffs</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $`unique_LETTERS[1:10]`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`unique_LETTERS[1:10L]`</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "A" "B" "C" "D"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $`unique_LETTERS[5:15]`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`unique_LETTERS[5:15L]`</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "K" "L" "M" "N" "O"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $inter</span>

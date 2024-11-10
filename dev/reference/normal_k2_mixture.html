@@ -53,9 +53,9 @@ via expectation maximization.</p>
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">normal_k2_mixture</span><span class="op">(</span></span>
 <span>  <span class="va">data</span>,</span>
-<span>  pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>start.mu <span class="op">=</span> <span class="cn">NULL</span>, start.sd <span class="op">=</span> <span class="cn">NULL</span>, start.pi <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>,</span>
-<span>  max.iter <span class="op">=</span> <span class="fl">1000</span>,</span>
-<span>  max.restarts <span class="op">=</span> <span class="fl">25</span>,</span>
+<span>  pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>start_mu <span class="op">=</span> <span class="cn">NULL</span>, start_sd <span class="op">=</span> <span class="cn">NULL</span>, start_pi <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>,</span>
+<span>  max_iter <span class="op">=</span> <span class="fl">1000</span>,</span>
+<span>  max_restarts <span class="op">=</span> <span class="fl">25</span>,</span>
 <span>  eps <span class="op">=</span> <span class="fl">1e-08</span></span>
 <span><span class="op">)</span></span>
 <span></span>
@@ -68,23 +68,23 @@ via expectation maximization.</p>
 
 
 <dl><dt id="arg-data">data<a class="anchor" aria-label="anchor" href="#arg-data"></a></dt>
-<dd><p>Numeric vector.</p></dd>
+<dd><p><code>numeric(n)</code>.</p></dd>
 
 
 <dt id="arg-pars">pars<a class="anchor" aria-label="anchor" href="#arg-pars"></a></dt>
-<dd><p>Initial values for <code>start.mu</code>, <code>start.sd</code>, and <code>start.pi</code>.</p></dd>
+<dd><p>Initial values for <code>start_mu</code>, <code>start_sd</code>, and <code>start_pi</code>.</p></dd>
 
 
-<dt id="arg-max-iter">max.iter<a class="anchor" aria-label="anchor" href="#arg-max-iter"></a></dt>
-<dd><p>Max number of iterations to perform.</p></dd>
+<dt id="arg-max-iter">max_iter<a class="anchor" aria-label="anchor" href="#arg-max-iter"></a></dt>
+<dd><p><code>integer(1)</code>. Max number of iterations to perform.</p></dd>
 
 
-<dt id="arg-max-restarts">max.restarts<a class="anchor" aria-label="anchor" href="#arg-max-restarts"></a></dt>
-<dd><p>Max number of restarts ro perform.</p></dd>
+<dt id="arg-max-restarts">max_restarts<a class="anchor" aria-label="anchor" href="#arg-max-restarts"></a></dt>
+<dd><p><code>integer(1)</code>. Max number of restarts ro perform.</p></dd>
 
 
 <dt id="arg-eps">eps<a class="anchor" aria-label="anchor" href="#arg-eps"></a></dt>
-<dd><p>The machine precision for determining when to stop the algorithm.</p></dd>
+<dd><p><code>double(1)</code>. Machine precision for when to stop the algorithm.</p></dd>
 
 
 <dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
@@ -92,12 +92,12 @@ via expectation maximization.</p>
 
 
 <dt id="arg-type">type<a class="anchor" aria-label="anchor" href="#arg-type"></a></dt>
-<dd><p>Character. Matched string one of: "density", "likelihood" or
-"posterior".</p></dd>
+<dd><p><code>character(1)</code>. Matched string one of: "density",
+"likelihood" or "posterior".</p></dd>
 
 
 <dt id="arg-title">title<a class="anchor" aria-label="anchor" href="#arg-title"></a></dt>
-<dd><p>Character. Title for the plot.</p></dd>
+<dd><p><code>character(1)</code>. Title for the plot.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>

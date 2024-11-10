@@ -92,17 +92,23 @@ perform set operations, etc.</p>
 <li><p><code>`%@@%`(x, y) &lt;- value</code>: Assign <code>"@ributes"</code> via infix operator.
 A friendly version of <code>attr(x, y) &lt;- value</code>. <code>y</code> can be unquoted.</p></li>
 <li><p><code>x %==% y</code>: A gentler logical test for equality of two objects.
-Attributes are <em>not</em> checked. Use <code>%===%</code> to check attributes.</p></li>
+Attributes are <em>not</em> checked.
+Use <code>%===%</code> to check attributes.</p></li>
 <li><p><code>x %!=% y</code>: A logical test that two objects are <em>not</em> equal.</p></li>
 <li><p><code>x %===% y</code>: Also tests attributes of <code>x</code> and <code>y</code>.</p></li>
-<li><p><code>x %set% y</code>: Subset values in <code>x</code> by <code>y</code>. Alias for <code>x[x %in% y]</code>.
-Similar to <code>intersect(x, y)</code> except names and class of <code>x</code> are maintained.</p></li>
-<li><p><code>x %!set% y</code>: Subset values in <code>x</code> <em>not</em> in <code>y</code>. Alias for <code>x[!x %in% y]</code>.
-Similar to <code>setdiff(x, y)</code> except names and class of <code>x</code> are maintained.</p></li>
-<li><p><code>x %[[% y</code>: Extracts the <code>ith</code> element for each of <code>n</code> elements of
-a list or data frame, returning either a vector of length <code>n</code> or a single
-row data frame with <code>n</code> columns.
-Efficient alias for <code>purrr::map_*(x, y)</code>.</p></li>
+<li><p><code>x %set% y</code>: Subset values in <code>x</code> by <code>y</code>.
+Alias for <code>x[x %in% y]</code>.
+Similar to <code>intersect(x, y)</code> except names
+and class of <code>x</code> are maintained.</p></li>
+<li><p><code>x %!set% y</code>: Subset values in <code>x</code> <em>not</em> in <code>y</code>.
+Alias for <code>x[!x %in% y]</code>.
+Similar to <code>setdiff(x, y)</code> except names
+and class of <code>x</code> are maintained.</p></li>
+<li><p><code>x %[[% y</code>: Extracts the <code>i^th</code> element for each
+of <code>n</code> elements of a list or data frame,
+returning either a vector of length <code>n</code>
+or a single row data frame with <code>n</code> columns.
+More efficient alias for <code>purrr::map_*(x, y)</code>.</p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>

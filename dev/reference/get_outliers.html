@@ -53,9 +53,9 @@ depending on the type of outlier detection implemented (see Details).</p>
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_outliers</span><span class="op">(</span></span>
 <span>  <span class="va">x</span>,</span>
-<span>  n.sigma <span class="op">=</span> <span class="fl">3</span>,</span>
-<span>  mad.crit <span class="op">=</span> <span class="fl">6</span>,</span>
-<span>  fold.crit <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>  n_sigma <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>  mad_crit <span class="op">=</span> <span class="fl">6</span>,</span>
+<span>  fold_crit <span class="op">=</span> <span class="fl">5</span>,</span>
 <span>  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"nonparametric"</span>, <span class="st">"parametric"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -65,33 +65,36 @@ depending on the type of outlier detection implemented (see Details).</p>
 
 
 <dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
-<dd><p>A numeric (double) vector of values to evaluate.</p></dd>
+<dd><p>`numeric(n). A vector of values to evaluate.</p></dd>
 
 
-<dt id="arg-n-sigma">n.sigma<a class="anchor" aria-label="anchor" href="#arg-n-sigma"></a></dt>
-<dd><p>Numeric. The the number of standard deviations from the mean
-a <code>n.sigma</code> threshold for outliers. Ignored if <code>type = "nonparametric"</code>.</p></dd>
+<dt id="arg-n-sigma">n_sigma<a class="anchor" aria-label="anchor" href="#arg-n-sigma"></a></dt>
+<dd><p><code>numeric(1)</code>. The the number of standard
+deviations from the mean a <code>n.sigma</code> threshold for outliers.
+Ignored if <code>type = "nonparametric"</code>.</p></dd>
 
 
-<dt id="arg-mad-crit">mad.crit<a class="anchor" aria-label="anchor" href="#arg-mad-crit"></a></dt>
-<dd><p>The median absolute deviation ("MAD") criterion to use.
-Ignored if <code>type = "parametric"</code>. Defaults to <code>(6 * mad)</code>.</p></dd>
+<dt id="arg-mad-crit">mad_crit<a class="anchor" aria-label="anchor" href="#arg-mad-crit"></a></dt>
+<dd><p>The median absolute deviation ("MAD")
+criterion to use. Ignored if <code>type = "parametric"</code>.
+Defaults to <code>(6 * mad)</code>.</p></dd>
 
 
-<dt id="arg-fold-crit">fold.crit<a class="anchor" aria-label="anchor" href="#arg-fold-crit"></a></dt>
+<dt id="arg-fold-crit">fold_crit<a class="anchor" aria-label="anchor" href="#arg-fold-crit"></a></dt>
 <dd><p>The fold-change criterion to evaluate.
 Ignored if <code>type = "parametric"</code>. Defaults to <code>5x</code>.</p></dd>
 
 
 <dt id="arg-type">type<a class="anchor" aria-label="anchor" href="#arg-type"></a></dt>
-<dd><p>Matched string. One of "parametric" or "nonparametric" to
-determine the outliers detection implementation.</p></dd>
+<dd><p><code>character(1)</code>. Matched. Either
+"parametric" or "nonparametric" to determine
+the type of outliers detection implementation.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>If "nonparametric": an integer vector of indices corresponding
-to detected outliers.</p>
+    <p>If "nonparametric": an integer vector of
+indices corresponding to detected outliers.</p>
 <p>If "parametric": an integer vector of indices with these additional attributes:</p>
 <dl><dt>mu</dt>
 <dd><p>the robustly fit mean (\(\mu\)).</p></dd>
@@ -105,8 +108,10 @@ an outlier.</p></dd>
 
 </dl></div>
     <div class="section level2">
-    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>There are 2 possible methods used to define an outlier measurement
+    <h2 id="outlier-detection">outlier detection<a class="anchor" aria-label="anchor" href="#outlier-detection"></a></h2>
+
+
+<p>There are 2 possible methods used to define an outlier measurement
 and the return value depends on which method is implemented:</p><ol><li><p>The non-parametric case (default): agnostic to the distribution.
 Outlier measurements are defined as falling outside <code>mad.crit * mad</code>
 from the median <em>and</em> a specified number of fold-changes from
@@ -131,9 +136,9 @@ from the the estimated \(\mu\).<br><strong>Note:</strong> <code>mad.crit</code> 
 <span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">26</span>, <span class="fl">15</span>, <span class="fl">2</span><span class="op">)</span>         <span class="co"># Gaussian</span></span></span>
 <span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2.5</span>, <span class="va">x</span>, <span class="fl">25</span>, <span class="fl">25.9</span><span class="op">)</span>   <span class="co"># add 4 outliers (2hi, 2lo)</span></span></span>
 <span class="r-in"><span><span class="op">}</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">get_outliers</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>                <span class="co"># default = non-parametric</span></span></span>
+<span class="r-in"><span><span class="fu">get_outliers</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>                <span class="co"># non-parametric (default)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1 2</span>
-<span class="r-in"><span><span class="fu">get_outliers</span><span class="op">(</span><span class="va">x</span>, type <span class="op">=</span> <span class="st">"para"</span><span class="op">)</span> <span class="co"># type matching; parametric</span></span></span>
+<span class="r-in"><span><span class="fu">get_outliers</span><span class="op">(</span><span class="va">x</span>, type <span class="op">=</span> <span class="st">"para"</span><span class="op">)</span> <span class="co"># parametric</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1]  1  2 29 30</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"mu")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 14.66106</span>

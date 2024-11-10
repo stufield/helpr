@@ -72,8 +72,7 @@ depending on the result of their test.</p>
 
 
 <dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
-<dd><p>A vector, data frame or <code>tibble</code> to be tested.
-or integers.</p></dd>
+<dd><p>A vector, data frame or <code>tibble</code> to be tested.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -88,10 +87,11 @@ vector object contains only integer values.
 This is a fix for the generally
 undesired behavior of <code><a href="https://rdrr.io/r/base/integer.html" class="external-link">is.integer()</a></code> which
 doesn't actually test for integer numbers (see its ?help).</p></li>
-<li><p><code>is_logspace()</code>: Checks if an object containing numeric data is already in log space.
-This check assumes proteomic values are being passed and that the
-median of a vector, or of an entire data matrix, will be greater than
-15 if in linear space and less than 10 if log-transformed.</p></li>
+<li><p><code>is_logspace()</code>: Checks if an object containing numeric data
+is already in log space. This check assumes
+proteomic values (RFU) and that the vector median,
+or the entire data matrix, will be greater than
+15 if in linear space and less than 10 if log10-transformed.</p></li>
 <li><p><code>is_monotonic()</code>: A general test of whether the numeric vector <code>x</code> is
 monotonically <em>increasing</em> or <em>decreasing</em> in value.</p></li>
 <li><p><code>has_length()</code>: check that <code>length &gt; 0</code>.</p></li>
