@@ -16,7 +16,7 @@ get_outliers(
 \item{x}{`numeric(n). A vector of values to evaluate.}
 
 \item{n_sigma}{\code{numeric(1)}. The the number of standard
-deviations from the mean a \code{n.sigma} threshold for outliers.
+deviations from the mean a \code{n_sigma} threshold for outliers.
 Ignored if \code{type = "nonparametric"}.}
 
 \item{mad_crit}{The median absolute deviation ("MAD")
@@ -43,7 +43,8 @@ an outlier.}
 \description{
 Calculates the indices of a vector of values that exceed a specified
 statistical outlier criterion. This criterion is defined by differently
-depending on the type of outlier detection implemented (see Details).
+depending on the type of outlier detection implemented
+(see section on outlier detection below).
 }
 \section{outlier detection}{
 
@@ -51,15 +52,15 @@ There are 2 possible methods used to define an outlier measurement
 and the return value depends on which method is implemented:
 \enumerate{
 \item The non-parametric case (default): agnostic to the distribution.
-Outlier measurements are defined as falling outside \code{mad.crit * mad}
+Outlier measurements are defined as falling outside \code{mad_crit * mad}
 from the median \emph{and} a specified number of fold-changes from
-the median (i.e. \code{fold.crit}; e.g. 5x).\cr
-\strong{Note:} \code{n.sigma} is ignored.
+the median (i.e. \code{fold_crit}; e.g. \eqn{5x}).\cr
+\strong{Note:} \code{n_sigma} is ignored.
 \item The parametric case: the mean and standard deviation are
-calculated robustly via \code{\link[=fit_gauss]{fit_gauss()}}. Outliers
-are defined as measurements falling \emph{outside} +/- \code{n.sigma}*\eqn{\sigma}
+calculated robustly via \code{\link[=fit_gauss]{fit_gauss()}}. Outliers are defined
+as measurements falling \emph{outside} +/- \code{n_sigma} * \eqn{\sigma}
 from the the estimated \eqn{\mu}.\cr
-\strong{Note:} \code{mad.crit} and \code{fold.crit} are ignored.
+\strong{Note:} \code{mad_crit} and \code{fold_crit} are ignored.
 }
 }
 

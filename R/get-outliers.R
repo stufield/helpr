@@ -2,27 +2,28 @@
 #'
 #' Calculates the indices of a vector of values that exceed a specified
 #'   statistical outlier criterion. This criterion is defined by differently
-#'   depending on the type of outlier detection implemented (see Details).
+#'   depending on the type of outlier detection implemented
+#'   (see section on outlier detection below).
 #'
 #' @section outlier detection:
 #'   There are 2 possible methods used to define an outlier measurement
 #'   and the return value depends on which method is implemented:
 #'   \enumerate{
 #'     \item The non-parametric case (default): agnostic to the distribution.
-#'       Outlier measurements are defined as falling outside `mad.crit * mad`
+#'       Outlier measurements are defined as falling outside `mad_crit * mad`
 #'       from the median _and_ a specified number of fold-changes from
-#'       the median (i.e. `fold.crit`; e.g. 5x).\cr
-#'       **Note:** `n.sigma` is ignored.
+#'       the median (i.e. `fold_crit`; e.g. \eqn{5x}).\cr
+#'       **Note:** `n_sigma` is ignored.
 #'     \item The parametric case: the mean and standard deviation are
-#'       calculated robustly via [fit_gauss()]. Outliers
-#'       are defined as measurements falling _outside_ +/- `n.sigma`*\eqn{\sigma}
+#'       calculated robustly via [fit_gauss()]. Outliers are defined
+#'       as measurements falling *outside* +/- `n_sigma` * \eqn{\sigma}
 #'       from the the estimated \eqn{\mu}.\cr
-#'       **Note:** `mad.crit` and `fold.crit` are ignored.
+#'       **Note:** `mad_crit` and `fold_crit` are ignored.
 #'   }
 #'
 #' @param x `numeric(n). A vector of values to evaluate.
 #' @param n_sigma `numeric(1)`. The the number of standard
-#'   deviations from the mean a `n.sigma` threshold for outliers.
+#'   deviations from the mean a `n_sigma` threshold for outliers.
 #'   Ignored if `type = "nonparametric"`.
 #' @param mad_crit The median absolute deviation ("MAD")
 #'   criterion to use. Ignored if `type = "parametric"`.
