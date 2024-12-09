@@ -18,6 +18,9 @@
 #' withr::with_options(list(signal.quiet = TRUE), give_praise())
 #' @export
 give_praise <- function() {
+  if ( interactive() ) {
+    return(invisible())
+  }
   x   <- .capitalize(sample(praises$exclamation, 1L))
   y   <- .capitalize(sample(praises$adjective, 1L))
   pr  <- sprintf("%s! You are %s!", x, y)
