@@ -23,7 +23,7 @@ the logical \verb{gg =} param if in \code{\link[=expect_snapshot_plot]{expect_sn
 
 \item{name}{\code{character(1)}. A temporary file name to use during the test.}
 
-\item{type}{\code{character(1)}. Either "png" or "pdf".}
+\item{type}{\code{character(1)}. Either \code{"png"} or \code{"pdf"}.}
 }
 \description{
 Manage whether certain tests are skipped during

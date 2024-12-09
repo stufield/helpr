@@ -51,7 +51,7 @@ doesn't actually test for integer numbers (see its ?help).
 
 \item \code{is_logspace()}: Checks if an object containing numeric data
 is already in log space. This check assumes
-proteomic values (RFU) and that the vector median,
+proteomic measurements and that the vector median,
 or the entire data matrix, will be greater than
 15 if in linear space and less than 10 if log10-transformed.
 

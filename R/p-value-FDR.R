@@ -8,6 +8,7 @@
 #'
 #' @param p A numeric vector of p-values.
 #' @param alpha `numeric(1)`. Significance level in \verb{[0, 1]}.
+#'
 #' @return A `fdr` object. A `tibble` for the step-up procedure.
 #'   The `tibble` contains:
 #'   \item{p.value}{A sorted vector of the original p-values.}
@@ -19,9 +20,10 @@
 #'   \item{fdr_p}{The FDR-adjusted p-values ordered by `idx`.}
 #'   \item{alpha}{The chosen significance threshold.}
 #'
-#' @author Stu Field
 #' @note You are basically solving for the slope (`k/m`)
 #'   that makes the p-value (`alpha`) significant.
+#'
+#' @author Stu Field
 #' @seealso [p.adjust()], [cummin()]
 #'
 #' @references
@@ -30,8 +32,14 @@
 #'   testing. *Journal of the Royal Statistical Society Series B*
 #'   **57**, 289-300.
 #'
-#' http://www.unc.edu/courses/2007spring/biol/145/001/docs/lectures/Nov12.html \cr
+#' \url{
+#' http://www.unc.edu/courses/2007spring/biol/145/001/docs/lectures/Nov12.html
+#' }
+#'
+#' \url{
 #' http://en.wikipedia.org/wiki/False_discovery_rate#Benjamini.E2.80.93Hochberg_procedure
+#' }
+#'
 #' @examples
 #' p1  <- c(0.01, 0.013, 0.014, 0.19, 0.35, 0.5, 0.63, 0.67, 0.75, 0.81)
 #' new <- p_value_FDR(p1)

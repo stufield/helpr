@@ -73,7 +73,7 @@ functionality without the cost of additional imports/dependencies.
 
 ### `cross_tab()`
 
-You do not need to "quote" the passed arguments, un-quoted strings are fine
+You do not need to "quote" the passed arguments, unquoted strings are fine
 and are parsed by NSE (non-standard evaluation). The `...` can take on either
 one or two column names:
 

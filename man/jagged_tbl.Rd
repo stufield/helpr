@@ -11,7 +11,7 @@ jagged_tbl(x)
 recast as a \code{tibble}.}
 }
 \value{
-A \code{tibble} object wth dimensionsi
+A \code{tibble} object with dimensions
 \code{c(max(lengths(x)), length(x))}. Extra entries are
 replaced with \code{NA}.
 }

@@ -12,20 +12,20 @@
 #'   see the `col` argument.
 #' @param col `character(1)`. Color (or style) for the
 #'   text (or line). Currently one of:
-#'  * red
-#'  * green
-#'  * yellow
-#'  * blue
-#'  * magenta
-#'  * cyan
-#'  * black
-#'  * white
-#'  * grey
-#'  * bold
-#'  * italic
-#'  * underline
-#'  * inverse
-#'  * strikethrough
+#'  * `red`
+#'  * `green`
+#'  * `yellow`
+#'  * `blue`
+#'  * `magenta`
+#'  * `cyan`
+#'  * `black`
+#'  * `white`
+#'  * `grey`
+#'  * `bold`
+#'  * `italic`
+#'  * `underline`
+#'  * `inverse`
+#'  * `strikethrough`
 #'
 #' @param ... Elements passed directly to [cat()].
 NULL

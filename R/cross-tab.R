@@ -7,12 +7,13 @@
 #'
 #' @param x A `data.frame` (-like) object containing the
 #'   data variables from which counts are desired.
-#' @param ... A number of un-quoted expressions or quoted strings
+#' @param ... A number of unquoted expressions or quoted strings
 #'   separated by commas. Generally greater than 3 is not useful.
 #' @param useNA See [table()].
 #'
 #' @return A table of grouped counts based on splitting
 #'   variables with sums from each factor.
+#'
 #' @author Stu Field
 #' @seealso [table()], [addmargins()]
 #'

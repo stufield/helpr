@@ -7,8 +7,8 @@
 #' @param lambda A sequence of lambdas to evaluate.
 #' @param lambda_eval A value of lambda to evaluate at,
 #'   defaults to the maximum value of the `lambda` sequence.
-#' @param match_storey `logical(1)`. Should the output be matched
-#'   to Storey's `qvalue()` function?
+#' @param match_storey `logical(1)`. Should the output match
+#'   the `qvalue()` function exactly?
 #'
 #' @return A list of class `q_value` containing:
 #'   \item{call}{The original call to `calc_qvalue()`.}
@@ -23,6 +23,7 @@
 #'
 #' @author Stu Field
 #' @seealso [smooth.spline()]
+#'
 #' @references John Storey. PNAS. 2003.
 #'
 #' @examples

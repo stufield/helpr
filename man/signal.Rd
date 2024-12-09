@@ -56,20 +56,20 @@ of the horizontal rule.}
 \item{col}{\code{character(1)}. Color (or style) for the
 text (or line). Currently one of:
 \itemize{
-\item red
-\item green
-\item yellow
-\item blue
-\item magenta
-\item cyan
-\item black
-\item white
-\item grey
-\item bold
-\item italic
-\item underline
-\item inverse
-\item strikethrough
+\item \code{red}
+\item \code{green}
+\item \code{yellow}
+\item \code{blue}
+\item \code{magenta}
+\item \code{cyan}
+\item \code{black}
+\item \code{white}
+\item \code{grey}
+\item \code{bold}
+\item \code{italic}
+\item \code{underline}
+\item \code{inverse}
+\item \code{strikethrough}
 }}
 
 \item{y}{A coloring function, i.e. an element the \code{add_style} object,

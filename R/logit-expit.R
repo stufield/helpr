@@ -1,4 +1,4 @@
-#' Logit and Expit Transformations
+#' `Logit` and `Expit` Transformations
 #'
 #' `logit()` computes the binary logit function.
 #'   This is a simple wrapper for `stats::qlogis()`

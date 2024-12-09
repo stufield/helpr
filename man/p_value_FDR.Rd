@@ -66,8 +66,13 @@ discovery rate: a practical and powerful approach to multiple
 testing. \emph{Journal of the Royal Statistical Society Series B}
 \strong{57}, 289-300.
 
-http://www.unc.edu/courses/2007spring/biol/145/001/docs/lectures/Nov12.html \cr
+\url{
+http://www.unc.edu/courses/2007spring/biol/145/001/docs/lectures/Nov12.html
+}
+
+\url{
 http://en.wikipedia.org/wiki/False_discovery_rate#Benjamini.E2.80.93Hochberg_procedure
+}
 }
 \seealso{
 \code{\link[=p.adjust]{p.adjust()}}, \code{\link[=cummin]{cummin()}}

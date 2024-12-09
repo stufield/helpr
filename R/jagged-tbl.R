@@ -7,7 +7,7 @@
 #' @param x A *named* list of vectors with unequal lengths, to be
 #'   recast as a `tibble`.
 #'
-#' @return A `tibble` object wth dimensionsi
+#' @return A `tibble` object with dimensions
 #'   `c(max(lengths(x)), length(x))`. Extra entries are
 #'    replaced with `NA`.
 #'

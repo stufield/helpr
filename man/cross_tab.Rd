@@ -10,7 +10,7 @@ cross_tab(x, ..., useNA = "ifany")
 \item{x}{A \code{data.frame} (-like) object containing the
 data variables from which counts are desired.}
 
-\item{...}{A number of un-quoted expressions or quoted strings
+\item{...}{A number of unquoted expressions or quoted strings
 separated by commas. Generally greater than 3 is not useful.}
 
 \item{useNA}{See \code{\link[=table]{table()}}.}

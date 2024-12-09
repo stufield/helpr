@@ -1,6 +1,6 @@
 #' Dynamic List Param Collection Rename Elements of a List
 #'
-#' Helper to collrect the `...` params internally
+#' Helper to collect the `...` params internally
 #'   passed that support non-standard evaluation
 #'   and splicing. See `rlang::dots_list()`
 #'   and `rlang::list2()`.

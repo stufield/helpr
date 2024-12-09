@@ -15,7 +15,7 @@ A named list corresponding to the
 expressions passed to the \code{...} inputs.
 }
 \description{
-Helper to collrect the \code{...} params internally
+Helper to collect the \code{...} params internally
 passed that support non-standard evaluation
 and splicing. See \code{rlang::dots_list()}
 and \code{rlang::list2()}.

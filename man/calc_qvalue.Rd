@@ -22,8 +22,8 @@ calc_qvalue(
 \item{lambda_eval}{A value of lambda to evaluate at,
 defaults to the maximum value of the \code{lambda} sequence.}
 
-\item{match_storey}{\code{logical(1)}. Should the output be matched
-to Storey's \code{qvalue()} function?}
+\item{match_storey}{\code{logical(1)}. Should the output match
+the \code{qvalue()} function exactly?}
 
 \item{x}{A \code{q_value} class object.}
 

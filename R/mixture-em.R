@@ -56,7 +56,7 @@ choose_init <- function(y, k = 2) {
 #' @param data `numeric(n)`.
 #' @param pars Initial values for `start_mu`, `start_sd`, and `start_pi`.
 #' @param max_iter `integer(1)`. Max number of iterations to perform.
-#' @param max_restarts `integer(1)`. Max number of restarts ro perform.
+#' @param max_restarts `integer(1)`. Max number of restarts to perform.
 #' @param eps `double(1)`. Machine precision for when to stop the algorithm.
 #'
 #' @return A `mix_k2` class object.

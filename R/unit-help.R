@@ -16,7 +16,7 @@
 #'   the logical `gg =` param if in [expect_snapshot_plot()].
 #' @param code The code to execute.
 #' @param name `character(1)`. A temporary file name to use during the test.
-#' @param type `character(1)`. Either "png" or "pdf".
+#' @param type `character(1)`. Either `"png"` or `"pdf"`.
 #'
 #' @export
 expect_error_free <- function(...) {

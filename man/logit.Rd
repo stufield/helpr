@@ -3,7 +3,7 @@
 \name{logit}
 \alias{logit}
 \alias{expit}
-\title{Logit and Expit Transformations}
+\title{\code{Logit} and \code{Expit} Transformations}
 \usage{
 logit(x)
 

@@ -22,7 +22,7 @@ normal_k2_mixture(
 
 \item{max_iter}{\code{integer(1)}. Max number of iterations to perform.}
 
-\item{max_restarts}{\code{integer(1)}. Max number of restarts ro perform.}
+\item{max_restarts}{\code{integer(1)}. Max number of restarts to perform.}
 
 \item{eps}{\code{double(1)}. Machine precision for when to stop the algorithm.}
 
