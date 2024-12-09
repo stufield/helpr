@@ -5,7 +5,7 @@ name: Render README
 jobs:
   render:
     name: Render README
-    runs-on: macOS-12
+    runs-on: macos-latest
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
