@@ -162,12 +162,11 @@ signal_rule <- function(text = "", line_col = NULL,
 .inform <- function(..., class = c("message", "condition"),
                     quiet = getOption("signal.quiet", default = FALSE)) {
   if ( !quiet ) {
-    msg <- paste(...)
+    msg <- paste0(paste(...), "\n")
     cnd <- structure(list(message = msg), class = class)
     withRestarts(muffleMessage = function() NULL, {
       signalCondition(cnd)
-      c_msg <- paste0(conditionMessage(cnd), "\n")
-      cat(c_msg, sep = "", file = stdout())
+      cat(conditionMessage(cnd), sep = "", file = stdout())
     })
   }
   invisible(NULL)
