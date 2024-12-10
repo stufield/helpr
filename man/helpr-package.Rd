@@ -8,6 +8,13 @@
 \description{
 The helpr package contains numerous helpers, wrappers, and utilities used throughout the my analysis suite. It intentionally favors base R over higher level *tidyverse* to minimize imports.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://stufield.github.io/helpr}
+}
+
+}
 \author{
 \strong{Maintainer}: Stu Field \email{stu.g.field@gmail.com} (\href{https://orcid.org/0000-0002-1024-5859}{ORCID}) [copyright holder]
 

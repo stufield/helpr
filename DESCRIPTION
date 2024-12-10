@@ -14,6 +14,7 @@ Description: The helpr package contains numerous helpers,
     analysis suite. It intentionally favors base R
     over higher level *tidyverse* to minimize imports.
 License: MIT + file LICENSE
+URL: https://stufield.github.io/helpr
 Depends:
     R (>= 4.4.0)
 Suggests:
