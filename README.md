@@ -6,7 +6,7 @@
 <!-- badges: start -->
 
 ![GitHub
-version](https://img.shields.io/badge/Version-0.0.1.9000-success.svg?style=flat&logo=github)
+version](https://img.shields.io/badge/Version-0.0.1-success.svg?style=flat&logo=github)
 [![CRAN
 status](http://www.r-pkg.org/badges/version/helpr)](https://cran.r-project.org/package=helpr)
 [![R-CMD-check](https://github.com/stufield/helpr/workflows/R-CMD-check/badge.svg)](https://github.com/stufield/helpr/actions)
@@ -33,11 +33,11 @@ R over higher level *tidyverse* to keep imports to a minimum.
 ## Installation
 
 ``` r
+# current dev version
 remotes::install_github("stufield/helpr")
 
-# OR
-
-remotes::install_version("stufield/helpr", "0.0.1")
+# or a specific version
+remotes::install_github("stufield/helpr@v0.0.1")
 ```
 
 ------------------------------------------------------------------------

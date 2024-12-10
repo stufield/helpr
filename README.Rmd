@@ -52,11 +52,11 @@ level *tidyverse* to keep imports to a minimum.
 
 
 ```{r install-github, eval = FALSE}
+# current dev version
 remotes::install_github("stufield/helpr")
 
-# OR
-
-remotes::install_version("stufield/helpr", "0.0.1")
+# or a specific version
+remotes::install_github("stufield/helpr@v0.0.1")
 ```
 
 
