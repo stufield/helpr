@@ -1,3 +1,3 @@
-# helpr 0.0.1
+# helpr 0.0.1 :tada:
 
-* Initial release!
+* Initial release! :partying_face:
