@@ -32,13 +32,7 @@
 #'   testing. *Journal of the Royal Statistical Society Series B*
 #'   **57**, 289-300.
 #'
-#' \url{
-#' http://www.unc.edu/courses/2007spring/biol/145/001/docs/lectures/Nov12.html
-#' }
-#'
-#' \url{
-#' http://en.wikipedia.org/wiki/False_discovery_rate#Benjamini.E2.80.93Hochberg_procedure
-#' }
+#' \url{https://en.wikipedia.org/wiki/False_discovery_rate#Benjamini–Hochberg_procedure}
 #'
 #' @examples
 #' p1  <- c(0.01, 0.013, 0.014, 0.19, 0.35, 0.5, 0.63, 0.67, 0.75, 0.81)
