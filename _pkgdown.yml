@@ -90,10 +90,12 @@ reference:
 
   - title: Convert and Subset Objects
     desc: >
-      Converting classes to data frames and subsetting elements of objects.
+      Converting classes to data frames or tibbles
+      and subsetting elements of objects.
     contents:
     - add_class
     - convert2df
+    - jagged_tbl
     - elements
 
   - title: File System Utilities
@@ -122,6 +124,7 @@ reference:
     - symbl
     - starts_with("skip_on")
     - give_praise
+    - dots_list2
 
   - title: Formatting Utilities
     desc: >
