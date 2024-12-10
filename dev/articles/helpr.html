@@ -167,8 +167,8 @@ Returns both sided <code>setdiff</code>, <code>union</code> and
 <h3 id="cross_tab">
 <code>cross_tab()</code><a class="anchor" aria-label="anchor" href="#cross_tab"></a>
 </h3>
-<p>You do not need to “quote” the passed arguments, un-quoted strings
-are fine and are parsed by NSE (non-standard evaluation). The
+<p>You do not need to “quote” the passed arguments, unquoted strings are
+fine and are parsed by NSE (non-standard evaluation). The
 <code>...</code> can take on either one or two column names:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># 1 factor</span></span>
@@ -337,8 +337,11 @@ other contexts (e.g. ANOVA, CVs):</p>
 </h3>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/diff_vecs.html">diff_vecs</a></span><span class="op">(</span><span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10L</span><span class="op">]</span>, <span class="va">LETTERS</span><span class="op">[</span><span class="fl">5</span><span class="op">:</span><span class="fl">15L</span><span class="op">]</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="co"># return invisible</span></span>
-<span><span class="co">#&gt; ℹ Vectors differ by:• Unique to LETTERS[1:10L] &gt;&gt; 4• Unique to</span></span>
-<span><span class="co">#&gt; LETTERS[5:15L] &gt;&gt; 5• Common Intersect &gt;&gt; 6• Union &gt;&gt; 15</span></span>
+<span><span class="co">#&gt; ℹ Vectors differ by:</span></span>
+<span><span class="co">#&gt; • Unique to LETTERS[1:10L] &gt;&gt; 4</span></span>
+<span><span class="co">#&gt; • Unique to LETTERS[5:15L] &gt;&gt; 5</span></span>
+<span><span class="co">#&gt; • Common Intersect         &gt;&gt; 6</span></span>
+<span><span class="co">#&gt; • Union                    &gt;&gt; 15</span></span>
 <span></span>
 <span><span class="op">(</span><span class="fu"><a href="../reference/diff_vecs.html">diff_vecs</a></span><span class="op">(</span><span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10L</span><span class="op">]</span>, <span class="va">LETTERS</span><span class="op">[</span><span class="fl">5</span><span class="op">:</span><span class="fl">15L</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $`unique_LETTERS[1:10L]`</span></span>

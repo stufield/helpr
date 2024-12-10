@@ -131,36 +131,36 @@ but may in the future (please code accordingly).</p></li>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, b <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span>, row.names <span class="op">=</span> <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">df</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   a          b</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> A 1 -1.3944642</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> B 2 -0.3984692</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> C 3  0.4623946</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> D 4 -1.1794509</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> E 5  1.3908901</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> A 1 -0.5793881</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> B 2  0.9421994</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> C 3 -0.7063614</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> D 4 -1.2754021</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> E 5  0.7332599</span>
 <span class="r-in"><span><span class="fu">rn2col</span><span class="op">(</span><span class="va">df</span><span class="op">)</span>              <span class="co"># default name is `.rn`</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .rn a          b</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   A 1 -1.3944642</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   B 2 -0.3984692</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   C 3  0.4623946</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4   D 4 -1.1794509</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5   E 5  1.3908901</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   A 1 -0.5793881</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   B 2  0.9421994</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   C 3 -0.7063614</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4   D 4 -1.2754021</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5   E 5  0.7332599</span>
 <span class="r-in"><span><span class="fu">rn2col</span><span class="op">(</span><span class="va">df</span>, <span class="st">"feature"</span><span class="op">)</span>   <span class="co"># pass `name =`</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   feature a          b</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1       A 1 -1.3944642</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2       B 2 -0.3984692</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3       C 3  0.4623946</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4       D 4 -1.1794509</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5       E 5  1.3908901</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1       A 1 -0.5793881</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2       B 2  0.9421994</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3       C 3 -0.7063614</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4       D 4 -1.2754021</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5       E 5  0.7332599</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># moving columns</span></span></span>
 <span class="r-in"><span><span class="va">df</span><span class="op">$</span><span class="va">mtcars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span>, <span class="fl">5</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">col2rn</span><span class="op">(</span><span class="va">df</span>, <span class="st">"mtcars"</span><span class="op">)</span>   <span class="co"># with a warning</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>`df` already has row names. They will be over-written.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      a          b</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> qsec 1 -1.3944642</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cyl  2 -0.3984692</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> drat 3  0.4623946</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> gear 4 -1.1794509</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> am   5  1.3908901</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> mpg  1 -0.5793881</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> hp   2  0.9421994</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> carb 3 -0.7063614</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cyl  4 -1.2754021</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> drat 5  0.7332599</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Move back and forth easily</span></span></span>
 <span class="r-in"><span><span class="co"># Leaves original object un-modified</span></span></span>
