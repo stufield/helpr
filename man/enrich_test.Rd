@@ -2,9 +2,18 @@
 % Please edit documentation in R/enrich-test.R
 \name{enrich_test}
 \alias{enrich_test}
+\alias{enrich_test.list}
+\alias{enrich_test.data.frame}
+\alias{enrich_test.matrix}
 \title{Test for Enrichment}
 \usage{
-enrich_test(x, alternative = c("two.sided", "enrich", "deplete"))
+enrich_test(x, alternative = NULL)
+
+\method{enrich_test}{list}(x, alternative = c("two.sided", "enrich", "deplete"))
+
+\method{enrich_test}{data.frame}(x, alternative = c("two.sided", "enrich", "deplete"))
+
+\method{enrich_test}{matrix}(x, alternative = c("two.sided", "enrich", "deplete"))
 }
 \arguments{
 \item{x}{A \eqn{2x2} confusion matrix (or contingency table) containing
@@ -12,12 +21,15 @@ the binary decisions for each contingency. Can also be a (named) list
 containing each of the 4 contingencies. See above.}
 
 \item{alternative}{\code{character(1)}. Whether to check
-for "two.sided" (both Enrich/Deplete)
-or specifically one or the other ("enrich" or "deplete").}
+for "two.sided" (both enrichment and depletion)
+or specifically one \emph{or} the other ("enrich" or "deplete").}
 }
 \value{
-Both the comparison to the Hypergeometric Distribution and
-The Fisher Exact Test for Count Data with confidence intervals
+An "enrichment" class object, a list of the significance
+tests calculated from a Hypergeometric Distribution
+\code{\link[stats:Hypergeometric]{stats::dhyper()}} as well as those calculated via Fisher's Exact
+\code{\link[stats:fisher.test]{stats::fisher.test()}} test for count data
+testing the H_o that the odds ratio is equal to 1.
 }
 \description{
 Calculated whether \verb{2x2} table is enriched
@@ -33,12 +45,11 @@ Can also pass a \emph{named} list containing:
 \item{n}{The sum of the table.}
 }
 }
-\note{
-Similar result to Fisher Exact test
-}
 \examples{
-c_mat <- matrix(c(4, 2, 3, 11), ncol = 2)
+c_mat <- matrix(c(4, 2, 3, 11), ncol = 2L)
 enrich_test(c_mat)
+
+# or pass a named list
 en_list <- list(n11 = 4, n1_ = 7, n_1 = 6, n = 20)
 enrich_test(en_list)
 }
