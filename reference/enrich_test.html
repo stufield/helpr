@@ -51,7 +51,16 @@ the Fisher's Exact test for count data.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">enrich_test</span><span class="op">(</span><span class="va">x</span>, alternative <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"two.sided"</span>, <span class="st">"enrich"</span>, <span class="st">"deplete"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">enrich_test</span><span class="op">(</span><span class="va">x</span>, alternative <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for class 'list'</span></span>
+<span><span class="fu">enrich_test</span><span class="op">(</span><span class="va">x</span>, alternative <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"two.sided"</span>, <span class="st">"enrich"</span>, <span class="st">"deplete"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for class 'data.frame'</span></span>
+<span><span class="fu">enrich_test</span><span class="op">(</span><span class="va">x</span>, alternative <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"two.sided"</span>, <span class="st">"enrich"</span>, <span class="st">"deplete"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for class 'matrix'</span></span>
+<span><span class="fu">enrich_test</span><span class="op">(</span><span class="va">x</span>, alternative <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"two.sided"</span>, <span class="st">"enrich"</span>, <span class="st">"deplete"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -66,14 +75,17 @@ containing each of the 4 contingencies. See above.</p></dd>
 
 <dt id="arg-alternative">alternative<a class="anchor" aria-label="anchor" href="#arg-alternative"></a></dt>
 <dd><p><code>character(1)</code>. Whether to check
-for "two.sided" (both Enrich/Deplete)
-or specifically one or the other ("enrich" or "deplete").</p></dd>
+for "two.sided" (both enrichment and depletion)
+or specifically one <em>or</em> the other ("enrich" or "deplete").</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>Both the comparison to the Hypergeometric Distribution and
-The Fisher Exact Test for Count Data with confidence intervals</p>
+    <p>An "enrichment" class object, a list of the significance
+tests calculated from a Hypergeometric Distribution
+<code><a href="https://rdrr.io/r/stats/Hypergeometric.html" class="external-link">stats::dhyper()</a></code> as well as those calculated via Fisher's Exact
+<code><a href="https://rdrr.io/r/stats/fisher.test.html" class="external-link">stats::fisher.test()</a></code> test for count data
+testing the H_o that the odds ratio is equal to 1.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -92,10 +104,6 @@ The Fisher Exact Test for Count Data with confidence intervals</p>
 
 </dl></div>
     <div class="section level2">
-    <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
-    <p>Similar result to Fisher Exact test</p>
-    </div>
-    <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="https://rdrr.io/r/stats/Hypergeometric.html" class="external-link">stats::dhyper()</a></code>, <code><a href="https://rdrr.io/r/stats/fisher.test.html" class="external-link">stats::fisher.test()</a></code></p></div>
     </div>
@@ -106,41 +114,61 @@ The Fisher Exact Test for Count Data with confidence intervals</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">c_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">11</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">c_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">11</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">2L</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">enrich_test</span><span class="op">(</span><span class="va">c_mat</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">══</span> Enrichment Tests <span style="color: #00BB00;">══════════════════════════════════════════════════════</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">──</span> Counts Table <span style="color: #0000BB;">──────────────────────────────────────────────────────────</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     yes no</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> yes   4  3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> no    2 11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      v2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> v1    no yes</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   no   4   3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   yes  2  11</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">──</span> Tests <span style="color: #0000BB;">─────────────────────────────────────────────────────────────────</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 4</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Test                `p-value` Preferred CI95            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 1 sided                0.077<span style="text-decoration: underline;">7</span> ․         ․               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> 2 sided double         0.155  ․         ․               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> 1 sided mid            0.042<span style="text-decoration: underline;">4</span> ․         ․               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> 2 sided double mid     0.084<span style="text-decoration: underline;">9</span> ․         ․               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> Fisher's Exact         0.122  ․         (0.601, 107.532)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> 2 sided min lik mid    0.086<span style="text-decoration: underline;">7</span> ★         ․               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">──</span> Hypergeometric <span style="color: #0000BB;">────────────────────────────────────────────────────────</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Alternative          two.sided</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Test-type            p-value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> 1-sided              0.07765738</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> 2-sided              0.15531476</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> 1-sided mid          0.04244066</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> 2-sided mid          0.08488132</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> 2-sided min lik      0.12192982</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> 2-sided min lik mid★ 0.08671311</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">──</span> Fisher's Exact <span style="color: #0000BB;">────────────────────────────────────────────────────────</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Alternative          two.sided</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Odds Ratio           6.48649744</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Odds Ratio p-value   0.12192982</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> OR CI95              [0.601, 107.532]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">══════════════════════════════════════════════════════════════════════════</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># or pass a named list</span></span></span>
 <span class="r-in"><span><span class="va">en_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>n11 <span class="op">=</span> <span class="fl">4</span>, n1_ <span class="op">=</span> <span class="fl">7</span>, n_1 <span class="op">=</span> <span class="fl">6</span>, n <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">enrich_test</span><span class="op">(</span><span class="va">en_list</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">══</span> Enrichment Tests <span style="color: #00BB00;">══════════════════════════════════════════════════════</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">──</span> Counts Table <span style="color: #0000BB;">──────────────────────────────────────────────────────────</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     yes no</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> yes   4  3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> no    2 11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      v2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> v1    no yes</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   no   4   3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   yes  2  11</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">──</span> Tests <span style="color: #0000BB;">─────────────────────────────────────────────────────────────────</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 4</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Test                `p-value` Preferred CI95            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 1 sided                0.077<span style="text-decoration: underline;">7</span> ․         ․               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> 2 sided double         0.155  ․         ․               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> 1 sided mid            0.042<span style="text-decoration: underline;">4</span> ․         ․               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> 2 sided double mid     0.084<span style="text-decoration: underline;">9</span> ․         ․               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> Fisher's Exact         0.122  ․         (0.601, 107.532)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> 2 sided min lik mid    0.086<span style="text-decoration: underline;">7</span> ★         ․               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">──</span> Hypergeometric <span style="color: #0000BB;">────────────────────────────────────────────────────────</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Alternative          two.sided</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Test-type            p-value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> 1-sided              0.07765738</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> 2-sided              0.15531476</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> 1-sided mid          0.04244066</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> 2-sided mid          0.08488132</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> 2-sided min lik      0.12192982</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> 2-sided min lik mid★ 0.08671311</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">──</span> Fisher's Exact <span style="color: #0000BB;">────────────────────────────────────────────────────────</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Alternative          two.sided</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Odds Ratio           6.48649744</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> Odds Ratio p-value   0.12192982</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">•</span> OR CI95              [0.601, 107.532]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">══════════════════════════════════════════════════════════════════════════</span></span>
 </code></pre></div>
     </div>
