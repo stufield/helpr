@@ -12,7 +12,6 @@
       
       -- Hypergeometric --------------------------------------------------------------
     Message
-      i Alternative          two.sided
       i Test-type            p-value
     Output
       

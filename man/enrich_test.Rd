@@ -7,22 +7,24 @@
 \alias{enrich_test.matrix}
 \title{Test for Enrichment}
 \usage{
-enrich_test(x, alternative = NULL)
+enrich_test(x, ...)
 
-\method{enrich_test}{list}(x, alternative = c("two.sided", "enrich", "deplete"))
+\method{enrich_test}{list}(x, ...)
 
-\method{enrich_test}{data.frame}(x, alternative = c("two.sided", "enrich", "deplete"))
+\method{enrich_test}{data.frame}(x, ...)
 
-\method{enrich_test}{matrix}(x, alternative = c("two.sided", "enrich", "deplete"))
+\method{enrich_test}{matrix}(x, ...)
 }
 \arguments{
-\item{x}{A \eqn{2x2} confusion matrix (or contingency table) containing
-the binary decisions for each contingency. Can also be a (named) list
-containing each of the 4 contingencies. See above.}
+\item{x}{A \verb{2x2} confusion matrix (aka contingency table) containing
+the binary decisions for each contingency (or a similarly structured
+data frame). Can also be a (named) list containing each of the
+4 contingencies. See examples.}
 
-\item{alternative}{\code{character(1)}. Whether to check
-for "two.sided" (both enrichment and depletion)
-or specifically one \emph{or} the other ("enrich" or "deplete").}
+\item{...}{Arguments passed to \code{\link[stats:fisher.test]{stats::fisher.test()}}. In particular,
+\code{alternative} which determines whether to check for both
+enrichment and depletion ("two.sided") or specifically one
+\emph{or} the other: enrichment = "greater"; depletion = "less".}
 }
 \value{
 An "enrichment" class object, a list of the significance
@@ -30,19 +32,27 @@ tests calculated from a Hypergeometric Distribution
 \code{\link[stats:Hypergeometric]{stats::dhyper()}} as well as those calculated via Fisher's Exact
 \code{\link[stats:fisher.test]{stats::fisher.test()}} test for count data
 testing the H_o that the odds ratio is equal to 1.
+The p-values for various flavors of Hypergeometric test are:
+\item{1-sided}{add here.}
+\item{2-sided}{double of \code{1-sided}.}
+\item{1-sided mid}{add description}
+\item{2-sided mid}{double of \verb{1-sided mid}.}
+\item{2-sided min lik}{this differs previous, but is most
+similar to Fisher's Exact}
+\item{2-sided min lik mid}{this is typically preferred}
 }
 \description{
-Calculated whether \verb{2x2} table is enriched
-for a particular group using Hypergeometric Distribution and
+Calculated whether \verb{2x2} table is enriched for a particular
+group using Hypergeometric Distribution and
 the Fisher's Exact test for count data.
 }
 \details{
 Can also pass a \emph{named} list containing:
-\describe{
-\item{n11}{The corresponding \verb{[1, 1]} position of the table/matrix.}
-\item{n1_}{The sum of the top row of the table.}
-\item{n_1}{The sum of the first column of the table.}
-\item{n}{The sum of the table.}
+\tabular{rcl}{
+\code{n11} \tab : \tab The corresponding \verb{[1,1]} position of the \verb{2x2} matrix.\cr
+\code{n1_} \tab : \tab The sum of the top row of the table.\cr
+\code{n_1} \tab : \tab The sum of the first column of the table.\cr
+\code{n}   \tab : \tab The sum of the table.\cr
 }
 }
 \examples{

@@ -6,7 +6,7 @@ x      <- enrich_test(c_mat)
 
 # Testing ----
 test_that("`enrich_test()` returns correct object and values", {
-  expect_named(x, c("confusion", "result", "fisher_test", "alternative"))
+  expect_named(x, c("confusion", "result", "fisher_test"))
   dimnames(c_mat) <- list(v1 = c("no", "yes"), v2 = c("no", "yes"))
   expect_equal(x$confusion, c_mat)
   res <- tibble::tibble(

@@ -1,29 +1,39 @@
 #' Test for Enrichment
 #'
-#' Calculated whether `2x2` table is enriched
-#'   for a particular group using Hypergeometric Distribution and
+#' Calculated whether `2x2` table is enriched for a particular
+#'   group using Hypergeometric Distribution and
 #'   the Fisher's Exact test for count data.
 #'
 #' Can also pass a *named* list containing:
-#' \describe{
-#'   \item{n11}{The corresponding \verb{[1, 1]} position of the table/matrix.}
-#'   \item{n1_}{The sum of the top row of the table.}
-#'   \item{n_1}{The sum of the first column of the table.}
-#'   \item{n}{The sum of the table.}
+#' \tabular{rcl}{
+#'   `n11` \tab : \tab The corresponding \verb{[1,1]} position of the `2x2` matrix.\cr
+#'   `n1_` \tab : \tab The sum of the top row of the table.\cr
+#'   `n_1` \tab : \tab The sum of the first column of the table.\cr
+#'   `n`   \tab : \tab The sum of the table.\cr
 #' }
 #'
-#' @param x A \eqn{2x2} confusion matrix (or contingency table) containing
-#'   the binary decisions for each contingency. Can also be a (named) list
-#'   containing each of the 4 contingencies. See above.
-#' @param alternative `character(1)`. Whether to check
-#'   for "two.sided" (both enrichment and depletion)
-#'   or specifically one *or* the other ("enrich" or "deplete").
+#' @param x A `2x2` confusion matrix (aka contingency table) containing
+#'   the binary decisions for each contingency (or a similarly structured
+#'   data frame). Can also be a (named) list containing each of the
+#'   4 contingencies. See examples.
+#' @param ... Arguments passed to [stats::fisher.test()]. In particular,
+#'   `alternative` which determines whether to check for both
+#'   enrichment and depletion ("two.sided") or specifically one
+#'   *or* the other: enrichment = "greater"; depletion = "less".
 #'
 #' @return An "enrichment" class object, a list of the significance
 #'   tests calculated from a Hypergeometric Distribution
 #'   [stats::dhyper()] as well as those calculated via Fisher's Exact
 #'   [stats::fisher.test()] test for count data
 #'   testing the H_o that the odds ratio is equal to 1.
+#'   The p-values for various flavors of Hypergeometric test are:
+#'   \item{1-sided}{add here.}
+#'   \item{2-sided}{double of `1-sided`.}
+#'   \item{1-sided mid}{add description}
+#'   \item{2-sided mid}{double of `1-sided mid`.}
+#'   \item{2-sided min lik}{this differs previous, but is most
+#'                          similar to Fisher's Exact}
+#'   \item{2-sided min lik mid}{this is typically preferred}
 #'
 #' @author Stu Field
 #' @seealso [stats::dhyper()], [stats::fisher.test()]
@@ -36,21 +46,20 @@
 #' en_list <- list(n11 = 4, n1_ = 7, n_1 = 6, n = 20)
 #' enrich_test(en_list)
 #' @export
-enrich_test <- function(x, alternative = NULL) {
+enrich_test <- function(x, ...) {
   UseMethod("enrich_test")
 }
 
 #' @noRd
 #' @export
-enrich_test.default <- function(x, alternative = NULL) {
+enrich_test.default <- function(x, ...) {
   stop("Unable to dispatch S3 method for class: ", value(class(x)),
        call. = FALSE)
 }
 
 #' @rdname enrich_test
 #' @export
-enrich_test.list <- function(x, alternative = c("two.sided", "enrich",
-                                                "deplete")) {
+enrich_test.list <- function(x, ...) {
 
   stopifnot("`x` must be a list of length 4." = length(x) == 4L)
 
@@ -66,21 +75,19 @@ enrich_test.list <- function(x, alternative = c("two.sided", "enrich",
   n   <- x$n
   n2_ <- n - n1_
   m <- matrix(c(n11, n_1 - n11, n1_ - n11, n2_ - (n_1 - n11)), ncol = 2L)
-  enrich_test(m, alternative = alternative)
+  enrich_test(m, ...)
 }
 
 #' @rdname enrich_test
 #' @export
-enrich_test.data.frame <- function(x, alternative = c("two.sided", "enrich",
-                                                      "deplete")) {
-  enrich_test(as.matrix(x), alternative = alternative)
+enrich_test.data.frame <- function(x, ...) {
+  enrich_test(as.matrix(x), ...)
 }
 
 #' @rdname enrich_test
 #' @importFrom stats fisher.test dhyper setNames
 #' @export
-enrich_test.matrix <- function(x, alternative = c("two.sided", "enrich",
-                                                  "deplete")) {
+enrich_test.matrix <- function(x, ...) {
 
   stopifnot("`x` must be a 2x2 matrix." = identical(dim(x), c(2L, 2L)))
 
@@ -108,12 +115,7 @@ enrich_test.matrix <- function(x, alternative = c("two.sided", "enrich",
   idx <- which(names(prob_vec2) == as.character(n11))
   two_sided_min_lik_mid <- sum(prob_vec2[-idx]) + (prob_vec2[[idx]] / 2)
 
-  # For the CI95
-  altern <- match.arg(alternative)
-  fisher <- stats::fisher.test(x, alternative = switch(altern,
-                                                       enrich = "greater",
-                                                       deplete = "less",
-                                                       "two.sided"))
+  fisher <- stats::fisher.test(x, ...)
 
   hyper <- tibble::enframe(
     c("1-sided"            = one_sided,
@@ -131,8 +133,7 @@ enrich_test.matrix <- function(x, alternative = c("two.sided", "enrich",
 
   list(confusion   = x,
        result      = hyper,
-       fisher_test = fisher,
-       alternative = altern) |>
+       fisher_test = fisher) |>
     add_class("enrichment")
 }
 
@@ -148,7 +149,6 @@ print.enrichment <- function(x, ...) {
   print(x$confusion)
   cat("\n")
   signal_rule("Hypergeometric", line_col = "blue")
-  signal_info(pad20("Alternative"), x$alternative)
   signal_info(pad20("Test-type"), "p-value")
   cat("\n")
   apply(x$result, 1, function(.x) {
