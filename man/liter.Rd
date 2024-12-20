@@ -2,9 +2,12 @@
 % Please edit documentation in R/liter.R
 \name{liter}
 \alias{liter}
+\alias{piter}
 \title{List Iteration}
 \usage{
 liter(.x, .y = NULL, .f, ...)
+
+piter(.l, .f, ...)
 }
 \arguments{
 \item{.x, .y}{Vectors or objects of the same length.}
@@ -12,22 +15,34 @@ liter(.x, .y = NULL, .f, ...)
 \item{.f}{A function to be applied to each element of \code{x}.}
 
 \item{...}{Additional arguments passed to \code{.f}.}
+
+\item{.l}{A \emph{named} list of elements, each to iterate over. Must
+have the same length. Also supports a data frame, whose
+rows will iterate over using names as parameters.}
 }
 \value{
-Always returns a list. The returned list is named by the
-names of \code{.x} or by \code{.x} itself if possible.
+Both functions always return a list, sometimes named
+if possible by rules similar to \code{\link[=sapply]{sapply()}}.
 }
 \description{
-A thin wrapper around \code{\link[=mapply]{mapply()}} that iterates
-over \emph{paired} \code{.x} and \code{.y} values.
-They \emph{must} have the same length elements
-but can be any R object to iterate over.
-Similar to \code{\link[purrr:map2]{purrr::map2()}} without having to
-load the \pkg{purrr} namespace.
+\code{\link[=piter]{piter()}} iterates over an arbitrary number of
+list elements evaluating identically indexed
+components and is an analogue to \code{\link[purrr:pmap]{purrr::pmap()}}
+without loading the \pkg{purrr} namespace.
+\code{\link[=liter]{liter()}} is a thin wrapper around \code{\link[=mapply]{mapply()}} intended
+specifically for \emph{paired} \code{.x} and \code{.y} values
+(similar to \code{\link[purrr:map2]{purrr::map2()}}).
 If \code{.y} is missing and \code{.x} is named,
 this is equal to \code{liter(.x, names(.x), ...)},
 which is the behavior of \code{\link[purrr:imap]{purrr::imap()}}.
+Both \code{\link[=piter]{piter()}} and \code{\link[=liter]{liter()}} support the
+formula construction (\code{~}).
 }
+\section{Functions}{
+\itemize{
+\item \code{piter()}: \code{\link[=piter]{piter()}} iterates over a \emph{named} list of identical lengths.
+
+}}
 \examples{
 x <- LETTERS
 names(x) <- letters
@@ -40,5 +55,20 @@ liter(x, .f = paste, sep = "-") |> head()
 liter(c("a", "b" , "c"), .f = paste, sep = "=")
 
 # anonymous on-the-fly .f()
-liter(1:6, rnorm(6), function(.x, .y) .x + .y^2) |> unlist()
+v <- rnorm(6)
+liter(1:6, v, function(a, b) a + b^2) |> unlist()
+
+# if .y is explicit; formula syntax
+# must use `.x` and `.y` in formula
+liter(1:6, v, ~ .x + .y^2) |> unlist()
+
+piter(list(a = head(LETTERS), b = head(letters)), function(a, b) paste0(a, b)) |>
+  unlist()
+
+# supports ~formula syntax
+piter(list(a = head(LETTERS), b = head(letters)), ~ paste0(a, b)) |> unlist()
+
+# supports data frames
+df <- data.frame(a = head(LETTERS), b = rev(tail(letters)))
+piter(df, ~ paste0(a, b)) |> unlist()
 }
