@@ -56,5 +56,7 @@ calc_ccc <- function(x, y) {
   lo   <- Z - stats::qnorm(N.) * set
   lo   <- (exp(2 * lo) - 1) / (exp(2 * lo) + 1)
   up   <- (exp(2 * up) - 1) / (exp(2 * up) + 1)
-  list(rho.c = pc, ci95 = c(lower = lo, upper = up), Z = Z, p.value = pval)
+  list(rho_c = pc,
+       ci95 = c(lower = lo, upper = up),
+       Z = Z, p_value = pval)
 }
