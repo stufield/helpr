@@ -39,9 +39,6 @@ build: roxygen
 	@ cd ..;\
 	$(RCMD) build --resave-data $(PKGSRC)
 
-pkgdown: roxygen
-	@ $(RSCRIPT) inst/deploy-pkgdown.R
-
 check: build
 	@ cd ..;\
 	$(RCMD) check --no-manual $(PKGNAME)_$(PKGVERS).tar.gz
