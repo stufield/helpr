@@ -2,6 +2,7 @@
 % Please edit documentation in R/grapes.R
 \name{grapes}
 \alias{grapes}
+\alias{\%||-\%}
 \alias{\%@@\%}
 \alias{\%@@\%<-}
 \alias{\%==\%}
@@ -12,6 +13,8 @@
 \alias{\%[[\%}
 \title{Special Infix Operators}
 \usage{
+x \%||-\% y
+
 x \%@@\% y
 
 x \%@@\% y <- value
@@ -42,6 +45,9 @@ perform set operations, etc.
 }
 \section{Functions}{
 \itemize{
+\item \code{x \%||-\% y}: A variant of base R \verb{\%||\%} which returns the lhs also
+if the \emph{length} of the rhs is zero, as well as if \code{NULL}.
+
 \item \code{x \%@@\% y}: A friendly version of \code{attr(x, y)} to extract \code{"@ribute"} elements.
 \code{y} can be unquoted.
 

@@ -10,9 +10,14 @@ a <- c("dog", "cat", "fox")
 b <- c("cow", "cat", "horse")
 
 test_that("%||% (now in base R) returns the correct value", {
-  foo <- NULL
-  expect_equal(foo %||% "bar", "bar")
+  expect_equal(NULL %||% "bar", "bar")
   expect_equal("foo" %||% "bar", "foo")
+})
+
+test_that("%||-% returns the correct value for length zero", {
+  expect_equal(character(0) %||-% "bar", "bar")
+  expect_equal(numeric(0) %||-% "bar", "bar")
+  expect_equal(NULL %||-% "bar", "bar")   # same as %||%
 })
 
 test_that("%@@% unit tests", {

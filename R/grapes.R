@@ -34,6 +34,19 @@
 NULL
 
 #' @describeIn grapes
+#'   A variant of base R `%||%` which returns the lhs also
+#'   if the *length* of the rhs is zero, as well as if `NULL`.
+#'
+#' @export
+`%||-%` <- function(x, y) {
+  if ( is.null(x) || length(x) <= 0L ) {
+    y
+  } else {
+    x
+  }
+}
+
+#' @describeIn grapes
 #'   A friendly version of `attr(x, y)` to extract `"@@ribute"` elements.
 #'  `y` can be unquoted.
 #'
