@@ -148,7 +148,7 @@ signal_rule <- function(text = "", line_col = NULL,
       add_color(line_col)
     rule   <- paste(left, text, right)
   }
-  .inform(rule, class = "condition")  # not a message
+  .inform(rule)
   invisible(NULL)
 }
 
