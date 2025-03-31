@@ -19,7 +19,7 @@ docs:
 readme:
 	@ echo "Rendering README.Rmd"
 	@ $(RSCRIPT) \
-	-e "Sys.setenv(RSTUDIO_PANDOC='/Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools')" \
+	-e "Sys.setenv(RSTUDIO_PANDOC='/usr/bin/pandoc/')" \
 	-e "options(cli.width = 80L)" \
 	-e "rmarkdown::render('README.Rmd', quiet = TRUE)"
 	@ $(RM) README.html
@@ -35,7 +35,10 @@ test_file:
 	-e "devtools::load_all()" \
 	-e "testthat::test_file('$(FILE)', reporter = 'progress', stop_on_failure = TRUE)"
 
-build: roxygen
+accept_snapshots:
+	@ Rscript -e "testthat::snapshot_accept()"
+
+build: docs
 	@ cd ..;\
 	$(RCMD) build --resave-data $(PKGSRC)
 
@@ -43,11 +46,23 @@ check: build
 	@ cd ..;\
 	$(RCMD) check --no-manual $(PKGNAME)_$(PKGVERS).tar.gz
 
-accept_snapshots:
-	@ Rscript -e "testthat::snapshot_accept()"
-
 install:
 	@ R CMD INSTALL --use-vanilla --preclean --resave-data .
+
+increment:
+	@ echo "Adding Version '$(ver)' to DESCRIPTION"
+	@ $(shell sed -i 's/^Version: .*/Version: $(ver)/' DESCRIPTION)
+	@ echo "Adding new heading to 'NEWS.md'"
+	@ $(shell sed -i '1s/^/# $(PKGNAME) $(ver)\n\n/' NEWS.md)
+
+release:
+	@ echo "Adding release commit"
+	@ git add -u
+	@ git commit -m "Increment version number"
+	@ git push origin main
+	@ git tag -a v$(PKGVERS) -m "Release of $(PKGVERS)"
+	@ git push origin v$(PKGVERS)
+	@ echo "Remember to bump the DESCRIPTION file with bump_to_dev()"
 
 clean:
 	@ cd ..;\
