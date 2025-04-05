@@ -60,7 +60,7 @@ release:
 	@ git add -u
 	@ git commit -m "Increment version number"
 	@ git push origin main
-	@ git tag -a v$(PKGVERS) -m "Release of $(PKGVERS)"
+	@ git tag -a v$(PKGVERS) $$(git rev-parse HEAD | cut -c1-7) -m "Release of $(PKGVERS)"
 	@ git push origin v$(PKGVERS)
 	@ echo "Remember to bump the DESCRIPTION file with bump_to_dev()"
 
