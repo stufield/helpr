@@ -3,11 +3,23 @@
 \name{write_text}
 \alias{write_text}
 \alias{read_text}
+\alias{write_latex_tbl}
 \title{Write to a Text File}
 \usage{
 write_text(path, lines, overwrite = FALSE)
 
 read_text(path, n = -1L)
+
+write_latex_tbl(
+  data,
+  path,
+  append = FALSE,
+  include_rn = TRUE,
+  rn_label = "",
+  caption = NULL,
+  long = FALSE,
+  ...
+)
 }
 \arguments{
 \item{path}{Path to target file. It is created if it does not exist, but the
@@ -22,6 +34,23 @@ these are the exact lines desired in the target file.}
 \item{n}{integer.  The (maximal) number of lines to
     read.  Negative values indicate that one should read up to the end of
     input on the connection.}
+
+\item{data}{An object that inherits from class \code{data.frame}.}
+
+\item{append}{\code{logical(1)}. See \code{\link[=write.table]{write.table()}}.}
+
+\item{include_rn}{\code{logical(1)}. Should row names
+of \code{data} be included?}
+
+\item{rn_label}{If row names are to be included,
+the title for that column.}
+
+\item{caption}{A possible caption for the table in \emph{LaTeX}.}
+
+\item{long}{\code{logical(1)}. Should the table be written
+in long format. Better for very long tables.}
+
+\item{...}{Arguments passed to \code{\link[=write.table]{write.table()}}.}
 }
 \description{
 Writes as UTF-8 encoding and with \verb{\\n} line
@@ -33,5 +62,7 @@ This avoids some of the unintended side-effects of
 \itemize{
 \item \code{read_text()}: a convenient wrapper to \code{\link[=readLines]{readLines()}} with default
 UTF-8 encoding for reading text into an R session.
+
+\item \code{write_latex_tbl()}: write a data frame to a \emph{LaTeX} table.
 
 }}
