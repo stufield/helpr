@@ -125,4 +125,5 @@ write_latex_tbl <- function(data, path, append = FALSE, include_rn = TRUE,
   write.table(data, sep = " & ", quote = FALSE, col.names = FALSE,
               row.names = include_rn, eol = "\\\\\n", ...)
   cat(sprintf("\\hline\n\\end{%s}\n", table))
+  invisible(path)
 }
