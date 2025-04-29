@@ -63,6 +63,6 @@ This avoids some of the unintended side-effects of
 \item \code{read_text()}: a convenient wrapper to \code{\link[=readLines]{readLines()}} with default
 UTF-8 encoding for reading text into an R session.
 
-\item \code{write_latex_tbl()}: write a data frame to a \emph{LaTeX} table.
+\item \code{write_latex_tbl()}: write the contents of a data frame to a \emph{LaTeX} table.
 
 }}

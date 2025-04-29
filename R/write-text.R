@@ -42,7 +42,7 @@ read_text <- function(path, n = -1L) {
 }
 
 #' @describeIn write_text
-#'   write a data frame to a *LaTeX* table.
+#'   write the contents of a data frame to a *LaTeX* table.
 #'
 #' @inheritParams rownames
 #'
@@ -75,15 +75,15 @@ write_latex_tbl <- function(data, path, append = FALSE, include_rn = TRUE,
   data <- data |>
     set_rn(gsub("_", "\\_", rownames(data), fixed = TRUE))
 
+  nc <- ifelse(include_rn, ncol(data), ncol(data) - 1L)
+  cols <-  paste0("l", strrep("c", nc))
+  col_nms <- names(data)
   if ( include_rn ) {
-    cols <- paste0("l", strrep("c", ncol(data)))
-    header <- sprintf("\\hline\n\\textbf{%s} & \\textbf{%s} \\\\\n\\hline\n",
-                      rn_label, paste(names(data), collapse = "} & \\textbf{"))
-  } else {
-    cols <- paste0("l", strrep("c", ncol(data) - 1L))
-    header <- sprintf("\\hline\n\\textbf{%s} \\\\\n\\hline\n",
-                      paste(names(data), collapse = "} & \\textbf{"))
+    col_nms <- c(rn_label, col_nms)
   }
+  spr_s   <- paste(col_nms, collapse = "} & \\textbf{")
+  spr_fmt <- "\\hline\n\\textbf{%s} \\\\\n\\hline\n"
+  header  <- sprintf(spr_fmt, spr_s)
 
   cat(sprintf("\\begin{%s}{", table), cols, "}\n", sep = "")
 
