@@ -106,10 +106,11 @@ write_latex_tbl <- function(data, path, append = FALSE, include_rn = TRUE,
     cat("\\endhead\n\n")
   }
 
-  for ( i in seq_len(ncol(data)) ) {
-    if ( is.numeric(data[[i]]) )
-      data[[i]] <- format(data[[i]], nsmall = 2L, digits = 3L,
-                          scientific = abs(min(data[[i]], na.rm = TRUE)) < 0.01)
+  do_sci <- function(x) abs(min(x, na.rm = TRUE)) < 0.001
+  is_dbl <- which(vapply(data, function(x) !is_int_vec(x) && is.numeric(x), NA))
+  for ( i in is_dbl ) {
+    data[[i]] <- format(data[[i]], nsmall = 2L, digits = 3L,
+                        scientific = do_sci(data[[i]]))
   }
 
   is_fct <- which(vapply(data, is.factor, NA))
