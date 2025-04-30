@@ -32,6 +32,10 @@ test_that("`write_latex_tbl()` adds a caption collrectly to LaTeX format", {
                       caption = "This is a really important table.")
 })
 
+test_that("`write_latex_tbl()` long table format written to LaTeX format", {
+  expect_snapshot_tex(mtcars[, 1:4L], "long-table-format.tex", long = TRUE)
+})
+
 test_that("`write_latex_tbl()` correctly appends LaTeX table to an existing file", {
   desc <- get("desc", envir = parent.frame(3))
   texfile <- "append-true.tex"
