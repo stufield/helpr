@@ -107,19 +107,19 @@ write_latex_tbl <- function(data, path, append = FALSE, include_rn = TRUE,
   }
 
   do_sci <- function(x) abs(min(x, na.rm = TRUE)) < 0.001
-  is_dbl <- which(vapply(data, function(x) !is_int_vec(x) && is.numeric(x), NA))
-  for ( i in is_dbl ) {
+  dbl_idx <- which(vapply(data, function(x) !is_int_vec(x) && is.numeric(x), NA))
+  for ( i in dbl_idx ) {
     data[[i]] <- format(data[[i]], nsmall = 2L, digits = 3L,
                         scientific = do_sci(data[[i]]))
   }
 
-  is_fct <- which(vapply(data, is.factor, NA))
-  for ( i in is_fct ) {
+  fct_idx <- which(vapply(data, is.factor, NA))
+  for ( i in fct_idx ) {
     data[[i]] <- as.character(data[[i]])
   }
 
-  is_chr <- which(vapply(data, is.character, NA))
-  for ( i in is_chr ) {
+  chr_idx <- which(vapply(data, is.character, NA))
+  for ( i in chr_idx ) {
     data[[i]] <- gsub("%", "\\\\%", data[[i]])
   }
 
