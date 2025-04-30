@@ -1,5 +1,9 @@
 
 # Setup wrapper ----
+# cols chosen to expose vector types
+tbl <- head(mtcars)[, c("mpg", "cyl", "wt", "vs", "gear", "carb")]
+tbl$gear <- factor(tbl$gear)
+tbl$carb <- as.character(tbl$carb)
 
 # https://testthat.r-lib.org/reference/expect_snapshot_file.html
 expect_snapshot_tex <- function(data, file, ...) {
@@ -15,20 +19,19 @@ expect_snapshot_tex <- function(data, file, ...) {
 
 # Testing ----
 test_that("`write_latex_tbl()` generates the correct tables in LaTeX format", {
-  expect_snapshot_tex(head(mtcars), "defaults.tex")
+  expect_snapshot_tex(tbl, "defaults.tex")
 })
 
 test_that("`write_latex_tbl()` generates a proper rownames title column", {
-  expect_snapshot_tex(head(mtcars), "label-rownames-column.tex",
-                      rn_label = "ROWNAMES-FOO")
+  expect_snapshot_tex(tbl, "label-rownames-column.tex", rn_label = "Car Model")
 })
 
 test_that("`write_latex_tbl()` generates the correct table without rownames", {
-  expect_snapshot_tex(head(mtcars), "no-rownames.tex", include_rn = FALSE)
+  expect_snapshot_tex(tbl, "no-rownames.tex", include_rn = FALSE)
 })
 
 test_that("`write_latex_tbl()` adds a caption collrectly to LaTeX format", {
-  expect_snapshot_tex(head(mtcars), "table-with-caption.tex",
+  expect_snapshot_tex(tbl, "table-with-caption.tex",
                       caption = "This is a really important table.")
 })
 
@@ -48,6 +51,6 @@ test_that("`write_latex_tbl()` correctly appends LaTeX table to an existing file
         "%",
         "% The LaTeX table should begin below this double line.", sep = "\n",
         "======================================================")
-    head(mtcars)
+    tbl
     }, texfile, append = TRUE)
 })
