@@ -48,16 +48,19 @@ read_text <- function(path, n = -1L) {
 #'
 #' @param append `logical(1)`. See [write.table()].
 #'
-#' @param include_rn `logical(1)`. Should row names
-#'   of `data` be included?
+#' @param include_rn `logical(1)`. Should the row names
+#'   (if present) of `data` be included?
+#'   Passed to [write.table()] as `row.names =` parameter.
 #'
-#' @param rn_label If row names are to be included,
-#'   the title for that column.
+#' @param rn_label `character(1)`. If row names are to be
+#'   included, the column title to be used. 
 #'
-#' @param caption A possible caption for the table in *LaTeX*.
+#' @param caption `character(1)`. A caption for the table
+#'   once in *LaTeX* format.
 #'
 #' @param long `logical(1)`. Should the table be written
-#'   in long format. Better for very long tables.
+#'   in long format. Better for very data frames with
+#'   many rows.
 #'
 #' @param ... Arguments passed to [write.table()].
 #'

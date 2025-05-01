@@ -39,16 +39,19 @@ these are the exact lines desired in the target file.}
 
 \item{append}{\code{logical(1)}. See \code{\link[=write.table]{write.table()}}.}
 
-\item{include_rn}{\code{logical(1)}. Should row names
-of \code{data} be included?}
+\item{include_rn}{\code{logical(1)}. Should the row names
+(if present) of \code{data} be included?
+Passed to \code{\link[=write.table]{write.table()}} as \verb{row.names =} parameter.}
 
-\item{rn_label}{If row names are to be included,
-the title for that column.}
+\item{rn_label}{\code{character(1)}. If row names are to be
+included, the column title to be used.}
 
-\item{caption}{A possible caption for the table in \emph{LaTeX}.}
+\item{caption}{\code{character(1)}. A caption for the table
+once in \emph{LaTeX} format.}
 
 \item{long}{\code{logical(1)}. Should the table be written
-in long format. Better for very long tables.}
+in long format. Better for very data frames with
+many rows.}
 
 \item{...}{Arguments passed to \code{\link[=write.table]{write.table()}}.}
 }
