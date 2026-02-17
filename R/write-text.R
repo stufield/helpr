@@ -53,7 +53,7 @@ read_text <- function(path, n = -1L) {
 #'   Passed to [write.table()] as `row.names =` parameter.
 #'
 #' @param rn_label `character(1)`. If row names are to be
-#'   included, the column title to be used. 
+#'   included, the column title to be used.
 #'
 #' @param caption `character(1)`. A caption for the table
 #'   once in *LaTeX* format.
