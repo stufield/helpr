@@ -1,0 +1,304 @@
+# The `helpr` package
+
+## Overview
+
+The `helpr` package contains numerous helper functions necessary for
+generalized machine learning analyses.
+
+It contains and exports numerous utilities and S3 generics used
+throughout the my personal analysis suite. It intentionally favors base
+R over higher level *tidyverse* to keep imports to a minimum.
+
+------------------------------------------------------------------------
+
+## Installation
+
+``` r
+# current dev version
+remotes::install_github("stufield/helpr")
+
+# or a specific version
+remotes::install_github("stufield/helpr@v0.0.2")
+```
+
+------------------------------------------------------------------------
+
+## Usage
+
+To load `helpr` simply make a call to
+[`library()`](https://rdrr.io/r/base/library.html) as usual:
+
+``` r
+library(helpr)
+```
+
+## Help summary of the package
+
+``` r
+library(help = helpr)
+```
+
+## Notes about the package
+
+TODO
+
+TODO
+
+TODO
+
+# Package index
+
+## Common S3 Generics
+
+S3 generics used by multiple packages having the same S3 method.
+
+- [`fit()`](https://stufield.github.io/helpr/reference/s3-generics.md)
+  [`tune()`](https://stufield.github.io/helpr/reference/s3-generics.md)
+  [`get_pos_class()`](https://stufield.github.io/helpr/reference/s3-generics.md)
+  [`get_model_classes()`](https://stufield.github.io/helpr/reference/s3-generics.md)
+  [`get_model_features()`](https://stufield.github.io/helpr/reference/s3-generics.md)
+  [`get_model_coef()`](https://stufield.github.io/helpr/reference/s3-generics.md)
+  [`get_model_type()`](https://stufield.github.io/helpr/reference/s3-generics.md)
+  [`get_model_params()`](https://stufield.github.io/helpr/reference/s3-generics.md)
+  [`calc_model_metrics()`](https://stufield.github.io/helpr/reference/s3-generics.md)
+  [`cross_validate()`](https://stufield.github.io/helpr/reference/s3-generics.md)
+  [`calc_predictions()`](https://stufield.github.io/helpr/reference/s3-generics.md)
+  : Common S3 Generics
+
+## Checking
+
+Boolean logical testing of an object.
+
+- [`rep_lgl()`](https://stufield.github.io/helpr/reference/rep_lgl.md) :
+  All Values Same
+- [`is_int_vec()`](https://stufield.github.io/helpr/reference/logicals.md)
+  [`is_logspace()`](https://stufield.github.io/helpr/reference/logicals.md)
+  [`is_monotonic()`](https://stufield.github.io/helpr/reference/logicals.md)
+  [`has_length()`](https://stufield.github.io/helpr/reference/logicals.md)
+  [`len_one()`](https://stufield.github.io/helpr/reference/logicals.md)
+  [`is_chr()`](https://stufield.github.io/helpr/reference/logicals.md)
+  [`is_dbl()`](https://stufield.github.io/helpr/reference/logicals.md)
+  [`is_lgl()`](https://stufield.github.io/helpr/reference/logicals.md)
+  [`is_int()`](https://stufield.github.io/helpr/reference/logicals.md) :
+  Logical Testing
+
+## Wrappers
+
+Wrappers and alias functions.
+
+- [`logit()`](https://stufield.github.io/helpr/reference/logit.md)
+  [`expit()`](https://stufield.github.io/helpr/reference/logit.md) :
+
+  `Logit` and `Expit` Transformations
+
+- [`rn2col()`](https://stufield.github.io/helpr/reference/rownames.md)
+  [`col2rn()`](https://stufield.github.io/helpr/reference/rownames.md)
+  [`has_rn()`](https://stufield.github.io/helpr/reference/rownames.md)
+  [`rm_rn()`](https://stufield.github.io/helpr/reference/rownames.md)
+  [`set_rn()`](https://stufield.github.io/helpr/reference/rownames.md)
+  [`add_rowid()`](https://stufield.github.io/helpr/reference/rownames.md)
+  : Helpers for Working With Row Names
+
+- [`liter()`](https://stufield.github.io/helpr/reference/liter.md)
+  [`piter()`](https://stufield.github.io/helpr/reference/liter.md) :
+  List Iteration
+
+- [`set_Names()`](https://stufield.github.io/helpr/reference/set_Names.md)
+  : Set Names of an Object
+
+## Simple calculations
+
+Various, simple, often used “calculation” utilities.
+
+- [`calc_ccc()`](https://stufield.github.io/helpr/reference/calc_ccc.md)
+  : Calculate Concordance Correlation Coefficient
+- [`calc_qvalue()`](https://stufield.github.io/helpr/reference/calc_qvalue.md)
+  [`plot(`*`<q_value>`*`)`](https://stufield.github.io/helpr/reference/calc_qvalue.md)
+  : Calculate q-values
+- [`calc_ss()`](https://stufield.github.io/helpr/reference/calc_ss.md) :
+  Calculate the Sum of Squared Errors
+- [`fit()`](https://stufield.github.io/helpr/reference/s3-generics.md)
+  [`tune()`](https://stufield.github.io/helpr/reference/s3-generics.md)
+  [`get_pos_class()`](https://stufield.github.io/helpr/reference/s3-generics.md)
+  [`get_model_classes()`](https://stufield.github.io/helpr/reference/s3-generics.md)
+  [`get_model_features()`](https://stufield.github.io/helpr/reference/s3-generics.md)
+  [`get_model_coef()`](https://stufield.github.io/helpr/reference/s3-generics.md)
+  [`get_model_type()`](https://stufield.github.io/helpr/reference/s3-generics.md)
+  [`get_model_params()`](https://stufield.github.io/helpr/reference/s3-generics.md)
+  [`calc_model_metrics()`](https://stufield.github.io/helpr/reference/s3-generics.md)
+  [`cross_validate()`](https://stufield.github.io/helpr/reference/s3-generics.md)
+  [`calc_predictions()`](https://stufield.github.io/helpr/reference/s3-generics.md)
+  : Common S3 Generics
+- [`get_outliers()`](https://stufield.github.io/helpr/reference/get_outliers.md)
+  : Get Indices of Statistical Outliers
+- [`fit_gauss()`](https://stufield.github.io/helpr/reference/fit_gauss.md)
+  : Calculate Robust Gaussian Estimates
+- [`p_value_FDR()`](https://stufield.github.io/helpr/reference/p_value_FDR.md)
+  [`plot(`*`<fdr>`*`)`](https://stufield.github.io/helpr/reference/p_value_FDR.md)
+  : Calculate Benjamini-Hochberg FDR Corrected Values
+- [`enrich_test()`](https://stufield.github.io/helpr/reference/enrich_test.md)
+  : Test for Enrichment
+- [`normal_k2_mixture()`](https://stufield.github.io/helpr/reference/normal_k2_mixture.md)
+  [`plot(`*`<mix_k2>`*`)`](https://stufield.github.io/helpr/reference/normal_k2_mixture.md)
+  : 2-distribution (k2) Gaussian Mixture Model
+
+## Simple comparison
+
+Compare vectors, calculate cross-tabulated counts and intersections of
+vector contents.
+
+- [`diff_vecs()`](https://stufield.github.io/helpr/reference/diff_vecs.md)
+  : Diff Two Vectors
+- [`cross_tab()`](https://stufield.github.io/helpr/reference/cross_tab.md)
+  : Cross Tabulate Counts
+
+## Convert and Subset Objects
+
+Converting classes to data frames or tibbles and subsetting elements of
+objects.
+
+- [`add_class()`](https://stufield.github.io/helpr/reference/add_class.md)
+  : Add a Class to an Object
+- [`convert2df()`](https://stufield.github.io/helpr/reference/convert2df.md)
+  : Convert R Objects to a Data Frame
+- [`jagged_tbl()`](https://stufield.github.io/helpr/reference/jagged_tbl.md)
+  : Create a Jagged Tibble
+- [`keep_it()`](https://stufield.github.io/helpr/reference/elements.md)
+  [`discard_it()`](https://stufield.github.io/helpr/reference/elements.md)
+  [`compact_it()`](https://stufield.github.io/helpr/reference/elements.md)
+  : Easily Subset Elements of Objects
+
+## File System Utilities
+
+File system useful utilities inspired by the [fs](https://fs.r-lib.org)
+package.
+
+- [`file_find()`](https://stufield.github.io/helpr/reference/filesystem.md)
+  [`helpr_path()`](https://stufield.github.io/helpr/reference/filesystem.md)
+  [`as_helpr_path()`](https://stufield.github.io/helpr/reference/filesystem.md)
+  [`is.dir()`](https://stufield.github.io/helpr/reference/filesystem.md)
+  [`ls_dir()`](https://stufield.github.io/helpr/reference/filesystem.md)
+  [`info_dir()`](https://stufield.github.io/helpr/reference/filesystem.md)
+  [`file_ext()`](https://stufield.github.io/helpr/reference/filesystem.md)
+  [`` `file_ext<-`() ``](https://stufield.github.io/helpr/reference/filesystem.md)
+  [`rm_file_ext()`](https://stufield.github.io/helpr/reference/filesystem.md)
+  [`set_file_ext()`](https://stufield.github.io/helpr/reference/filesystem.md)
+  [`as_helpr_bytes()`](https://stufield.github.io/helpr/reference/filesystem.md)
+  : Determine Path to File
+
+- [`save_rds()`](https://stufield.github.io/helpr/reference/save_rds.md)
+  [`save_rda()`](https://stufield.github.io/helpr/reference/save_rds.md)
+  [`get_compression()`](https://stufield.github.io/helpr/reference/save_rds.md)
+  :
+
+  Save Compressed `*.rds` File
+
+- [`openR()`](https://stufield.github.io/helpr/reference/openR.md) :
+  Open File Interactively
+
+## String Utilities
+
+Simple utilities for manipulating strings inspired by the
+[stringr](https://stringr.tidyverse.org/index.html) package.
+
+- [`pad()`](https://stufield.github.io/helpr/reference/strings.md)
+  [`squish()`](https://stufield.github.io/helpr/reference/strings.md)
+  [`trim()`](https://stufield.github.io/helpr/reference/strings.md)
+  [`capture()`](https://stufield.github.io/helpr/reference/strings.md) :
+  Working with Strings
+
+## Interface Utilities
+
+Generalized utilities for UI signaling and text output inspired by the
+[usethis](https://usethis.r-lib.org), [cli](https://cli.r-lib.org), and
+[crayon](https://github.com/r-lib/crayon) packages.
+
+- [`value()`](https://stufield.github.io/helpr/reference/signal.md)
+  [`signal_done()`](https://stufield.github.io/helpr/reference/signal.md)
+  [`signal_todo()`](https://stufield.github.io/helpr/reference/signal.md)
+  [`signal_oops()`](https://stufield.github.io/helpr/reference/signal.md)
+  [`signal_info()`](https://stufield.github.io/helpr/reference/signal.md)
+  [`signal_rule()`](https://stufield.github.io/helpr/reference/signal.md)
+  [`add_color()`](https://stufield.github.io/helpr/reference/signal.md)
+  [`add_style`](https://stufield.github.io/helpr/reference/signal.md)
+  [`print(`*`<helpr_style>`*`)`](https://stufield.github.io/helpr/reference/signal.md)
+  [`` `$`( ``*`<helpr_style>`*`)`](https://stufield.github.io/helpr/reference/signal.md)
+  [`has_style()`](https://stufield.github.io/helpr/reference/signal.md)
+  [`rm_style()`](https://stufield.github.io/helpr/reference/signal.md) :
+  Signal Feedback to the Console UI
+- [`symbl`](https://stufield.github.io/helpr/reference/symbl.md)
+  [`show_symbols()`](https://stufield.github.io/helpr/reference/symbl.md)
+  : A list of UTF-8 or ASCII symbols.
+- [`expect_error_free()`](https://stufield.github.io/helpr/reference/unit-help.md)
+  [`skip_on_check()`](https://stufield.github.io/helpr/reference/unit-help.md)
+  [`skip_on_test()`](https://stufield.github.io/helpr/reference/unit-help.md)
+  [`expect_snapshot_plot()`](https://stufield.github.io/helpr/reference/unit-help.md)
+  : Unit Test Helpers
+- [`give_praise()`](https://stufield.github.io/helpr/reference/give_praise.md)
+  : Praise User
+- [`dots_list2()`](https://stufield.github.io/helpr/reference/dots_list2.md)
+  : Dynamic List Param Collection Rename Elements of a List
+
+## Formatting Utilities
+
+Generalized utilities to facilitate consistency.
+
+- [`create_form()`](https://stufield.github.io/helpr/reference/create_form.md)
+  : Create A Formula
+- [`dater()`](https://stufield.github.io/helpr/reference/dater.md) :
+  Standardize Date Format
+- [`write_text()`](https://stufield.github.io/helpr/reference/write_text.md)
+  [`read_text()`](https://stufield.github.io/helpr/reference/write_text.md)
+  [`write_latex_tbl()`](https://stufield.github.io/helpr/reference/write_text.md)
+  : Write to a Text File
+- [`write_list()`](https://stufield.github.io/helpr/reference/write_list.md)
+  : Write List to CSV File
+
+## Handlers
+
+For capturing errors and dealing with verbose function calls.
+
+- [`be_safe()`](https://stufield.github.io/helpr/reference/handlers.md)
+  [`be_quiet()`](https://stufield.github.io/helpr/reference/handlers.md)
+  [`be_hard()`](https://stufield.github.io/helpr/reference/handlers.md)
+  : Handle and Capture Side Effects
+
+## Grapes
+
+Series of special, possibly useful, infix operators.
+
+- [`` `%||-%` ``](https://stufield.github.io/helpr/reference/grapes.md)
+  [`` `%@@%` ``](https://stufield.github.io/helpr/reference/grapes.md)
+  [`` `%@@%<-`() ``](https://stufield.github.io/helpr/reference/grapes.md)
+  [`` `%==%` ``](https://stufield.github.io/helpr/reference/grapes.md)
+  [`` `%!=%` ``](https://stufield.github.io/helpr/reference/grapes.md)
+  [`` `%===%` ``](https://stufield.github.io/helpr/reference/grapes.md)
+  [`` `%set%` ``](https://stufield.github.io/helpr/reference/grapes.md)
+  [`` `%!set%` ``](https://stufield.github.io/helpr/reference/grapes.md)
+  [`` `%[[%` ``](https://stufield.github.io/helpr/reference/grapes.md) :
+  Special Infix Operators
+
+## Library Mode
+
+A reproducible way to install temporary, perhaps non-standard packages
+into a stable, reproducible environment for analysis by adding onto the
+R library tree.
+
+- [`lib_mode()`](https://stufield.github.io/helpr/reference/lib_mode.md)
+  [`lib_tree()`](https://stufield.github.io/helpr/reference/lib_mode.md)
+  [`is_lib_mode()`](https://stufield.github.io/helpr/reference/lib_mode.md)
+  : Activate and Deactivate Lib Mode
+
+# Articles
+
+### Get Started
+
+- [Introduction to
+  helpr](https://stufield.github.io/helpr/articles/helpr.md):
+
+### Library Mode
+
+A reproducible way to install “time-capsuled” third party packages onto
+the libarary tree to maintain a consistent analysis environment.
+
+- [Library Mode](https://stufield.github.io/helpr/articles/lib-mode.md):

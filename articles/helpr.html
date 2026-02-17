@@ -8,8 +8,8 @@
 <title>Introduction to helpr • helpr</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.9/font.css" rel="stylesheet">
-<link href="../deps/Source_Code_Pro-0.4.9/font.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.10/font.css" rel="stylesheet">
+<link href="../deps/Source_Code_Pro-0.4.10/font.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Introduction to helpr">
@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">helpr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.0.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -240,13 +240,13 @@ concordance):</p>
 <span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, lty <span class="op">=</span> <span class="fl">2</span>, col <span class="op">=</span> <span class="st">"blue"</span>, lwd <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
-<img src="helpr_files/figure-html/ccc-1.png" alt="Concordance plot visualizing `calc_ccc()`." width="480"><p class="caption">
+<img src="helpr_files/figure-html/ccc-1.png" class="r-plt" alt="Concordance plot visualizing `calc_ccc()`." width="480"><p class="caption">
 Concordance plot visualizing <code><a href="../reference/calc_ccc.html">calc_ccc()</a></code>.
 </p>
 </div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ccc</span></span>
-<span><span class="co">#&gt; $rho.c</span></span>
+<span><span class="co">#&gt; $rho_c</span></span>
 <span><span class="co">#&gt; [1] 0.9778699</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $ci95</span></span>
@@ -256,7 +256,7 @@ Concordance plot visualizing <code><a href="../reference/calc_ccc.html">calc_ccc
 <span><span class="co">#&gt; $Z</span></span>
 <span><span class="co">#&gt; [1] 2.24642</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $p.value</span></span>
+<span><span class="co">#&gt; $p_value</span></span>
 <span><span class="co">#&gt; [1] 0.02467715</span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -363,7 +363,7 @@ other contexts (e.g. ANOVA, CVs):</p>
 <code class="sourceCode R"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">x</span>, <span class="va">data</span><span class="op">$</span><span class="va">y</span>, main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"This is today's date: "</span>, <span class="fu"><a href="../reference/dater.html">dater</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
-<img src="helpr_files/figure-html/dater-1.png" alt="Standardized date format using `dater()`." width="480"><p class="caption">
+<img src="helpr_files/figure-html/dater-1.png" class="r-plt" alt="Standardized date format using `dater()`." width="480"><p class="caption">
 Standardized date format using <code><a href="../reference/dater.html">dater()</a></code>.
 </p>
 </div>
@@ -382,7 +382,7 @@ Standardized date format using <code><a href="../reference/dater.html">dater()</
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
   </div></footer>

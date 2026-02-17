@@ -1,10 +1,10 @@
 pandoc: 3.1.11
-pkgdown: 2.1.1
+pkgdown: 2.2.0
 pkgdown_sha: ~
 articles:
   helpr: helpr.html
   lib-mode: lib-mode.html
-last_built: 2024-12-12T00:25Z
+last_built: 2026-02-17T23:29Z
 urls:
   reference: https://stufield.github.io/helpr/reference
   article: https://stufield.github.io/helpr/articles
