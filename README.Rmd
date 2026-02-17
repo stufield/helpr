@@ -56,7 +56,7 @@ level *tidyverse* to keep imports to a minimum.
 remotes::install_github("stufield/helpr")
 
 # or a specific version
-remotes::install_github("stufield/helpr@v0.0.1")
+remotes::install_github("stufield/helpr@v0.0.2")
 ```
 
 
