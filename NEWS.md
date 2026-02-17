@@ -1,4 +1,4 @@
-# helpr 0.0.1.9000
+# helpr 0.0.2 :rocket:
 
 ### Fixes
 * Fixed clobbering pkg functions with indexing objects
@@ -8,7 +8,7 @@
   - not necessary, R is smart, but was ugly
 
 ### Maintenance
-* Add namespace test in 'inst'
+* Added a namespace test in 'inst'
   - simple script to ensure that namespaces
     are kept low (or to a minimum)
   - usage: `Rscript --vanilla inst/test-ns.R`
@@ -49,10 +49,10 @@
 
 * Removed `calc_brier()` from package
   - now lives in `libml` package
-* removed `skip_on_jenkins()`
+* Removed `skip_on_jenkins()`
 
 ### Documentation 
-* clean up and improvement
+* cleaned up and improvement
   - minor param changes to `snake_case`,
     so downstream effects are possible
 
