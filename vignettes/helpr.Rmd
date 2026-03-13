@@ -75,22 +75,19 @@ functionality without the cost of additional imports/dependencies.
 
 ### `cross_tab()`
 
-You do not need to "quote" the passed arguments, unquoted strings are fine
+You must not "quote" the passed arguments, unquoted strings are fine
 and are parsed by NSE (non-standard evaluation). The `...` can take on either
-one or two column names:
+one or two column names, any additional parameters are passed to [table()]:
 
 ```{r cross-tab}
 # 1 factor
-cross_tab(mtcars, cyl)      # unquoted string
+cross_tab(mtcars, cyl)        # 1 factor
 
-cross_tab(mtcars, "cyl")    # quoted string
+cross_tab(mtcars, cyl, gear)  # 2 factors
 
-var <- "cyl"
-cross_tab(mtcars, var)      # external variable
+cross_tab(mtcars, cyl, gear, useNA = "always")  # NAs
 
-cross_tab(mtcars, cyl, gear)      # 2 factors
-
-cross_tab(mtcars, cyl, gear, am)  # 3 factors
+cross_tab(mtcars, cyl, gear, dnn = list("group1", "group2"))  # names
 ```
 
 

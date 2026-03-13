@@ -26,12 +26,14 @@
 #' # 2 factors
 #' cross_tab(mtcars, cyl, gear)
 #'
-#' # No quoted strings (!)
-#' cross_tab(mtcars, "cyl")
+#' \dontrun{
+#'   # No quoted strings (!)
+#'   cross_tab(mtcars, "cyl")
 #'
-#' # No external variable (!)
-#' var <- "cyl"
-#' cross_tab(mtcars, var)
+#'   # No external variable (!)
+#'   var <- "cyl"
+#'   cross_tab(mtcars, var)
+#' }
 #' @importFrom stats addmargins
 #' @export
 cross_tab <- function(data, ..., useNA = "ifany") {

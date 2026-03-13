@@ -34,12 +34,14 @@ cross_tab(mtcars, cyl)
 # 2 factors
 cross_tab(mtcars, cyl, gear)
 
-# No quoted strings (!)
-cross_tab(mtcars, "cyl")
+\dontrun{
+  # No quoted strings (!)
+  cross_tab(mtcars, "cyl")
 
-# No external variable (!)
-var <- "cyl"
-cross_tab(mtcars, var)
+  # No external variable (!)
+  var <- "cyl"
+  cross_tab(mtcars, var)
+}
 }
 \seealso{
 \code{\link[=table]{table()}}, \code{\link[=addmargins]{addmargins()}}
