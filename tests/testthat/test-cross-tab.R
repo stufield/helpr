@@ -3,7 +3,7 @@ df <- withr::with_seed(1,
   data.frame(
     stringsAsFactors = FALSE,
     id        = 1:20L,
-    Sample    = sample(LETTERS[1:3], 20, replace = TRUE),
+    Sample    = sample(LETTERS[1:3L], 20, replace = TRUE),
     TimePoint = sample(c("1wk", "2wk", "3wk", "4wk"), 20, replace = TRUE)
   )
 )
@@ -40,30 +40,20 @@ test_that("`cross_tab` with 2 variables has correct dimensions and names", {
                          2, 1, 0, 3, 1, 1, 0, 2, 7, 7, 6, 20))
 })
 
-test_that("`cross_tab()` quoted strings passed", {
-  expect_equal(cross_tab(df, Sample), cross_tab(df, "Sample"))
-  expect_equal(cross_tab(df, Sample, TimePoint),
-               cross_tab(df, "Sample", "TimePoint"))
-  expect_equal(cross_tab(df, Sample, TimePoint),
-               cross_tab(df, c("Sample", "TimePoint")))
-})
-
-test_that("`cross_tab()` variable is passed as `...`", {
+test_that("`cross_tab()` errors when quoted strings passed", {
+  expect_error(
+    cross_tab(df, "Sample"),
+    "Must pass naked strings to"
+  )
   var <- "Sample"
-  expect_equal(cross_tab(df, Sample), cross_tab(df, var))
-  var <- c("Sample", "TimePoint")
-  expect_equal(cross_tab(df, Sample, TimePoint), cross_tab(df, var))
+  expect_error(
+    cross_tab(df, var),
+    "Must pass naked strings to"
+  )
 })
 
 test_that("`cross_tab()` stops if variable absent", {
   expect_error(
-    cross_tab(df, foo),
-    "All '...' variables must be in 'x'.",
-    fixed = TRUE
-  )
-  expect_error(
-    cross_tab(df, "foo"),
-    "All '...' variables must be in 'x'.",
-    fixed = TRUE
+    cross_tab(df, foo), "object 'foo' not found"
   )
 })

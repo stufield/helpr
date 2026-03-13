@@ -3,12 +3,14 @@
 #' Create a contingency table of counts generated
 #'   by cross-classifying factors from groups
 #'   splitting on the values passed in the `...` argument.
-#'   The sums of each row and column are added to the result.
+#'   A thin wrapper around [table()] but with simplifying
+#'   features. The sums of each row and column are added to the result.
 #'
-#' @param x A `data.frame` (-like) object containing the
+#' @param data A `data.frame` (-like) object containing the
 #'   data variables from which counts are desired.
-#' @param ... A number of unquoted expressions or quoted strings
-#'   separated by commas. Generally greater than 3 is not useful.
+#' @param ... A number (1 to 2) unquoted strings separated by commas.
+#'   Greater than 2 is generally not useful. Or additional
+#'   parameters passed to [table()].
 #' @param useNA See [table()].
 #'
 #' @return A table of grouped counts based on splitting
@@ -21,34 +23,24 @@
 #' # 1 factor
 #' cross_tab(mtcars, cyl)
 #'
-#' # quoted string
-#' cross_tab(mtcars, "cyl")
-#'
-#' # with external variable
-#' var <- "cyl"
-#' cross_tab(mtcars, var)
-#'
 #' # 2 factors
 #' cross_tab(mtcars, cyl, gear)
 #'
-#' cross_tab(mtcars, "cyl", "gear")
+#' # No quoted strings (!)
+#' cross_tab(mtcars, "cyl")
 #'
-#' cross_tab(mtcars, c("cyl", "gear"))
-#'
-#' # 3 factors
-#' cross_tab(mtcars, cyl, gear, am)
+#' # No external variable (!)
+#' var <- "cyl"
+#' cross_tab(mtcars, var)
 #' @importFrom stats addmargins
 #' @export
-cross_tab <- function(x, ..., useNA = "ifany") {
-  dot_vars <- tryCatch(unlist(list(...)), error = function(e) NULL)
-  if ( is.null(dot_vars) ) {
-    dot_vars <- as.character(match.call(expand.dots = FALSE)$...)
+cross_tab <- function(data, ..., useNA = "ifany") {
+  lgl <- tryCatch(list(...), error = function(e) NULL)
+  if ( !is.null(lgl) ) {
+    stop("Must pass naked strings to `cross_tab()`, not ",
+         value(lgl), ".", call. = FALSE)
   }
-  stopifnot(
-    "All '...' variables must be in 'x'." = all(dot_vars %in% names(x))
-  )
-  table(x[, dot_vars, drop = FALSE],
-        dnn = as.list(dot_vars),
-        useNA = useNA) |>
-    stats::addmargins()
+  table2 <- be_hard(table, useNA = useNA)
+  expr   <- substitute(table2(...))
+  with(data, eval(expr)) |> addmargins()
 }

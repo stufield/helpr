@@ -4,14 +4,15 @@
 \alias{cross_tab}
 \title{Cross Tabulate Counts}
 \usage{
-cross_tab(x, ..., useNA = "ifany")
+cross_tab(data, ..., useNA = "ifany")
 }
 \arguments{
-\item{x}{A \code{data.frame} (-like) object containing the
+\item{data}{A \code{data.frame} (-like) object containing the
 data variables from which counts are desired.}
 
-\item{...}{A number of unquoted expressions or quoted strings
-separated by commas. Generally greater than 3 is not useful.}
+\item{...}{A number (1 to 2) unquoted strings separated by commas.
+Greater than 2 is generally not useful. Or additional
+parameters passed to \code{\link[=table]{table()}}.}
 
 \item{useNA}{See \code{\link[=table]{table()}}.}
 }
@@ -23,28 +24,22 @@ variables with sums from each factor.
 Create a contingency table of counts generated
 by cross-classifying factors from groups
 splitting on the values passed in the \code{...} argument.
-The sums of each row and column are added to the result.
+A thin wrapper around \code{\link[=table]{table()}} but with simplifying
+features. The sums of each row and column are added to the result.
 }
 \examples{
 # 1 factor
 cross_tab(mtcars, cyl)
 
-# quoted string
-cross_tab(mtcars, "cyl")
-
-# with external variable
-var <- "cyl"
-cross_tab(mtcars, var)
-
 # 2 factors
 cross_tab(mtcars, cyl, gear)
 
-cross_tab(mtcars, "cyl", "gear")
+# No quoted strings (!)
+cross_tab(mtcars, "cyl")
 
-cross_tab(mtcars, c("cyl", "gear"))
-
-# 3 factors
-cross_tab(mtcars, cyl, gear, am)
+# No external variable (!)
+var <- "cyl"
+cross_tab(mtcars, var)
 }
 \seealso{
 \code{\link[=table]{table()}}, \code{\link[=addmargins]{addmargins()}}
