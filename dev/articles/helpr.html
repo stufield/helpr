@@ -8,8 +8,8 @@
 <title>Introduction to helpr • helpr</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.9/font.css" rel="stylesheet">
-<link href="../deps/Source_Code_Pro-0.4.9/font.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.10/font.css" rel="stylesheet">
+<link href="../deps/Source_Code_Pro-0.4.10/font.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Introduction to helpr">
@@ -23,7 +23,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">helpr</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.0.1.9000</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.0.2.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -167,28 +167,18 @@ Returns both sided <code>setdiff</code>, <code>union</code> and
 <h3 id="cross_tab">
 <code>cross_tab()</code><a class="anchor" aria-label="anchor" href="#cross_tab"></a>
 </h3>
-<p>You do not need to “quote” the passed arguments, unquoted strings are
-fine and are parsed by NSE (non-standard evaluation). The
-<code>...</code> can take on either one or two column names:</p>
+<p>You must not “quote” the passed arguments, unquoted strings are fine
+and are parsed by NSE (non-standard evaluation). The <code>...</code>
+can take on either one or two column names, any additional parameters
+are passed to [table()]:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># 1 factor</span></span>
-<span><span class="fu"><a href="../reference/cross_tab.html">cross_tab</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">cyl</span><span class="op">)</span>      <span class="co"># unquoted string</span></span>
+<span><span class="fu"><a href="../reference/cross_tab.html">cross_tab</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">cyl</span><span class="op">)</span>        <span class="co"># 1 factor</span></span>
 <span><span class="co">#&gt; cyl</span></span>
 <span><span class="co">#&gt;   4   6   8 Sum </span></span>
 <span><span class="co">#&gt;  11   7  14  32</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/cross_tab.html">cross_tab</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="st">"cyl"</span><span class="op">)</span>    <span class="co"># quoted string</span></span>
-<span><span class="co">#&gt; cyl</span></span>
-<span><span class="co">#&gt;   4   6   8 Sum </span></span>
-<span><span class="co">#&gt;  11   7  14  32</span></span>
-<span></span>
-<span><span class="va">var</span> <span class="op">&lt;-</span> <span class="st">"cyl"</span></span>
-<span><span class="fu"><a href="../reference/cross_tab.html">cross_tab</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">var</span><span class="op">)</span>      <span class="co"># external variable</span></span>
-<span><span class="co">#&gt; cyl</span></span>
-<span><span class="co">#&gt;   4   6   8 Sum </span></span>
-<span><span class="co">#&gt;  11   7  14  32</span></span>
-<span></span>
-<span><span class="fu"><a href="../reference/cross_tab.html">cross_tab</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">cyl</span>, <span class="va">gear</span><span class="op">)</span>      <span class="co"># 2 factors</span></span>
+<span><span class="fu"><a href="../reference/cross_tab.html">cross_tab</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">cyl</span>, <span class="va">gear</span><span class="op">)</span>  <span class="co"># 2 factors</span></span>
 <span><span class="co">#&gt;      gear</span></span>
 <span><span class="co">#&gt; cyl    3  4  5 Sum</span></span>
 <span><span class="co">#&gt;   4    1  8  2  11</span></span>
@@ -196,33 +186,22 @@ fine and are parsed by NSE (non-standard evaluation). The
 <span><span class="co">#&gt;   8   12  0  2  14</span></span>
 <span><span class="co">#&gt;   Sum 15 12  5  32</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/cross_tab.html">cross_tab</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">cyl</span>, <span class="va">gear</span>, <span class="va">am</span><span class="op">)</span>  <span class="co"># 3 factors</span></span>
-<span><span class="co">#&gt; , , am = 0</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;      gear</span></span>
-<span><span class="co">#&gt; cyl    3  4  5 Sum</span></span>
-<span><span class="co">#&gt;   4    1  2  0   3</span></span>
-<span><span class="co">#&gt;   6    2  2  0   4</span></span>
-<span><span class="co">#&gt;   8   12  0  0  12</span></span>
-<span><span class="co">#&gt;   Sum 15  4  0  19</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; , , am = 1</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;      gear</span></span>
-<span><span class="co">#&gt; cyl    3  4  5 Sum</span></span>
-<span><span class="co">#&gt;   4    0  6  2   8</span></span>
-<span><span class="co">#&gt;   6    0  2  1   3</span></span>
-<span><span class="co">#&gt;   8    0  0  2   2</span></span>
-<span><span class="co">#&gt;   Sum  0  8  5  13</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; , , am = Sum</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;      gear</span></span>
-<span><span class="co">#&gt; cyl    3  4  5 Sum</span></span>
-<span><span class="co">#&gt;   4    1  8  2  11</span></span>
-<span><span class="co">#&gt;   6    2  4  1   7</span></span>
-<span><span class="co">#&gt;   8   12  0  2  14</span></span>
-<span><span class="co">#&gt;   Sum 15 12  5  32</span></span></code></pre></div>
+<span><span class="fu"><a href="../reference/cross_tab.html">cross_tab</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">cyl</span>, <span class="va">gear</span>, useNA <span class="op">=</span> <span class="st">"always"</span><span class="op">)</span>  <span class="co"># NAs</span></span>
+<span><span class="co">#&gt;       gear</span></span>
+<span><span class="co">#&gt; cyl     3  4  5 &lt;NA&gt; Sum</span></span>
+<span><span class="co">#&gt;   4     1  8  2    0  11</span></span>
+<span><span class="co">#&gt;   6     2  4  1    0   7</span></span>
+<span><span class="co">#&gt;   8    12  0  2    0  14</span></span>
+<span><span class="co">#&gt;   &lt;NA&gt;  0  0  0    0   0</span></span>
+<span><span class="co">#&gt;   Sum  15 12  5    0  32</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/cross_tab.html">cross_tab</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">cyl</span>, <span class="va">gear</span>, dnn <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"group1"</span>, <span class="st">"group2"</span><span class="op">)</span><span class="op">)</span>  <span class="co"># names</span></span>
+<span><span class="co">#&gt;       group2</span></span>
+<span><span class="co">#&gt; group1  3  4  5 Sum</span></span>
+<span><span class="co">#&gt;    4    1  8  2  11</span></span>
+<span><span class="co">#&gt;    6    2  4  1   7</span></span>
+<span><span class="co">#&gt;    8   12  0  2  14</span></span>
+<span><span class="co">#&gt;    Sum 15 12  5  32</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="calc_ccc">
@@ -241,7 +220,7 @@ concordance):</p>
 <span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, lty <span class="op">=</span> <span class="fl">2</span>, col <span class="op">=</span> <span class="st">"blue"</span>, lwd <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
-<img src="helpr_files/figure-html/ccc-1.png" alt="Concordance plot visualizing `calc_ccc()`." width="480"><p class="caption">
+<img src="helpr_files/figure-html/ccc-1.png" class="r-plt" alt="Concordance plot visualizing `calc_ccc()`." width="480"><p class="caption">
 Concordance plot visualizing <code><a href="../reference/calc_ccc.html">calc_ccc()</a></code>.
 </p>
 </div>
@@ -364,7 +343,7 @@ other contexts (e.g. ANOVA, CVs):</p>
 <code class="sourceCode R"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">x</span>, <span class="va">data</span><span class="op">$</span><span class="va">y</span>, main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"This is today's date: "</span>, <span class="fu"><a href="../reference/dater.html">dater</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
-<img src="helpr_files/figure-html/dater-1.png" alt="Standardized date format using `dater()`." width="480"><p class="caption">
+<img src="helpr_files/figure-html/dater-1.png" class="r-plt" alt="Standardized date format using `dater()`." width="480"><p class="caption">
 Standardized date format using <code><a href="../reference/dater.html">dater()</a></code>.
 </p>
 </div>
@@ -383,7 +362,7 @@ Standardized date format using <code><a href="../reference/dater.html">dater()</
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
   </div></footer>
