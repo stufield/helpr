@@ -83,21 +83,21 @@ setting \code{options(signal.quiet = TRUE)}.
 }
 \section{Functions}{
 \itemize{
-\item \code{value()}: Signal a value to the UI. Similar to \code{\link[usethis:ui]{usethis::ui_value()}}.
+\item \code{value()}: Signal a value to the UI. Similar to \code{\link[usethis:ui-legacy-functions]{usethis::ui_value()}}.
 Each element of \code{x} becomes an entry in a comma separated list
 and a \code{blue} color is added.
 
 \item \code{signal_done()}: Signal a completed task to the UI.
-Similar to \code{\link[usethis:ui]{usethis::ui_done()}}.
+Similar to \code{\link[usethis:ui-legacy-functions]{usethis::ui_done()}}.
 
 \item \code{signal_todo()}: Signal a to-do task to the UI.
-Similar to \code{\link[usethis:ui]{usethis::ui_todo()}}.
+Similar to \code{\link[usethis:ui-legacy-functions]{usethis::ui_todo()}}.
 
 \item \code{signal_oops()}: Signal oops error to the UI.
-Similar to \code{\link[usethis:ui]{usethis::ui_oops()}}.
+Similar to \code{\link[usethis:ui-legacy-functions]{usethis::ui_oops()}}.
 
 \item \code{signal_info()}: Signal info to the UI.
-Similar to \code{\link[usethis:ui]{usethis::ui_info()}}.
+Similar to \code{\link[usethis:ui-legacy-functions]{usethis::ui_info()}}.
 
 \item \code{signal_rule()}: Make a rule with left aligned text.
 Similar to \code{\link[cli:rule]{cli::rule()}}.

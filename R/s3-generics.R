@@ -77,6 +77,7 @@ get_model_classes.default <- function(model, ...) {
 #'   | Class          | Model type                    | See examples           |
 #'   | -------------: | ----------------------------- | ---------------------- |
 #'   | `"glm"`        | Logistic & linear regression  | [glm()] |
+#'   | `"glm"`        | GLM negative binomial|        | [MASS::glm.nb()] |
 #'   | `"glmnet"`     | Regularized logistic or linear regression | [glmnet::glmnet()] |
 #'   | `"naiveBayes"` | Standard naive Bayes          | `e1071::naiveBayes()` |
 #'   | `"fit_nb"`     | Naive Bayes (robust pars)     | `fit_nb()` |
@@ -89,7 +90,6 @@ get_model_classes.default <- function(model, ...) {
 #'   | `"psm"`        | Survival models               | `rms::psm()` |
 #'   | `"coxnet2"`    | Regularized cox               | `fitCoxnet()` |
 #'   | `"survregnet"` | Regularized survival          | `fitSurvregnet()` |
-#'   | `"train"`      | \pkg{caret} models            | [caret::train()] |
 #' @export
 get_model_features <- function(model, ...) UseMethod("get_model_features")
 

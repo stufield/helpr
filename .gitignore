@@ -19,3 +19,4 @@ filter_smudge
 .project
 packrat/lib*/
 .Rproj.user
+.positai

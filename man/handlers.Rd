@@ -51,7 +51,7 @@ but should be a sufficient replacement in most cases.
 }
 \section{Functions}{
 \itemize{
-\item \code{be_safe()}: Roll through \code{\link[=stop]{stop()}} or \code{\link[usethis:ui]{usethis::ui_stop()}} conditions.
+\item \code{be_safe()}: Roll through \code{\link[=stop]{stop()}} or \code{\link[usethis:ui-legacy-functions]{usethis::ui_stop()}} conditions.
 
 \item \code{be_quiet()}: Be quiet! ... always contains a \code{result}.
 

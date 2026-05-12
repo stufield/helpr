@@ -125,6 +125,7 @@ model, e.g. random forest or SVM, will not.
 \tabular{rll}{
    Class \tab Model type \tab See examples \cr
    \code{"glm"} \tab Logistic & linear regression \tab \code{\link[=glm]{glm()}} \cr
+   \code{"glm"} \tab GLM negative binomial \tab  \cr
    \code{"glmnet"} \tab Regularized logistic or linear regression \tab \code{\link[glmnet:glmnet]{glmnet::glmnet()}} \cr
    \code{"naiveBayes"} \tab Standard naive Bayes \tab \code{e1071::naiveBayes()} \cr
    \code{"fit_nb"} \tab Naive Bayes (robust pars) \tab \code{fit_nb()} \cr
@@ -137,7 +138,6 @@ model, e.g. random forest or SVM, will not.
    \code{"psm"} \tab Survival models \tab \code{rms::psm()} \cr
    \code{"coxnet2"} \tab Regularized cox \tab \code{fitCoxnet()} \cr
    \code{"survregnet"} \tab Regularized survival \tab \code{fitSurvregnet()} \cr
-   \code{"train"} \tab \pkg{caret} models \tab \code{\link[caret:train]{caret::train()}} \cr
 }
 }
 

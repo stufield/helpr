@@ -15,8 +15,8 @@ get_compression(file)
 \arguments{
 \item{object}{\R object to serialize.}
 
-\item{file}{a \link[base]{connection} or the name of the file where the \R object
-    is saved to or read from.}
+\item{file}{a \link[base]{connection} or the path name of the file where the
+    \R object is saved to or read from.}
 
 \item{...}{the names of the objects to be saved (as symbols or
     character strings).}
