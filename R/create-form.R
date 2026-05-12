@@ -5,9 +5,8 @@
 #'
 #' @param response A quoted string representing the LHS of the
 #'   formula, i.e. the response variable (`Y`).
-#' @param features A vector of quoted strings representing the
-#'   model features/predictors. Used to generate the right-hand
-#'   side (RHS) of the formula.
+#' @param ... quoted strings representing the features/predictors.
+#'   Used to generate the right-hand side (RHS) of the formula.
 #' @param collapse `character(1)`. The separator for features.
 #'   Typically either `+` for main effects, `*` for interactions.
 #' @param env The environment in which to evaluate the formula.
@@ -37,13 +36,14 @@
 #' f2    <- create_form("class", ft, env = e)
 #' ls(environment(f2))
 #' @export
-create_form <- function(response, features, collapse = c("+", "*"), env = NULL) {
+create_form <- function(response, ..., collapse = c("+", "*"), env = NULL) {
   collapse <- match.arg(collapse)
   if ( is.null(env) ) {
     env <- environment()
   }
-  expr <- str2lang(paste(response, "~", paste(features, collapse = collapse)))
+  expr <- str2lang(paste(response, "~",
+                         paste(c(...), collapse = collapse)))
   # clean up environment to ensure small-footprint
-  rm(response, features, collapse)
+  rm(response, collapse)
   eval(expr, envir = env)
 }

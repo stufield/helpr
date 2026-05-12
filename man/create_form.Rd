@@ -4,15 +4,14 @@
 \alias{create_form}
 \title{Create A Formula}
 \usage{
-create_form(response, features, collapse = c("+", "*"), env = NULL)
+create_form(response, ..., collapse = c("+", "*"), env = NULL)
 }
 \arguments{
 \item{response}{A quoted string representing the LHS of the
 formula, i.e. the response variable (\code{Y}).}
 
-\item{features}{A vector of quoted strings representing the
-model features/predictors. Used to generate the right-hand
-side (RHS) of the formula.}
+\item{...}{quoted strings representing the features/predictors.
+Used to generate the right-hand side (RHS) of the formula.}
 
 \item{collapse}{\code{character(1)}. The separator for features.
 Typically either \code{+} for main effects, \code{*} for interactions.}
