@@ -19,7 +19,7 @@ test_that("it is as light as possible", {
 })
 
 test_that("non-default collapse argument is properly parsed", {
-  form <- create_form("Group", ft, "*")
+  form <- create_form("Group", ft, collapse = "*")
   expect_s3_class(form, "formula")
   expect_equal(as.character(form),
                c("~", "Group",
