@@ -63,42 +63,42 @@ capture(text, pattern)
 
 Below is a convenient table of the stringr to base R equivalents:
 
-|                              |                                                                                                                                                           |
-|------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| stringr                      | base R                                                                                                                                                    |
-| `stringr::str_c()`           | [`paste()`](https://rdrr.io/r/base/paste.html)                                                                                                            |
-| `stringr::str_count()`       | [`gregexpr()`](https://rdrr.io/r/base/grep.html) + `attr(x, "match.length")`\]                                                                            |
-| `stringr::str_dup()`         | [`strrep()`](https://rdrr.io/r/base/strrep.html)                                                                                                          |
-| `stringr::str_detect()`      | [`grepl()`](https://rdrr.io/r/base/grep.html)                                                                                                             |
-| `stringr::str_flatten()`     | `paste(..., collapse = "")`                                                                                                                               |
-| `stringr::str_glue()`        | [`sprintf()`](https://rdrr.io/r/base/sprintf.html)                                                                                                        |
-| `stringr::str_length()`      | [`nchar()`](https://rdrr.io/r/base/nchar.html)                                                                                                            |
-| `stringr::str_locate_all()`  | [`regexpr()`](https://rdrr.io/r/base/grep.html)                                                                                                           |
-| `stringr::str_match()`       | [`match()`](https://rdrr.io/r/base/match.html)                                                                                                            |
-| `stringr::str_order()`       | [`order()`](https://rdrr.io/r/base/order.html)                                                                                                            |
-| `stringr::str_remove()`      | `sub(..., replacement = "")`                                                                                                                              |
-| `stringr::str_remove_all()`  | `gsub(..., replacement = "")`                                                                                                                             |
-| `stringr::str_replace()`     | [`sub()`](https://rdrr.io/r/base/grep.html)                                                                                                               |
-| `stringr::str_replace_all()` | [`gsub()`](https://rdrr.io/r/base/grep.html)                                                                                                              |
-| `stringr::str_sort()`        | [`sort()`](https://rdrr.io/r/base/sort.html)                                                                                                              |
-| `stringr::str_split()`       | [`strsplit()`](https://rdrr.io/r/base/strsplit.html)                                                                                                      |
-| `stringr::str_sub()`         | [`substr()`](https://rdrr.io/r/base/substr.html), [`substring()`](https://rdrr.io/r/base/substr.html), [`strtrim()`](https://rdrr.io/r/base/strtrim.html) |
-| `stringr::str_subset()`      | `grep(..., value = TRUE)`                                                                                                                                 |
-| `stringr::str_to_lower()`    | [`tolower()`](https://rdrr.io/r/base/chartr.html)                                                                                                         |
-| `stringr::str_to_upper()`    | [`toupper()`](https://rdrr.io/r/base/chartr.html)                                                                                                         |
-| `stringr::str_trim()`        | [`trimws()`](https://rdrr.io/r/base/trimws.html)                                                                                                          |
-| `stringr::str_which()`       | [`grep()`](https://rdrr.io/r/base/grep.html)                                                                                                              |
-| `stringr::str_wrap()`        | [`strwrap()`](https://rdrr.io/r/base/strwrap.html)                                                                                                        |
+|  |  |
+|----|----|
+| stringr | base R |
+| `stringr::str_c()` | [`paste()`](https://rdrr.io/r/base/paste.html) |
+| `stringr::str_count()` | [`gregexpr()`](https://rdrr.io/r/base/grep.html) + `attr(x, "match.length")`\] |
+| `stringr::str_dup()` | [`strrep()`](https://rdrr.io/r/base/strrep.html) |
+| `stringr::str_detect()` | [`grepl()`](https://rdrr.io/r/base/grep.html) |
+| `stringr::str_flatten()` | `paste(..., collapse = "")` |
+| `stringr::str_glue()` | [`sprintf()`](https://rdrr.io/r/base/sprintf.html) |
+| `stringr::str_length()` | [`nchar()`](https://rdrr.io/r/base/nchar.html) |
+| `stringr::str_locate_all()` | [`regexpr()`](https://rdrr.io/r/base/grep.html) |
+| `stringr::str_match()` | [`match()`](https://rdrr.io/r/base/match.html) |
+| `stringr::str_order()` | [`order()`](https://rdrr.io/r/base/order.html) |
+| `stringr::str_remove()` | `sub(..., replacement = "")` |
+| `stringr::str_remove_all()` | `gsub(..., replacement = "")` |
+| `stringr::str_replace()` | [`sub()`](https://rdrr.io/r/base/grep.html) |
+| `stringr::str_replace_all()` | [`gsub()`](https://rdrr.io/r/base/grep.html) |
+| `stringr::str_sort()` | [`sort()`](https://rdrr.io/r/base/sort.html) |
+| `stringr::str_split()` | [`strsplit()`](https://rdrr.io/r/base/strsplit.html) |
+| `stringr::str_sub()` | [`substr()`](https://rdrr.io/r/base/substr.html), [`substring()`](https://rdrr.io/r/base/substr.html), [`strtrim()`](https://rdrr.io/r/base/strtrim.html) |
+| `stringr::str_subset()` | `grep(..., value = TRUE)` |
+| `stringr::str_to_lower()` | [`tolower()`](https://rdrr.io/r/base/chartr.html) |
+| `stringr::str_to_upper()` | [`toupper()`](https://rdrr.io/r/base/chartr.html) |
+| `stringr::str_trim()` | [`trimws()`](https://rdrr.io/r/base/trimws.html) |
+| `stringr::str_which()` | [`grep()`](https://rdrr.io/r/base/grep.html) |
+| `stringr::str_wrap()` | [`strwrap()`](https://rdrr.io/r/base/strwrap.html) |
 
 And those found only in helpr:
 
-|                          |                                                               |
-|--------------------------|---------------------------------------------------------------|
-| stringr                  | helpr                                                         |
-| `stringr::str_extract()` | `capture()`, `gsub(..., replacement = "\\1")`                 |
-| `stringr::str_squish()`  | `squish()`                                                    |
-| `stringr::str_pad()`     | `pad()` or [`sprintf()`](https://rdrr.io/r/base/sprintf.html) |
-| `stringr::str_trim()`    | `trim()`                                                      |
+|  |  |
+|----|----|
+| stringr | helpr |
+| `stringr::str_extract()` | `capture()`, `gsub(..., replacement = "\\1")` |
+| `stringr::str_squish()` | `squish()` |
+| `stringr::str_pad()` | `pad()` or [`sprintf()`](https://rdrr.io/r/base/sprintf.html) |
+| `stringr::str_trim()` | `trim()` |
 
 ## See also
 

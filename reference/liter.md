@@ -111,12 +111,12 @@ liter(c("a", "b" , "c"), .f = paste, sep = "=")
 # anonymous on-the-fly .f()
 v <- rnorm(6)
 liter(1:6, v, function(a, b) a + b^2) |> unlist()
-#> [1] 1.173273 2.013003 3.004086 4.845172 5.812405 6.636370
+#> [1] 2.826384 2.554409 3.024208 4.555978 5.000322 6.000469
 
 # if .y is explicit; formula syntax
 # must use `.x` and `.y` in formula
 liter(1:6, v, ~ .x + .y^2) |> unlist()
-#> [1] 1.173273 2.013003 3.004086 4.845172 5.812405 6.636370
+#> [1] 2.826384 2.554409 3.024208 4.555978 5.000322 6.000469
 
 piter(list(a = head(LETTERS), b = head(letters)), function(a, b) paste0(a, b)) |>
   unlist()

@@ -54,31 +54,32 @@ location via its `path =` argument. This can be *anywhere* on the file
 system that the user has privileges.
 
 ``` r
+
 mylib <- "~/tmp-lib"
 dir.create(mylib)     # must create a valid directory
 
 lib_tree()
-#> [1] "/Users/runner/work/_temp/Library"                                         
-#> [2] "/Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/site-library"
-#> [3] "/Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/library"
+#> [1] "/Users/runner/work/_temp/Library"                                   
+#> [2] "/Library/Frameworks/R.framework/Versions/4.6/Resources/site-library"
+#> [3] "/Library/Frameworks/R.framework/Versions/4.6/Resources/library"
 
 lib_mode(mylib)  # activate; creates lib.loc location
 #> ✓ Analysis mode: ON
 #> ✓ Using: /Users/runner/tmp-lib/
 
 lib_tree()
-#> [1] "/Users/runner/tmp-lib"                                                    
-#> [2] "/Users/runner/work/_temp/Library"                                         
-#> [3] "/Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/site-library"
-#> [4] "/Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/library"
+#> [1] "/Users/runner/tmp-lib"                                              
+#> [2] "/Users/runner/work/_temp/Library"                                   
+#> [3] "/Library/Frameworks/R.framework/Versions/4.6/Resources/site-library"
+#> [4] "/Library/Frameworks/R.framework/Versions/4.6/Resources/library"
 
 lib_mode(mylib)  # deactivate
 #> ✓ Analysis mode: OFF
 
 lib_tree()
-#> [1] "/Users/runner/work/_temp/Library"                                         
-#> [2] "/Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/site-library"
-#> [3] "/Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/library"
+#> [1] "/Users/runner/work/_temp/Library"                                   
+#> [2] "/Library/Frameworks/R.framework/Versions/4.6/Resources/site-library"
+#> [3] "/Library/Frameworks/R.framework/Versions/4.6/Resources/library"
 ```
 
 #### Install 3rd party packages in `lib_mode()`
@@ -89,6 +90,7 @@ specific package version, this can be accomplished via
 if installing a third-party package:
 
 ``` r
+
 packageVersion("spelling")
 #> [1] '2.3.2'
 
@@ -116,6 +118,7 @@ The next time you activate “lib mode”, you will be notified that you are
 using a set of installed libraries (`here` and `spelling`):
 
 ``` r
+
 lib_mode(mylib)
 #> ✓ Analysis mode: ON
 #> ✓ Using: /Users/runner/tmp-lib/
@@ -136,6 +139,7 @@ option in an `.Rprofile` because it would not be portable across users
 and/or machines.
 
 ``` r
+
 # uses the 'helpr_path' option set
 options(helpr_path = mylib)
 lib_mode()

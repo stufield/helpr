@@ -33,8 +33,8 @@ additional imports/dependencies.
     Calculate Lin’s Concordance Correlation Coefficient for two vectors
     of numeric data.
   - [`calc_ss()`](https://stufield.github.io/helpr/reference/calc_ss.md):
-    Calculate the sum of squared errors:
-    $\sum\left( x - \bar{x} \right)^{2}$ for numeric data.
+    Calculate the sum of squared errors: $`\sum{(x - \bar x)^2}`$ for
+    numeric data.
 - Logic Tests:
   - [`rep_lgl()`](https://stufield.github.io/helpr/reference/rep_lgl.md):
     Are all the elements of a vector identical?
@@ -60,29 +60,20 @@ additional imports/dependencies.
 
 ### `cross_tab()`
 
-You do not need to “quote” the passed arguments, unquoted strings are
-fine and are parsed by NSE (non-standard evaluation). The `...` can take
-on either one or two column names:
+You must not “quote” the passed arguments, unquoted strings are fine and
+are parsed by NSE (non-standard evaluation). The `...` can take on
+either one or two column names, any additional parameters are passed to
+\[table()\]:
 
 ``` r
+
 # 1 factor
-cross_tab(mtcars, cyl)      # unquoted string
+cross_tab(mtcars, cyl)        # 1 factor
 #> cyl
 #>   4   6   8 Sum 
 #>  11   7  14  32
 
-cross_tab(mtcars, "cyl")    # quoted string
-#> cyl
-#>   4   6   8 Sum 
-#>  11   7  14  32
-
-var <- "cyl"
-cross_tab(mtcars, var)      # external variable
-#> cyl
-#>   4   6   8 Sum 
-#>  11   7  14  32
-
-cross_tab(mtcars, cyl, gear)      # 2 factors
+cross_tab(mtcars, cyl, gear)  # 2 factors
 #>      gear
 #> cyl    3  4  5 Sum
 #>   4    1  8  2  11
@@ -90,33 +81,22 @@ cross_tab(mtcars, cyl, gear)      # 2 factors
 #>   8   12  0  2  14
 #>   Sum 15 12  5  32
 
-cross_tab(mtcars, cyl, gear, am)  # 3 factors
-#> , , am = 0
-#> 
-#>      gear
-#> cyl    3  4  5 Sum
-#>   4    1  2  0   3
-#>   6    2  2  0   4
-#>   8   12  0  0  12
-#>   Sum 15  4  0  19
-#> 
-#> , , am = 1
-#> 
-#>      gear
-#> cyl    3  4  5 Sum
-#>   4    0  6  2   8
-#>   6    0  2  1   3
-#>   8    0  0  2   2
-#>   Sum  0  8  5  13
-#> 
-#> , , am = Sum
-#> 
-#>      gear
-#> cyl    3  4  5 Sum
-#>   4    1  8  2  11
-#>   6    2  4  1   7
-#>   8   12  0  2  14
-#>   Sum 15 12  5  32
+cross_tab(mtcars, cyl, gear, useNA = "always")  # NAs
+#>       gear
+#> cyl     3  4  5 <NA> Sum
+#>   4     1  8  2    0  11
+#>   6     2  4  1    0   7
+#>   8    12  0  2    0  14
+#>   <NA>  0  0  0    0   0
+#>   Sum  15 12  5    0  32
+
+cross_tab(mtcars, cyl, gear, dnn = list("group1", "group2"))  # names
+#>       group2
+#> group1  3  4  5 Sum
+#>    4    1  8  2  11
+#>    6    2  4  1   7
+#>    8   12  0  2  14
+#>    Sum 15 12  5  32
 ```
 
 ### `calc_ccc()`
@@ -124,6 +104,7 @@ cross_tab(mtcars, cyl, gear, am)  # 3 factors
 Calculate the `ccc` for two numeric vectors (visualize by concordance):
 
 ``` r
+
 x <- rnorm(100, mean = 10, sd = 0.5)
 y <- x + rnorm(100, sd = 0.1)   # add random scatter
 ccc <- calc_ccc(x, y)
@@ -142,6 +123,7 @@ Concordance plot visualizing
 [`calc_ccc()`](https://stufield.github.io/helpr/reference/calc_ccc.md).
 
 ``` r
+
 ccc
 #> $rho_c
 #> [1] 0.9778699
@@ -164,6 +146,7 @@ ubiquotously in generating variances and standard deviations within
 other contexts (e.g. ANOVA, CVs):
 
 ``` r
+
 x <- rnorm(100, mean = 10, sd = 0.5)
 calc_ss(x)
 #> [1] 18.85493
@@ -178,6 +161,7 @@ all.equal(var(x), calc_ss(x) / (length(x) - 1))    # TRUE
 ### `rep_lgl()`
 
 ``` r
+
 rep_lgl(letters)
 #> [1] FALSE
 
@@ -191,6 +175,7 @@ rep_lgl(c("B", rep("A", 250)))
 ### `is_monotonic()`
 
 ``` r
+
 is_monotonic(1:100)
 #> [1] TRUE
 
@@ -207,6 +192,7 @@ is_monotonic(rnorm(10))
 ### `is_logspace()`
 
 ``` r
+
 # A numeric vector
 x <- rnorm(30, mean = 1000)
 is_logspace(x)
@@ -217,6 +203,7 @@ is_logspace(log(x))
 ```
 
 ``` r
+
 is_logspace(data) # FALSE
 
 # log10-transform
@@ -230,6 +217,7 @@ is_logspace(data) # base 10; TRUE
 ### `diff_vecs()`
 
 ``` r
+
 diff_vecs(LETTERS[1:10L], LETTERS[5:15L], verbose = TRUE) # return invisible
 #> ℹ Vectors differ by:
 #> • Unique to LETTERS[1:10L] >> 4
@@ -254,6 +242,7 @@ diff_vecs(LETTERS[1:10L], LETTERS[5:15L], verbose = TRUE) # return invisible
 ### `dater()`
 
 ``` r
+
 data <- data.frame(x = rnorm(100), y = rnorm(100))
 plot(data$x, data$y, main = paste0("This is today's date: ", dater()))
 ```

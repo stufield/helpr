@@ -6,7 +6,7 @@ standardized format and environment.
 ## Usage
 
 ``` r
-create_form(response, features, collapse = c("+", "*"), env = NULL)
+create_form(response, ..., collapse = c("+", "*"), env = NULL)
 ```
 
 ## Arguments
@@ -16,10 +16,10 @@ create_form(response, features, collapse = c("+", "*"), env = NULL)
   A quoted string representing the LHS of the formula, i.e. the response
   variable (`Y`).
 
-- features:
+- ...:
 
-  A vector of quoted strings representing the model features/predictors.
-  Used to generate the right-hand side (RHS) of the formula.
+  quoted strings representing the features/predictors. Used to generate
+  the right-hand side (RHS) of the formula.
 
 - collapse:
 

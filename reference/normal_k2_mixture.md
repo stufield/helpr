@@ -80,11 +80,11 @@ Stu Field
 x <- withr::with_seed(101,
   c(rnorm(100, mean = 10, sd = 1), rnorm(100, mean = 2, sd = 2)))
 mix_theta <- normal_k2_mixture(x)
-#> ✓ Iteration ... 12
+#> ✓ Iteration ... 23
 mix_theta
 #> ══ Mix Type: normal_k2_mixture ════════════════════════════════════════
 #> • n               200
-#> • iter            12
+#> • iter            23
 #> • mu              [1.941, 9.97]
 #> • sigma           [2.033, 0.924]
 #> • pi_hat          0.498

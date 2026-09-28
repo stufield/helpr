@@ -49,7 +49,7 @@ foo(a = 2, b = 4, fun = function(x) mean(x))
 #> $fun
 #> function (x) 
 #> mean(x)
-#> <environment: 0x12f18b348>
+#> <environment: 0x844214ac0>
 #> 
 
 foo(data.frame(a = 1, b = 2), data.frame(a = 8, b = 4))
@@ -74,6 +74,6 @@ foo(!!!args)
 #> $fun
 #> function (x) 
 #> mean(x)
-#> <environment: 0x12f18b348>
+#> <environment: 0x844214ac0>
 #> 
 ```

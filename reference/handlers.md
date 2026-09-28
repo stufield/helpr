@@ -65,12 +65,12 @@ be_hard(.f, ...)
 
 ## purrr analogues
 
-|              |                                                                          |
-|--------------|--------------------------------------------------------------------------|
-| helpr        | purrr                                                                    |
-| `be_safe()`  | [`purrr::safely()`](https://purrr.tidyverse.org/reference/safely.html)   |
+|  |  |
+|----|----|
+| helpr | purrr |
+| `be_safe()` | [`purrr::safely()`](https://purrr.tidyverse.org/reference/safely.html) |
 | `be_quiet()` | [`purrr::quietly()`](https://purrr.tidyverse.org/reference/quietly.html) |
-| `be_hard()`  | [`purrr::partial()`](https://purrr.tidyverse.org/reference/partial.html) |
+| `be_hard()` | [`purrr::partial()`](https://purrr.tidyverse.org/reference/partial.html) |
 
 ## Examples
 
@@ -138,17 +138,17 @@ q2
 
 quantile(vec, probs = c(0.025, 0.975))
 #>      2.5%     97.5% 
-#> -1.922519  1.652401 
+#> -2.044360  2.287598 
 
 q2(vec)
 #>      2.5%     97.5% 
-#> -1.922519  1.652401 
+#> -2.044360  2.287598 
 
 quantile(navec, probs = c(0.025, 0.975), na.rm = TRUE)
 #>      2.5%     97.5% 
-#> -1.922519  1.652401 
+#> -2.044360  2.287598 
 
 q2(navec)
 #>      2.5%     97.5% 
-#> -1.922519  1.652401 
+#> -2.044360  2.287598 
 ```

@@ -48,8 +48,8 @@ Stu Field
 x <- rnorm(100, 25, 3)
 fit_gauss(x)
 #>        mu     sigma 
-#> 24.317513  2.956924 
+#> 24.368735  3.006532 
 fit_gauss(x, mad = TRUE)
 #>        mu     sigma 
-#> 24.485358  3.111577 
+#> 24.485358  3.072565 
 ```

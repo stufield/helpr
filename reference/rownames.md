@@ -77,36 +77,36 @@ by the desired action). `has_rn()` returns a scalar logical.
 df <- data.frame(a = 1:5, b = rnorm(5), row.names = LETTERS[1:5])
 df
 #>   a          b
-#> A 1  1.5752957
-#> B 2  1.5868860
-#> C 3 -1.4612501
-#> D 4  0.9751843
-#> E 5  1.1145549
+#> A 1 -0.5793881
+#> B 2  0.9421994
+#> C 3 -0.7063614
+#> D 4 -1.2754021
+#> E 5  0.7332599
 rn2col(df)              # default name is `.rn`
 #>   .rn a          b
-#> 1   A 1  1.5752957
-#> 2   B 2  1.5868860
-#> 3   C 3 -1.4612501
-#> 4   D 4  0.9751843
-#> 5   E 5  1.1145549
+#> 1   A 1 -0.5793881
+#> 2   B 2  0.9421994
+#> 3   C 3 -0.7063614
+#> 4   D 4 -1.2754021
+#> 5   E 5  0.7332599
 rn2col(df, "feature")   # pass `name =`
 #>   feature a          b
-#> 1       A 1  1.5752957
-#> 2       B 2  1.5868860
-#> 3       C 3 -1.4612501
-#> 4       D 4  0.9751843
-#> 5       E 5  1.1145549
+#> 1       A 1 -0.5793881
+#> 2       B 2  0.9421994
+#> 3       C 3 -0.7063614
+#> 4       D 4 -1.2754021
+#> 5       E 5  0.7332599
 
 # moving columns
 df$mtcars <- sample(names(mtcars), 5)
 col2rn(df, "mtcars")   # with a warning
 #> Warning: `df` already has row names. They will be over-written.
 #>      a          b
-#> disp 1  1.5752957
-#> vs   2  1.5868860
-#> wt   3 -1.4612501
-#> qsec 4  0.9751843
-#> hp   5  1.1145549
+#> mpg  1 -0.5793881
+#> hp   2  0.9421994
+#> carb 3 -0.7063614
+#> cyl  4 -1.2754021
+#> drat 5  0.7332599
 
 # Move back and forth easily
 # Leaves original object un-modified

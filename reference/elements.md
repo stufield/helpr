@@ -53,10 +53,10 @@ replacement in most cases.
 
 ## purrr analogues
 
-|                |                                                                       |
-|----------------|-----------------------------------------------------------------------|
-| helpr          | purrr                                                                 |
-| `keep_it()`    | [`purrr::keep()`](https://purrr.tidyverse.org/reference/keep.html)    |
+|  |  |
+|----|----|
+| helpr | purrr |
+| `keep_it()` | [`purrr::keep()`](https://purrr.tidyverse.org/reference/keep.html) |
 | `discard_it()` | [`purrr::discard()`](https://purrr.tidyverse.org/reference/keep.html) |
 | `compact_it()` | [`purrr::compact()`](https://purrr.tidyverse.org/reference/keep.html) |
 
@@ -88,7 +88,16 @@ keep_it(c(a = TRUE, b = FALSE, c = TRUE), identity)
 lst <- replicate(10, sample(10, 5), simplify = FALSE)
 keep_it(lst, function(x) mean(x) > 6)
 #> [[1]]
-#> [1]  6 10  8  9  3
+#> [1]  5  3  7  9 10
+#> 
+#> [[2]]
+#> [1]  9 10  5  8  4
+#> 
+#> [[3]]
+#> [1]  9 10  3  2  8
+#> 
+#> [[4]]
+#> [1]  8  5  7  1 10
 #> 
 
 # will work on data frames

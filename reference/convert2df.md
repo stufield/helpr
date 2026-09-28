@@ -72,15 +72,15 @@ tab <- table(sample(c("A", "B"), 30, replace = TRUE))
 tab
 #> 
 #>  A  B 
-#> 15 15 
+#> 17 13 
 
 as.data.frame(tab)
 #>   Var1 Freq
-#> 1    A   15
-#> 2    B   15
+#> 1    A   17
+#> 2    B   13
 convert2df(tab)
 #>    A  B
-#> 1 15 15
+#> 1 17 13
 
 # matrix
 mat <- matrix(1:9, ncol = 3L)

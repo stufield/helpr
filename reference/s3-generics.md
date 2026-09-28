@@ -95,12 +95,12 @@ calc_predictions(model, newdata, ...)
   containing model predictions for `newdata`. The data frame is named
   according to:
 
-  |                    |                                                   |                                                                       |
-  |--------------------|---------------------------------------------------|-----------------------------------------------------------------------|
-  | **Model Type**     | **Format**                                        | **Example** (n = 1)                                                   |
-  | **continuous**     | `pred_<endpoint>`                                 | `data.frame(pred_vo2max = 303.9)`                                     |
-  | **classification** | `pred_class`, `prob_<class1>`, `prob_<class2>`    | `data.frame(pred_class = "nash", prob_normal = 0.2, prob_nash = 0.8)` |
-  | **survival**       | `pred_status`, `risk_<status1>`, `risk_<status2>` | `data.frame(pred_status = "MI", risk_noMI = 0.2, risk_MI = 0.8)`      |
+  |  |  |  |
+  |----|----|----|
+  | **Model Type** | **Format** | **Example** (n = 1) |
+  | **continuous** | `pred_<endpoint>` | `data.frame(pred_vo2max = 303.9)` |
+  | **classification** | `pred_class`, `prob_<class1>`, `prob_<class2>` | `data.frame(pred_class = "nash", prob_normal = 0.2, prob_nash = 0.8)` |
+  | **survival** | `pred_status`, `risk_<status1>`, `risk_<status2>` | `data.frame(pred_status = "MI", risk_noMI = 0.2, risk_MI = 0.8)` |
 
 ## Note
 
@@ -113,23 +113,23 @@ predictor, any non-GLM model, e.g. random forest or SVM, will not.
 
 ## Model Features Classes
 
-|                  |                                           |                                                                        |
-|------------------|-------------------------------------------|------------------------------------------------------------------------|
-| Class            | Model type                                | See examples                                                           |
-| `"glm"`          | Logistic & linear regression              | [`glm()`](https://rdrr.io/r/stats/glm.html)                            |
-| `"glmnet"`       | Regularized logistic or linear regression | `glmnet::glmnet()`                                                     |
-| `"naiveBayes"`   | Standard naive Bayes                      | `e1071::naiveBayes()`                                                  |
-| `"fit_nb"`       | Naive Bayes (robust pars)                 | `fit_nb()`                                                             |
-| `"randomForest"` | Random Forests                            | `randomForest::randomForest()`                                         |
-| `"lda"`          | Linear Discriminant Analysis              | [`MASS::lda()`](https://rdrr.io/pkg/MASS/man/lda.html)                 |
-| `"kknn"`         | k-nearest neighbor                        | `kknn::kknn()`                                                         |
-| `"gbm"`          | generalized boosted regression models     | `gbm::gbm()`                                                           |
-| `"svm"`          | Support Vector Machines                   | `e1071::svm()`                                                         |
-| `"survreg"`      | Survival models                           | [`survival::survreg()`](https://rdrr.io/pkg/survival/man/survreg.html) |
-| `"psm"`          | Survival models                           | `rms::psm()`                                                           |
-| `"coxnet2"`      | Regularized cox                           | `fitCoxnet()`                                                          |
-| `"survregnet"`   | Regularized survival                      | `fitSurvregnet()`                                                      |
-| `"train"`        | caret models                              | `caret::train()`                                                       |
+|  |  |  |
+|----|----|----|
+| Class | Model type | See examples |
+| `"glm"` | Logistic & linear regression | [`glm()`](https://rdrr.io/r/stats/glm.html) |
+| `"glm"` | GLM negative binomial |  |
+| `"glmnet"` | Regularized logistic or linear regression | `glmnet::glmnet()` |
+| `"naiveBayes"` | Standard naive Bayes | `e1071::naiveBayes()` |
+| `"fit_nb"` | Naive Bayes (robust pars) | `fit_nb()` |
+| `"randomForest"` | Random Forests | `randomForest::randomForest()` |
+| `"lda"` | Linear Discriminant Analysis | [`MASS::lda()`](https://rdrr.io/pkg/MASS/man/lda.html) |
+| `"kknn"` | k-nearest neighbor | `kknn::kknn()` |
+| `"gbm"` | generalized boosted regression models | `gbm::gbm()` |
+| `"svm"` | Support Vector Machines | `e1071::svm()` |
+| `"survreg"` | Survival models | [`survival::survreg()`](https://rdrr.io/pkg/survival/man/survreg.html) |
+| `"psm"` | Survival models | `rms::psm()` |
+| `"coxnet2"` | Regularized cox | `fitCoxnet()` |
+| `"survregnet"` | Regularized survival | `fitSurvregnet()` |
 
 ## Author
 

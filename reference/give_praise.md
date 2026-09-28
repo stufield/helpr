@@ -17,11 +17,11 @@ give_praise()
 ``` r
 # random praise 1
 give_praise()
-#> Heh! You are Exquisite!
+#> Wow! You are Astounding!
 
 # random praise 2
 give_praise()
-#> Awww! You are Doozie!
+#> Yeah! You are Astounding!
 
 # suppress praise
 withr::with_options(list(signal.quiet = TRUE), give_praise())

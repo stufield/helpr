@@ -28,9 +28,9 @@ The current date in `YYYY-MM-DD` format (default).
 ``` r
 # with default format
 dater()
-#> [1] "2026-02-17"
+#> [1] "2026-09-28"
 
 # pass alternative format
 dater("%Y-%m-%d || %H:%M:%S")
-#> [1] "2026-02-17 || 23:30:08"
+#> [1] "2026-09-28 || 15:20:07"
 ```

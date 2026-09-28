@@ -26,8 +26,8 @@ get_compression(file)
 
 - file:
 
-  a [connection](https://rdrr.io/r/base/connections.html) or the name of
-  the file where the R object is saved to or read from.
+  a [connection](https://rdrr.io/r/base/connections.html) or the path
+  name of the file where the R object is saved to or read from.
 
 - ...:
 

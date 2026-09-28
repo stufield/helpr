@@ -56,10 +56,10 @@ Stu Field
 tmp <- lapply(LETTERS[1:5], function(x) rnorm(10, mean = 10, sd = 3))
 names(tmp) <- LETTERS[1:5]
 write_list(tmp, file = tempfile(fileext = ".csv"))
-#> ✓ Writing 'tmp' to: '/var/folders/w0/cd8qgn052r16zsblrrxl1gxw0000gn/T//RtmpDmFy8T/file116e4af9687.csv'
+#> ✓ Writing 'tmp' to: '/var/folders/36/tjdph2t965j8snz9_vkdnw0r0000gn/T//RtmpijeAj7/filecf9157679b7.csv'
 
 # with a data frame in list
 tmp$mtcars <- head(mtcars, 10)
 write_list(tmp, file = tempfile(fileext = ".csv"))
-#> ✓ Writing 'tmp' to: '/var/folders/w0/cd8qgn052r16zsblrrxl1gxw0000gn/T//RtmpDmFy8T/file116e23c37b78.csv'
+#> ✓ Writing 'tmp' to: '/var/folders/36/tjdph2t965j8snz9_vkdnw0r0000gn/T//RtmpijeAj7/filecf91530e863.csv'
 ```

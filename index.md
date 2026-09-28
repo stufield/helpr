@@ -14,6 +14,7 @@ R over higher level *tidyverse* to keep imports to a minimum.
 ## Installation
 
 ``` r
+
 # current dev version
 remotes::install_github("stufield/helpr")
 
@@ -29,12 +30,14 @@ To load `helpr` simply make a call to
 [`library()`](https://rdrr.io/r/base/library.html) as usual:
 
 ``` r
+
 library(helpr)
 ```
 
 ## Help summary of the package
 
 ``` r
+
 library(help = helpr)
 ```
 
