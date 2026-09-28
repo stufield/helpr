@@ -1,17 +1,40 @@
-# helpr (development version)
+# helpr 0.0.3
 
-*
+## Breaking changes
 
-# helpr 0.0.2 :rocket:
+* `create_form()` now takes the features in `...` in place
+  of the `features` argument. You must now name `collapse`.
+  Replace `create_form("y", feats, "*")` with
+  `create_form("y", feats, collapse = "*")`, and remove
+  `features =` from your calls.
 
-### Fixes
+* `cross_tab()` now takes only unquoted column names in
+  `...`, and gives an error for quoted strings or variables
+  that hold column names. Replace `cross_tab(df, "cyl")`
+  with `cross_tab(df, cyl)`. The first argument is now
+  `data` in place of `x`.
+
+## Minor improvements and fixes
+
+* `create_form()` now takes one or more features in `...`,
+  for example `create_form("y", "a", "b")`. A character
+  vector, as in `create_form("y", c("a", "b"))`, also works.
+* `cross_tab()` now takes only unquoted column names in `...`,
+  and its first argument is now `data`.
+
+
+# helpr 0.0.2
+
+## Fixes
+
 * Fixed clobbering pkg functions with indexing objects
   - doubled up on things like `is_dbl` which is bad form
   - just renamed the indexing vectors not to
     double use the functions with the same name
   - not necessary, R is smart, but was ugly
 
-### Maintenance
+## Maintenance
+
 * Added a namespace test in 'inst'
   - simple script to ensure that namespaces
     are kept low (or to a minimum)
@@ -28,7 +51,8 @@
   - user is asked to consult `fisher.test()`
     for further information
 
-### Added
+## Added
+
 * New unit testing helpers
 
 * New `jagged_tbl()` function
@@ -49,13 +73,14 @@
   - allows for `~formula` syntax
   - also added `~formula` syntax for `liter()` also
 
-### Removed
+## Removed
 
 * Removed `calc_brier()` from package
   - now lives in `libml` package
 * Removed `skip_on_jenkins()`
 
-### Documentation 
+## Documentation
+
 * cleaned up and improvement
   - minor param changes to `snake_case`,
     so downstream effects are possible
